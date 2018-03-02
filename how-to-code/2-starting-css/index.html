@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-107754281-2');
+		</script>
+
+		<link rel="stylesheet" href="/css/generic.css">
+
+		<title>Starting CSS - Learning to Code</title>
+	</head>
+
+	<body>
+		<h1>Starting CSS</h1>
+
+		<p></p>
+		<a href="/how-to-code/">Back</a>
+
+		<p>
+			Now that you've learned a bit of HTML, it's time to start learning CSS.
+			Remember that CSS means Cascading Style Sheets,
+			so it's pretty easy to remember what it's for &ndash; style!
+		</p>
+
+		<p>
+			I am continuing with the code from the previous section,
+			so check that out if you haven't.
+		</p>
+
+		<p>In the CSS section, put:</p>
+
+		<pre>
+			<code class="language-css">
+				* {
+				  font: 200% sans-serif;
+				}
+			</code>
+		</pre>
+		
+		<p>
+			Press run to re-render it.
+			This is actually very simple.
+			The `*` means that it should affect everything.
+			In the curly braces is where all of the style for the thing goes.
+			We have indented a bit to show that this is a new part of nested code,
+			which is for global styles.
+			Each of the styles in css must have a semicolon after it.
+		</p>
+
+		<p>
+			Right here, we only have the <code>font</code> style.
+			This will change your font to <code>200%</code> its normal size,
+			and make the font <code>sans-serif</code>.
+			Basically, serif means that the font has lot's of decoration and detail, etc.,
+			and sans-serif is more simple and clean.
+			You can also create more specific fonts to get a better look,
+			but we'll just do this for now.
+			This CSS is pretty simple, so let's add some more! ;)
+		</p>
+
+		<pre>
+			<code class="language-css">
+				h1 {
+				  font-size: 100px;
+				}
+				
+				p {
+				  font-size: 10px;
+				}
+			</code>
+		</pre>
+
+		<p>
+			Press run, and you can see that this has a very exaggerated effect.
+			The heading should be very big, and the paragraph should be very small.
+			You've likely noticed that this is a bit different.
+			The <code>h1</code> means that we are selecting all <code>&lt;h1></code> elements on the page.
+			We are changing the font size to <b>100</b> pixels!
+			Then, we are doing the same thing with the <code>&lt;p></code> element,
+			and converting its font size to 10 pixels.
+			The actual font sizes will be 200 pixels and 20 pixels,
+			because of the other CSS that changes everything to be 200% bigger.
+		</p>
+		
+		<p>
+			Go to <a href="../3-more-elements">my next article</a> to learn about some more HTML elements.
+			As said in the previous article,
+			check out <a href="https://developer.mozilla.org/en-US/">MDN</a>!
+			Even at my level, I still need to always come back to have a look at how to do something.
+		</p>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/prism.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+	</body>
+
+</html>

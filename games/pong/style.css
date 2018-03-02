@@ -1,0 +1,22 @@
+* {
+    font-family: "Open Sans", "Lato", Arial, Helvetica, sans-serif;
+}
+
+canvas {
+	border: 1px solid lightgray;
+	margin: 10px auto;
+	display: block;
+}
+
+a {
+	color: #3498db;
+	text-decoration: none;
+	display: block;
+	transition: all 0.2s ease;
+	text-align: center;
+	font-size: 20px;
+}
+
+a:hover {
+	color: #144d73;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-107754281-2');
+		</script>
+
+		<link rel="stylesheet" href="/css/generic.css">
+
+		<title>Starting CSS - Learning to Code</title>
+	</head>
+
+	<body>
+		<h1>CSS Tricks</h1>
+
+		<p></p>
+		<a href="/how-to-code/">Back</a>
+
+		<p>
+			Now that we know how to make all of these things, how will we style them?
+			What if we have multiple things that we just want to style differently?
+			This article will cover all of that.
+		</p>
+
+		<h2>Classes and IDs</h2>
+
+		<p>
+			Classes and IDs are used to select things via CSS and JavaScript.
+			What's the difference?
+			Well, IDs can only be used once,
+			while classes can be used as many times as you like.
+			You can apply then to an element by using <em>attributes.</em>
+			In order to create an attribut,
+			you need to modify the opening tag for an element:
+		</p>
+
+		<pre>
+			<code class="language-html">
+				&lt;h1>A Header&lt;/h1>
+				&lt;h1 class="red">A Red Header&lt;/h1>
+
+				&lt;p>A Paragraph&lt;/p>
+				&lt;p class="red">A Red Paragraph&lt;/p>
+				&lt;p class="red">Another Red Paragraph&lt;/p>
+
+				&lt;p id="orange">This is orange!&lt;/p>
+			</code>
+		</pre>
+
+		<p>
+			After creating these elements,
+			you may have noticed that nothing happened to their appearances!
+			This is because you haven't applied any styling to the <code>red</code> class
+			or the <code>orange</code> element.
+			You can select a class in CSS by placing a <code>.</code> before the class name,
+			and you can select an element's id by placing a <code>#</code> before the id:
+		</p>
+
+		<pre>
+			<code class="language-css">
+				.red {
+				  color: red;
+				}
+
+				#orange {
+				  color: orange
+				}
+			</code>
+		</pre>
+
+		<p>This will make the elements have color!</p>
+
+		<h2>Emmet</h2>
+
+		<h3>The Basics</h3>
+
+		<p>
+			Emmet is like an "ease of access" element creator.
+			JSFiddle has it built in, along with many popular editors worldwide.
+			You can use it by typing a css selector, then pressing the Tab key.
+			It will expand into an element!
+			For example, if you type <code>h1.red</code>, and press tab,
+			it will turn into <code>&lt;h1 class="red">&lt;/h1></code>.
+		</p>
+
+		<h3>Other Uses</h3>
+
+		<p>
+			Emmet also has more uses, like making expanded and nested elements.
+			For example, if you type <code>ol>li*5</code>,
+			it will create an entire ordered list with 5 <code>&lt;li></code> elements inside of it!
+			Here, the <code>></code> means "to have inside,"
+			and the <code>*</code> means "to have the amount."
+		</p>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/prism.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+	</body>
+</html>

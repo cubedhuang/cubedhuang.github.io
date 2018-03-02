@@ -1,0 +1,29 @@
+*:focus { outline: none !important }
+
+body { margin-bottom: 20vh }
+
+h4 { position: fixed }
+
+.btn.btn-struct {
+	margin: 5px;
+	width: 65%;
+	text-transform: capitalize;
+}
+
+#stuff-container {
+	position: fixed;
+	width: 10%;
+	text-transform: capitalize;
+}
+
+.btn-default { border: 1px solid gray }
+.btn-default:hover { border: 1px solid darkgray }
+
+.infin-text { font-family: "Open Sans", "Lato", Arial, Helvetica, sans-serif }
+
+.text-big { font-size: 200% }
+
+p {
+	text-align: justify;
+	font-size: 16px;
+}

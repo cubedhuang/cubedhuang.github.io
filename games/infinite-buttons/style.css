@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,400b');
+
+@media only screen and (max-width: 1100px) {
+	* { font-size: 19px !important; }
+	button {
+		padding: 9px 18px !important;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	* { font-size: 18px !important; }
+	button {
+		padding: 8px 16px !important;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	* { font-size: 16px !important; }
+	button {
+		padding: 7px 14px !important;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	* { font-size: 14px !important; }
+	button {
+		padding: 6px 12px !important;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	* { font-size: 13px !important; }
+	button {
+		padding: 5px 10px !important;
+	}
+}
+
+@media only screen and (max-width: 300px) {
+	* { font-size: 12px !important; }
+	button {
+		padding: 4px 8px !important;
+	}
+}
+
+@media only screen and (max-width: 250px) {
+	* { font-size: 10px !important; }
+	button {
+		padding: 2px 3px !important;
+	}
+}
+
+* {
+	font-family: "Open Sans", "Lato", Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	box-sizing: content-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	overflow: hidden;
+}
+
+::selection {
+	background-color: inherit;
+}
+
+p {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	z-index: 9999;
+	background-color: white;
+}
+
+button {
+	position: fixed;
+	padding: 10px 20px;
+	font-size: 20px;
+	border: none;
+	border-radius: 200px;
+	transition: all 1s, background-color 0.2s;
+	box-shadow: 0 2px 5px lightgray;
+}
+
+button:focus { outline: none; }
+
+button:hover {
+	cursor: pointer;
+	box-shadow: 0 5px 10px lightgray;
+}
+
+.white { color: #fff }
+.black { color: #000 }
+
+.bg-blue { background-color: #4285f4; }
+.bg-green { background-color: #34a853; }
+.bg-yellow { background-color: #fbbc05; }
+.bg-red { background-color: #ea4335; }
+
+a {
+	color: #3498db;
+	text-decoration: none;
+	border-bottom: 2px solid #3498db;
+	transition: all 0.2s ease;
+}
+
+a:hover {
+	color: #144d73;
+	border-bottom: 2px solid transparent;
+}

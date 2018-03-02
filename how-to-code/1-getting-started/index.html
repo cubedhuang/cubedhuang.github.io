@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-107754281-2');
+		</script>
+
+		<link rel="stylesheet" href="/css/generic.css">
+
+		<title>Getting Started - Learning to Code</title>
+	</head>
+
+	<body>
+		<h1>Getting Started</h1>
+
+		<p></p>
+		<a href="/how-to-code/">Back</a>
+
+		<p>
+			Welcome to my coding tutorial!
+			You have either come to see what this is about,
+			or to learn how to code.
+			Either way, let's get started!
+		</p>
+
+		<p>
+			To get started, we are going to use a site called
+			<a href="https://jsfiddle.net" target="_blank">JSFiddle</a>. JSFiddle does do a few things behind the scenes. For example, it inserts the html, head, and body on its
+			own. We'll talk about those later.
+		</p>
+
+		<p>
+			Now, when you open JSFiddle,
+			you will see an <abbr title="HyperText Markup Language">HTML</abbr> section,
+			a <abbr title="Cascading Style Sheets">CSS</abbr> section,
+			and a JavaScript section.
+		</p>
+
+		<p>
+			JSFiddle provides some pre-styling, but we want to get rid of that.
+			Put this in the CSS section to fix it:
+		</p>
+
+		<pre>
+			<code class="language-css">
+				body { background: white }
+			</code>
+		</pre>
+
+		<p>Enter this into the HTML section:</p>
+
+		<pre>
+			<code class="language-html">
+				&lt;h1>A Header&lt;/h1>
+				&lt;p>A Paragraph&lt;/p>
+			</code>
+		</pre>
+		
+		<p>Press the [Run] button at the top of the screen to render the HTML.</p>
+
+		<p>
+			Now, you may be scratching your heads thinking, <em>huh, what does all of this mean?</em>
+			Well, I'm here to explain.
+			
+			The <code>&lt;h1></code> thing at the beginning means the start of a header tag.
+			There are also <code>&lt;h2></code>,
+			<code>&lt;h3></code>, and all the way up to <code>&lt;h6></code> tags,
+			<code>&lt;h6></code> being the smallest.
+
+			Anyways, all of the text after the <code>&lt;h1></code> tag is a header.
+			That's why <em>A Header</em> is showing large and bold.
+			
+			After that is the <code>&lt;/h1></code> tag.
+			The <code>/</code> at the beginning just means that it is an ending tag.
+			It tells the computer that that is the end of the header,
+			and that all the stuff after is not a header.
+
+			The <code>&lt;p></code> tag is the start of a paragraph.
+			It tells the computer that everything after is a paragraph.
+			Then, the <code>&lt;/p></code> tag just ends the paragraph.
+		</p>
+
+		<p>
+			That's it!
+			You've just written (and I hope you now understand) some HTML code!
+			Try playing around with the things that you can do will all of these header and paragraph tags.
+			Check out my <a href="../2-starting-css">next article in the series</a> to learn about CSS,
+			and making your page look better.
+		</p>
+		
+		<p>
+			Also, check out <a href="https://developer.mozilla.org/en-US/">MDN</a>
+			to search up anything you don't know or want to know about HTML, CSS, and JavaScript.
+		</p>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/prism.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+	</body>
+
+</html>
