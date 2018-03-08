@@ -48,8 +48,8 @@
 			<p>Gain a part!</p>
 			<button @click="get(1)">Get a Thing</button>
 			<p>Boxes will improve your gathering speed!</p>
-			<button @click="buildKnife">
-				Build a Knife out of Parts: {{ boxes }} Boxes |
+			<button @click="buildBox">
+				Build a Box out of Parts: {{ boxes }} Boxes |
 				Cost: {{ bc }} Parts
 			</button>
 			<p>Machines will gather for you!</p>
@@ -58,13 +58,13 @@
 				Cost: {{ mc }} Parts
 			</button>
 
-			<h3>Study Knives</h3>
+			<h3>Prestige</h3>
 			<hr>
 			<p>
-				Studying knives will sacrifice everything,
+				Prestige will sacrifice everything,
 				but gives you a small multiplier.
 				<br>
-				Current boost: {{ boost }}x Thing Killing Rate
+				Current boost: {{ boost }}x Thing Gathering Amount
 				<br>
 				If you Study, you will gain {{ boostGain }}x Multiplier.
 			</p>

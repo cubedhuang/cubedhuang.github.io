@@ -27,7 +27,7 @@ const thing = new Vue({
 			this.parts += Math.round(this.boxes * this.boost * amount);
 		},
 
-		buildKnife() {
+		buildBox() {
 			if (this.parts >= this.bc) {
 				this.parts -= this.bc;
 				this.boxes++;
