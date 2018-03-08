@@ -1,70 +1,103 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Monster Slayer</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="css/foundation.min.css">
-    <link rel="stylesheet" href="css/app.css">
-  </head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <body>
-    <div id="app">
-      <section class="row">
-        <div class="small-6 columns">
-          <h1 class="text-center" style="color: #2ecc71;">YOU</h1>
-          <div class="healthbar">
-            <div
-              class="healthbar text-center"
-              style="background-color: #2ecc71; margin: 0; color: black;"
-              :style="{ width: playerHealth + '%' }">
-              {{ playerHealth }}
-            </div>
-          </div>
-        </div>
-        <div class="small-6 columns">
-          <h1 class="text-center" style="color: #e74c3c;">MONSTER</h1>
-          <div class="healthbar">
-            <div
-              class="healthbar text-center"
-              style="background-color: #e74c3c; margin: 0; color: white;"
-              :style="{ width: monsterHealth / 2 + '%' }">
-              {{ monsterHealth }}
-            </div>
-          </div>
-        </div>
-      </section>
+		<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"	href="/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
 
-      <section class="row controls" v-if="!inGame">
-        <div class="small-12 columns">
-          <button id="start-game" @click="start">START NEW GAME</button>
-          <button id="back">
-            <a href="/">BACK</a>
-          </button>
-        </div>
-      </section>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
 
-      <section class="row controls" v-else>
-        <div class="small-12 columns">
-          <button id="attack" @click="attack">ATTACK</button>
-          <button id="special-attack" @click="special">SPECIAL ATTACK - COOLDOWN: {{ cooldown }}</button>
-          <button id="heal" @click="heal">HEAL</button>
-          <button id="give-up" @click="giveUp">GIVE UP</button>
-        </div>
-      </section>
+			gtag('config', 'UA-107754281-2');
+		</script>
+		
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<link rel="stylesheet" href="css/foundation.min.css">
+		<link rel="stylesheet" href="css/app.css">
 
-      <section class="row log" v-if="log.length !== 0">
-        <div class="small-12 columns">
-          <ul>
-            <li
-              v-for="data in log"
-              :class="{ 'player-turn': data.player, 'monster-turn': !data.player }">
-              {{ data.text }}
-            </li>
-          </ul>
-        </div>
-      </section>
-    </div>
+		<title>Monster Slayer</title>
+	</head>
 
-    <script src="app.js"></script>
-  </body>
+	<body>
+		<div id="app">
+			<section class="row">
+				<div class="small-6 columns">
+					<h1 class="text-center" style="color: #2ecc71;">YOU</h1>
+					<div class="healthbar">
+						<div
+							class="healthbar text-center"
+							style="background-color: #2ecc71; margin: 0; color: black;"
+							:style="{ width: playerHealth + '%' }">
+							{{ playerHealth }}
+						</div>
+					</div>
+				</div>
+				<div class="small-6 columns">
+					<h1 class="text-center" style="color: #e74c3c;">MONSTER</h1>
+					<div class="healthbar">
+						<div
+							class="healthbar text-center"
+							style="background-color: #e74c3c; margin: 0; color: white;"
+							:style="{ width: monsterHealth / 2 + '%' }">
+							{{ monsterHealth }}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="row controls" v-if="!inGame">
+				<div class="small-12 columns">
+					<button id="start-game" @click="start">START NEW GAME</button>
+					<button id="back">
+						<a href="/">BACK</a>
+					</button>
+				</div>
+			</section>
+
+			<section class="row controls" v-else>
+				<div class="small-12 columns">
+					<button id="attack" @click="attack">ATTACK</button>
+					<button id="special-attack" @click="special">SPECIAL ATTACK - COOLDOWN: {{ cooldown }}</button>
+					<button id="heal" @click="heal">HEAL</button>
+					<button id="give-up" @click="giveUp">GIVE UP</button>
+				</div>
+			</section>
+
+			<section class="row log" v-if="log.length !== 0">
+				<div class="small-12 columns">
+					<ul>
+						<li
+							v-for="data in log"
+							:class="{ 'player-turn': data.player, 'monster-turn': !data.player }">
+							{{ data.text }}
+						</li>
+					</ul>
+				</div>
+			</section>	
+		</div>
+
+		<script src="app.js"></script>
+	</body>
 </html>
