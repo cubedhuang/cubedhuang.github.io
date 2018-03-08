@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Beta Testing</title>
+		<meta charset="UTF=8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Thing</title>
 
 		<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -25,25 +28,50 @@
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
-
-			function gtag() {
-				dataLayer.push(arguments);
-			}
+			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 
 			gtag('config', 'UA-107754281-2');
 		</script>
-
-		<link rel="stylesheet" type="text/css" href="/css/generic.css">
+		
+		<link rel="stylesheet" href="/css/generic.css">
 	</head>
 
 	<body>
-		<h1>Beta Games</h1>
+		<h1>Infinite Things</h1>
+
+		<p><a href="/">Back</a></p>
+
+		<div id="thing">
+			<h3>Parts of Things: {{ parts }}</h3>
+			<hr>
+			<p>Gain a part!</p>
+			<button @click="get(1)">Get a Thing</button>
+			<p>Boxes will improve your gathering speed!</p>
+			<button @click="buildKnife">
+				Build a Knife out of Parts: {{ boxes }} Boxes |
+				Cost: {{ bc }} Parts
+			</button>
+			<p>Machines will gather for you!</p>
+			<button @click="buildMachine">
+				Build a Machine out of Parts: {{ machines }} Machines |
+				Cost: {{ mc }} Parts
+			</button>
+
+			<h3>Study Knives</h3>
+			<hr>
 			<p>
-				If you find any bugs, comment them on the main page!
-				Most of these are experimental, and <b>will not save!</b>
+				Studying knives will sacrifice everything,
+				but gives you a small multiplier.
+				<br>
+				Current boost: {{ boost }}x Thing Killing Rate
+				<br>
+				If you Study, you will gain {{ boostGain }}x Multiplier.
 			</p>
-			<a href="worldly/">Worldly</a>
+			<button @click="study">Study!</button>
 		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="script.js"></script>
 	</body>
 </html>
