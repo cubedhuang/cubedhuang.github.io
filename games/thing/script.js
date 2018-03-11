@@ -3,6 +3,7 @@ const thing = new Vue({
 
 	created() {
 		setInterval(() => this.get(this.machines), 1000);
+		setInterval(this.saveGame, 30000);
 	},
 	
 	data: {
@@ -51,6 +52,12 @@ const thing = new Vue({
 			this.parts = 0;
 			this.bc = 10;
 			this.mc = 1000;
+		},
+
+		saveGame() {
+			localStorage.setItem("save", JSON.stringify(this.data));
 		}
 	}
 });
+
+window.onbeforeunload = thing.saveGame;

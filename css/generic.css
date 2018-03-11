@@ -168,3 +168,32 @@ hr {
 	height: 1px;
 	background: lightgray;
 }
+
+.full-width {
+	width: 100%;
+}
+
+::selection {
+	background-color: var(--base);
+	color: white;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table th, table td {
+	border: 1px solid lightgray;
+	padding: 10px;
+}
+
+table th, table th * {
+	background-color: var(--base);
+	color: white;
+}
+
+table tr:nth-child(even) {
+	background-color: #f8f8f8;
+}
