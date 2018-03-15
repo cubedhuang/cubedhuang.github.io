@@ -35,10 +35,11 @@
 		</script>
 		
 		<link rel="stylesheet" href="/css/generic.css">
+		<link rel="stylesheet" href="style.css">
 	</head>
 
 	<body>
-		<h1>Infinite Things</h1>
+		<h1>The Things</h1>
 
 		<p><a href="/">Back</a></p>
 
@@ -46,16 +47,24 @@
 			<h3>Parts of Things: {{ parts }}</h3>
 			<hr>
 			<p>Gain a part!</p>
-			<button @click="get(1)">Get a Thing</button>
+			<img src="/logo.png" @click="get(1)"/>
 			<p>Boxes will improve your gathering speed!</p>
 			<button @click="buildBox">
 				Build a Box out of Parts: {{ boxes }} Boxes |
 				Cost: {{ bc }} Parts
 			</button>
+			<button @click="upgradeBox">
+				Upgrade Your Boxes: Level {{ bl }} |
+				Cost: {{ blc }} Parts
+			</button>
 			<p>Machines will gather for you!</p>
 			<button @click="buildMachine">
 				Build a Machine out of Parts: {{ machines }} Machines |
 				Cost: {{ mc }} Parts
+			</button>
+			<button @click="upgradeMachine">
+				Upgrade Your Machines: Level {{ ml }} |
+				Cost: {{ mlc }} Parts
 			</button>
 
 			<h3>Prestige</h3>
@@ -69,9 +78,11 @@
 				If you Study, you will gain {{ boostGain }}x Multiplier.
 			</p>
 			<button @click="study">Study!</button>
+			<br><br>
+			<button @click="reset">FULL RESET</button>
 		</div>
 
-		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="/global/vue.min.js"></script>
 		<script src="script.js"></script>
 	</body>
 </html>
