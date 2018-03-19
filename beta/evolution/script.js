@@ -1,5 +1,7 @@
 numberformat.default.opts = {
 	sigfigs: 5,
+	format: "standard",
+	flavor: "short",
 	backend: "decimal.js",
 	Decimal: Decimal
 };
@@ -9,55 +11,125 @@ const format = numberformat.format;
 new Vue({
 	el: "#app",
 
+	created() {
+		setInterval(this.runAuto, 1000);
+	},
+
 	data: {
-		eff: new Decimal(0),
-		chance: new Decimal(0.5),
+		eff: new Decimal(1000),
+		chance: new Decimal(0.25),
 		gain: new Decimal(1),
 
-		evolve: new Decimal(1000),
+		evolveReq: new Decimal(1000),
 		stage: 0,
+		stages: ["Bacteria", "Eukaryokes", "Mammals"],
 
 		upgrades: [
 			{
-				name: "Faster Mating",
+				name: "Gradual Changes",
 				level: new Decimal(1),
 				effect: "Increases Chance",
-				cost: new Decimal(3),
-				prgm: "chance",
-			}
+				cost: new Decimal(1),
+				ocost: new Decimal(1),
+				prgm: "chance"
+			},
+			{
+				name: "More Genes",
+				level: new Decimal(1),
+				effect: "More Efficiency Gain",
+				cost: new Decimal(10),
+				ocost: new Decimal(10),
+				prgm: "gain"
+			},
+		],
+
+		automata: [
+			{
+				name: "Antivirus",
+				amount: new Decimal(0),
+				eps: new Decimal(1),
+				cost: new Decimal(15),
+				ocost: new Decimal(15),
+				unlocked: 0
+			},
+			{
+				name: "Protein Control",
+				amount: new Decimal(0),
+				eps: new Decimal(5),
+				cost: new Decimal(100),
+				ocost: new Decimal(100),
+				unlocked: 1
+			},
 		]
 	},
 
-	watch: {
-		eff(val) {
-			if (val.gte(this.evolve)) {
-				this.evolve = this.evolve.times(1000);
-				this.stage++;
-			}
-		}
-	},
-
 	computed: {
-		stageName() {
-			return ["Bacteria", "Algae"][this.stage];
+		multiplier() {
+			return Decimal.pow(5, this.stage);
 		}
 	},
 
 	methods: {
 		mutate() {
-			if (this.chance.gte(Math.random())) this.eff = this.eff.plus(this.gain);
+			if (this.chance.gte(Math.random())) {
+				this.eff = this.eff.plus(this.gain.times(this.multiplier));
+			}
+		},
+
+		evolve() {
+			this.eff = new Decimal(0);
+			this.chance = new Decimal(0.25);
+			this.gain = new Decimal(1);
+			this.evolveReq = this.evolveReq.times(1000);
+
+			for (let i = 0; i < this.automata.length; i++) {
+				this.automata[i].amount = new Decimal(0);
+				this.automata[i].cost = new Decimal(this.automata[i].ocost);
+			}
+
+			for (let i = 0; i < this.upgrades.length; i++) {
+				this.upgrades[i].level = new Decimal(1);
+				this.upgrades[i].cost = new Decimal(this.upgrades[i].ocost);
+			}
+
+			this.stage++;
+		},
+
+		runAuto() {
+			for (let i = 0; i < this.automata.length; i++) {
+				this.eff = this.eff.plus(
+					this.automata[i].eps.
+						times(this.automata[i].amount).
+						times(this.multiplier)
+				);
+			}
 		},
 
 		getUpgrade(id) {
-			if (this.eff >= this.upgrades[id].cost) {
+			if (this.eff.gte(this.upgrades[id].cost)) {
 				const upgrade = this.upgrades[id];
 
 				this.eff = this.eff.minus(upgrade.cost);
-				upgrade.cost = upgrade.cost.times(2);
+				upgrade.cost = upgrade.cost.times(10);
 				upgrade.level = upgrade.level.plus(1);
 
-				//const prgm = upgrade.prgm.split(" ");
-				this.chance = this.chance.plus((1 - this.chance) / 100);
+				switch (upgrade.prgm) {
+				case "chance":
+					this.chance = this.chance.plus((1 - this.chance) / 7.5);
+					break;
+				case "gain":
+					this.gain = this.gain.times(2);
+				}
+			}
+		},
+
+		getAutomata(id) {
+			if (this.eff.gte(this.automata[id].cost)) {
+				const auto = this.automata[id];
+
+				this.eff = this.eff.minus(auto.cost);
+				auto.cost = auto.cost.times(1.25).floor();
+				auto.amount = auto.amount.plus(1);
 			}
 		}
 	}

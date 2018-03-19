@@ -2,7 +2,7 @@ const thing = new Vue({
 	el: "#thing",
 
 	created() {
-		setInterval(() => this.get(this.machines * Math.pow(8, this.ml)), 1000);
+		setInterval(() => this.get(this.machines * Math.pow(3, this.ml)), 1000);
 		setInterval(this.saveGame, 30000);
 	},
 	
@@ -28,8 +28,8 @@ const thing = new Vue({
 
 	methods: {
 		get(amount) {
-			this.total += Math.round(Math.pow(3, this.bl) * this.boxes * this.boost * amount);
-			this.parts += Math.round(Math.pow(3, this.bl) * this.boxes * this.boost * amount);
+			this.total += Math.round(Math.pow(1.5, this.bl) * this.boxes * this.boost * amount);
+			this.parts += Math.round(Math.pow(1.5, this.bl) * this.boxes * this.boost * amount);
 		},
 
 		buildBox() {
@@ -102,7 +102,7 @@ const thing = new Vue({
 			if (confirm("This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?")) {
 				localStorage.removeItem("save");
 				location.reload(true);
-			};
+			}
 		}
 	}
 });
