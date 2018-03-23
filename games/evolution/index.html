@@ -62,7 +62,13 @@
 						class="btn btn-outline-primary btn-lg btn-block"
 						v-if="eff.gte(evolveReq)"
 						@click="evolve">
-						EVOLVE - Restart with a boost and become {{ stages[stage + 1] }}
+						EVOLVE - Become {{ stages[stage + 1] }}, restarting with a 5x boost
+					</button>
+					<button
+						class="btn btn-outline-primary btn-lg btn-block"
+						v-if="this.wisdomGain.gte(5)"
+						@click="evolve">
+						ASCEND - Return to bacteria with a {{ format(wisdomGain) }}x overall boost
 					</button>
 				</div>
 			</div>
@@ -75,7 +81,8 @@
 					
 					<button
 						class="btn btn-success btn-lg btn-block"
-						@click="mutate()">
+						@click="mutate()"
+						@keydown.prevent>
 						Mutate - Chance: {{ format(chance.times(100)) }}%
 					</button>
 				</div>

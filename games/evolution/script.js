@@ -16,13 +16,16 @@ new Vue({
 	},
 
 	data: {
-		eff: new Decimal(1000),
+		eff: new Decimal(0),
+		total: new Decimal(0),
 		chance: new Decimal(0.25),
 		gain: new Decimal(1),
 
 		evolveReq: new Decimal(1000),
 		stage: 0,
 		stages: ["Bacteria", "Eukaryokes", "Mammals"],
+		
+		wisdom: new Decimal(1),
 
 		upgrades: [
 			{
@@ -65,43 +68,41 @@ new Vue({
 
 	computed: {
 		multiplier() {
-			return Decimal.pow(5, this.stage);
+			return Decimal.pow(5, this.stage).times(this.wisdom);
+		},
+
+		wisdomGain() {
+			return this.total.div(1000).plus(1).cbrt().minus(this.wisdom).floor();
 		}
 	},
 
 	methods: {
 		mutate() {
 			if (this.chance.gte(Math.random())) {
-				this.eff = this.eff.plus(this.gain.times(this.multiplier));
+				let gain = this.gain.times(this.multiplier);
+				this.eff = this.eff.plus(gain);
+				this.total = this.total.plus(gain);
 			}
 		},
 
 		evolve() {
-			this.eff = new Decimal(0);
-			this.chance = new Decimal(0.25);
-			this.gain = new Decimal(1);
-			this.evolveReq = this.evolveReq.times(1000);
-
-			for (let i = 0; i < this.automata.length; i++) {
-				this.automata[i].amount = new Decimal(0);
-				this.automata[i].cost = new Decimal(this.automata[i].ocost);
-			}
-
-			for (let i = 0; i < this.upgrades.length; i++) {
-				this.upgrades[i].level = new Decimal(1);
-				this.upgrades[i].cost = new Decimal(this.upgrades[i].ocost);
-			}
-
+			this.restart();
 			this.stage++;
+		},
+
+		ascend() {
+			this.restart();
+			this.stage = 0;
+			this.wisdom = this.wisdom.plus(this.wisdomGain);
 		},
 
 		runAuto() {
 			for (let i = 0; i < this.automata.length; i++) {
-				this.eff = this.eff.plus(
-					this.automata[i].eps.
-						times(this.automata[i].amount).
-						times(this.multiplier)
-				);
+				let gain = this.automata[i].eps.
+					times(this.automata[i].amount).
+					times(this.multiplier);
+				this.eff = this.eff.plus(gain);
+				this.total = this.total.plus(gain);
 			}
 		},
 
@@ -130,6 +131,23 @@ new Vue({
 				this.eff = this.eff.minus(auto.cost);
 				auto.cost = auto.cost.times(1.25).floor();
 				auto.amount = auto.amount.plus(1);
+			}
+		},
+
+		restart() {
+			this.eff = new Decimal(0);
+			this.chance = new Decimal(0.25);
+			this.gain = new Decimal(1);
+			this.evolveReq = this.evolveReq.times(1000);
+
+			for (let i = 0; i < this.automata.length; i++) {
+				this.automata[i].amount = new Decimal(0);
+				this.automata[i].cost = new Decimal(this.automata[i].ocost);
+			}
+
+			for (let i = 0; i < this.upgrades.length; i++) {
+				this.upgrades[i].level = new Decimal(1);
+				this.upgrades[i].cost = new Decimal(this.upgrades[i].ocost);
 			}
 		}
 	}
