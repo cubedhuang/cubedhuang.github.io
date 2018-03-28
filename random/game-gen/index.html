@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Changelog</title>
+<html>
+    <head>
+        <meta charset="UTF=8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Password Generator</title>
 
 		<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -30,77 +33,24 @@
 
 			gtag('config', 'UA-107754281-2');
 		</script>
-
-		<link rel="stylesheet" type="text/css" href="/css/generic.css">
+		
+        <link rel="stylesheet" type="text/css" href="/css/generic.css">
 	</head>
+	
+    <body>
+		<h1>Game Idea Generator</h1>
+		
+		<p><a href="/" class="btn btn-info">Back</a></p>
+		
+		<p>
+			Randomness "Seed": <input type="number" id="seed">
+			<button id="random">Random Randomness Seed</button>
+		</p>
 
-	<body>
-		<h1>Changelog</h1>
+		<p>
+			Output: <span id="output"></span>
+		</p>
 
-		<p><a href="/">Back</a></p>
-
-		<div id="app">
-			<table class="full-width">
-				<tr>
-					<th>Date</th>
-					<th>Category</th>
-					<th>Change(s)</th>
-				</tr>
-
-				<tr>
-					<td>March 28, 2018</td>
-					<td>Random</td>
-					<td>Game idea generator!</td>
-				</tr>
-
-				<tr>
-					<td>March 23, 2018</td>
-					<td>Games</td>
-					<td>Did stuff with ascension and evolution</td>
-				</tr>
-
-				<tr>
-					<td>March 18, 2018</td>
-					<td>Random</td>
-					<td>Improved Password Generator... a lot</td>
-				</tr>
-
-				<tr>
-					<td>March 18, 2018</td>
-					<td>Games</td>
-					<td>Kinda fixed thing, worked on evolution</td>
-				</tr>
-
-				<tr>
-					<td>March 17, 2018</td>
-					<td>Games</td>
-					<td>New Game: Evolution, but thing is broken and OP :(</td>
-				</tr>
-
-				<tr>
-					<td>March 15, 2018</td>
-					<td>Games</td>
-					<td>Update thing with real saving and upgrades</td>
-				</tr>
-
-				<tr>
-					<td>March 15, 2018</td>
-					<td>Files and Code</td>
-					<td>Local Vue.js File</td>
-				</tr>
-
-				<tr>
-					<td>Pi Day, 2018</td>
-					<td>Files and Code</td>
-					<td>Request notifications, not actually sending anything yet</td>
-				</tr>
-
-				<tr>
-					<td>March 11, 2018</td>
-					<td>Files and Code</td>
-					<td>Add changelog, remove unnecessary files</td>
-				</tr>
-			</table>
-		</div>
-	</body>
+        <script src="script.js"></script>
+    </body>
 </html>
