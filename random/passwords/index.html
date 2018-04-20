@@ -34,33 +34,59 @@
 			gtag('config', 'UA-107754281-2');
 		</script>
 		
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="/css/generic.css">
     </head>
     <body>
-        <div class="container">
-            <h1>Password Generator</h1>
-            <a href="/" class="btn btn-info">Back</a>
-            <button onclick="setPasswords()"
-                    class="btn btn-success">Get New Passwords!</button>
-            <div class="row">
-                <p class="col-xs-3">
-                    Memorable Password:<br>
-                    <span id="memorable"></span>
-                </p>
-                <p class="col-xs-3">
-                    Mediocre Password:<br>
-                    <span id="medium"></span>
-                </p>
-                <p class="col-xs-3">
-                    Strong Password:<br>
-                    <span id="strong"></span>
-                </p>
-                <p class="col-xs-3">
-                    INSANE PASSWORD:<br>
-                    <span id="insane"></span>
-                </p>
-            </div>
-        </div>
+		<div class="row">
+			<br><br>
+			<h2>Password Generator</h2>
+		</div>
+
+		<div class="row">
+			<a href="/" class="btn btn-ghost">Back</a>
+			<a onclick="setPasswords()"
+				class="btn btn-full">Get New Passwords!</a>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col span-1-of-4">
+				<h3 class="col-xs-3">
+					Memorable Password:
+				</h3>
+				<p>
+					<span id="memorable"></span>
+				</p>
+			</div>
+
+			<div class="col span-1-of-4">
+				<h3 class="col-xs-3">
+					Mediocre Password:
+				</h3>
+				<p>
+					<span id="medium"></span>
+				</p>
+			</div>
+
+			<div class="col span-1-of-4">
+				<h3 class="col-xs-3">
+					Strong Password:
+				</h3>
+				<p>
+					<span id="strong"></span>
+				</p>
+			</div>
+
+			<div class="col span-1-of-4">
+				<h3 class="col-xs-3">
+					INSANE PASSWORD:
+				</h3>
+				<p>
+					<span id="insane"></span>
+				</p>
+			</div>
+		</div>
 
         <script src="script.js"></script>
     </body>

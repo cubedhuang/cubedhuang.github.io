@@ -2,7 +2,8 @@ const thing = new Vue({
 	el: "#thing",
 
 	created() {
-		setInterval(() => this.get(this.machines * Math.pow(3, this.ml)), 1000);
+		this.loadGame();
+		setInterval(() => this.get(this.machines * Math.pow(2, this.ml)), 1000);
 		setInterval(this.saveGame, 30000);
 	},
 	
@@ -28,8 +29,8 @@ const thing = new Vue({
 
 	methods: {
 		get(amount) {
-			this.total += Math.round(Math.pow(1.5, this.bl) * this.boxes * this.boost * amount);
-			this.parts += Math.round(Math.pow(1.5, this.bl) * this.boxes * this.boost * amount);
+			this.total += Math.round(Math.pow(1.2, this.bl) * this.boxes * this.boost * amount);
+			this.parts += Math.round(Math.pow(1.2, this.bl) * this.boxes * this.boost * amount);
 		},
 
 		buildBox() {
@@ -84,7 +85,8 @@ const thing = new Vue({
 
 		loadGame() {
 			var save = JSON.parse(localStorage.getItem("save"));
-			if (!save) return;
+			if (save === null) return;
+			console.log(save);
 			this.total = save.total;
 			this.parts = save.parts;
 			this.boxes = save.boxes;
@@ -100,7 +102,7 @@ const thing = new Vue({
 
 		reset() {
 			if (confirm("This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?")) {
-				localStorage.removeItem("save");
+				window.onbeforeunload = () => localStorage.removeItem("save");
 				location.reload(true);
 			}
 		}
@@ -108,4 +110,3 @@ const thing = new Vue({
 });
 
 window.onbeforeunload = thing.saveGame;
-window.onload = thing.loadGame;

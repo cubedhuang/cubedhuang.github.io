@@ -39,47 +39,63 @@
 	</head>
 
 	<body>
-		<h1>The Things</h1>
-
-		<p><a href="/">Back</a></p>
-
-		<div id="thing">
-			<h3>Parts of Things: {{ parts }}</h3>
-			<hr>
-			<p>Gain a part!</p>
-			<img src="/logo.png" @click="get(1)"/>
-			<p>Boxes will improve your gathering speed!</p>
-			<button @click="buildBox">
-				Build a Box out of Parts: {{ boxes }} Boxes |
-				Cost: {{ bc }} Parts
-			</button>
-			<button @click="upgradeBox">
-				Upgrade Your Boxes: Level {{ bl }} |
-				Cost: {{ blc }} Parts
-			</button>
-			<p>Machines will gather for you!</p>
-			<button @click="buildMachine">
-				Build a Machine out of Parts: {{ machines }} Machines |
-				Cost: {{ mc }} Parts
-			</button>
-			<button @click="upgradeMachine">
-				Upgrade Your Machines: Level {{ ml }} |
-				Cost: {{ mlc }} Parts
-			</button>
-
-			<h3>Prestige</h3>
-			<hr>
-			<p>
-				Prestige will sacrifice everything,
-				but gives you a small multiplier.
-				<br>
-				Current boost: {{ boost }}x Thing Gathering Amount
-				<br>
-				If you Study, you will gain {{ boostGain }}x Multiplier.
-			</p>
-			<button @click="study">Study!</button>
+		<div class="row">
 			<br><br>
-			<button @click="reset">FULL RESET</button>
+			<p>
+				<a href="/" class="btn btn-ghost">Back</a>
+			</p>
+			<h2>The Things</h2>
+		</div>
+
+		<div id="thing" class="row">
+			<div class="col span-1-of-2">
+				<h3>Parts of Things: {{ parts }}</h3>
+				<hr>
+				<p>Gain a part!</p>
+				<br>
+				<img src="/logo.png" @click="get(1)"/>
+				<br>
+				<p>Boxes will improve your gathering speed!</p>
+				<br>
+				<a @click="buildBox" class="btn btn-ghost">
+					Build a Box out of Parts: {{ boxes }} Boxes |
+					Cost: {{ bc }} Parts
+				</a>
+				<br><br>
+				<a @click="upgradeBox" class="btn btn-full">
+					Upgrade Your Boxes: Level {{ bl }} |
+					Cost: {{ blc }} Parts
+				</a>
+				<br><br>
+				<p>Machines will gather for you!</p>
+				<br>
+				<a @click="buildMachine" class="btn btn-ghost">
+					Build a Machine out of Parts: {{ machines }} Machines |
+					Cost: {{ mc }} Parts
+				</a>
+				<br><br>
+				<a @click="upgradeMachine" class="btn btn-full">
+					Upgrade Your Machines: Level {{ ml }} |
+					Cost: {{ mlc }} Parts
+				</a>
+			</div>
+
+			<div class="col span-1-of-2">
+				<h3>Prestige</h3>
+				<hr>
+				<p>
+					Prestige will sacrifice everything,
+					but gives you a small multiplier.
+					<br><br>
+					Current boost: {{ boost }}x Thing Gathering Amount
+					<br><br>
+					If you Study, you will gain {{ boostGain }}x Multiplier.
+				</p>
+				<br>
+				<a @click="study" class="btn btn-full">Study!</a>
+				<br><br>
+				<a @click="reset" class="btn btn-ghost">FULL RESET</a>
+			</div>
 		</div>
 
 		<script src="/global/vue.min.js"></script>

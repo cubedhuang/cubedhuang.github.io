@@ -1,132 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>The CubeDHuang</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-		<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/manifest.json">
+		<link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="./apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="./apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="./apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="./apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="./apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="./apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="./apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="./apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+		<link rel="manifest" href="./manifest.json">
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-		<meta name="theme-color" content="#ffffff">
+		<meta name="theme-color" content="#2ecc71">
+
+		<link rel="stylesheet" href="./css/normalize.min.css">
+		<link rel="stylesheet" href="./css/grid.min.css">
+		<link rel="stylesheet" href="./css/style.css">
+		<link rel="stylesheet" href="./css/queries.css">
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117844096-1"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
+			function gtag() { dataLayer.push(arguments); }
 			gtag('js', new Date());
 
-			gtag('config', 'UA-107754281-2');
+			gtag('config', 'UA-117844096-1');
 		</script>
+		<meta name="google-site-verification" content="YVxAv04qRtFV38UZXKpKw0tpp0dLaqzg5oRnYqmZFrM">
 
-		<link rel="stylesheet" type="text/css" href="/css/generic.css">
+		<title>CubeDHuang</title>
 	</head>
 
 	<body>
-		<h1>
-			The CubeDHuang
-			<img src="logo.png" alt="CubeDHuang Logo" srcset="logo.png" class="logo">
-		</h1>
+		<header>
+			<div class="hero-box">
+				<h1>The CubeDHuang, <br> with Games and Stuff</h1>
+				<img src="./logo.png" alt="CubeDHuang Logo" class="logo">
+			</div>
 
-		<p>
-			Look at some <a href="changelog/">recent changes</a>,
-			so that you can see if a game has changed.
-		</p>
-		<p id="enable">
-			<a onclick="enable()">Enable Notifications</a> to see when the site is updated immediately.
-		</p>
+			<div class="scroll-arrow">
+				&darr;
+			</div>
+		</header>
 
-		<h2>Some of my stuff:</h2>
+		<section class="center" id="section-about">
+			<div class="row">
+				<h2>Games</h2>
+			</div>
 
-		<h3>Popular Things</h3>
+			<div class="row">
+				<div class="col box span-1-of-2">
+					<h3>Stuff that&rsquo;s popular</h3>
+					<p>
+						<a href="/games/platformer/">Platformer Game</a>
+						<br>
+						A random platformer game
+					</p>
+					<p>
+						<a href="/games/infinite-buttons/">Infinite Buttons</a>
+						<br>
+						A game about clicking buttons
+					</p>
+					<p>
+						<a href="/games/evolution/">Evolution</a>
+						<br>
+						A game about evolution (beta)
+					</p>
+				</div>
 
-		<a href="/games/platformer/">Platformer Game</a>
-		A random platformer game
+				<div class="col box span-1-of-2">
+					<h3>Other good stuff</h3>
+					<p>
+						<a href="/games/infinistruct/">Infinistruct</a>
+						<br>
+						An unbalanced derivative game
+					</p>
+					<p>
+						<a href="/games/worldly/">Worldly</a>
+						<br>
+						Take over places (beta)
+					</p>
+					<p>
+						<a href="/random/passwords/">Password Generator</a>
+						<br>
+						A password generator
+					</p>
+				</div>
+			</div>
 
-		<br>
-		<a href="/games/infinite-buttons/">Infinite Buttons</a>
-		A game about clicking buttons
+			<div class="row">
+				<div class="col box span-1-of-2">
+					<h3>Newer stuff</h3>
+					<p>
+						<a href="/random/game-gen/">Game Idea Generator</a>
+						<br>
+						Game Ideas!
+					</p>
+					<p>
+						<a href="/games/monster/">Monster Killer</a>
+						<br>
+						Kill a "MONSTER" - No graphics
+					</p>
+					<p>
+						<a href="/games/thing/">Thing</a>
+						<br>
+						Gather things! With prestige!
+					</p>
+				</div>
 
-		<br>
-		<a href="/games/evolution/">Evolution</a>
-		A game about evolution (beta)
+				<div class="col box span-1-of-2">
+					<h3>Even more stuff</h3>
+					<p>
+						<a href="/games/dodger/">Dodger</a>
+						<br>
+						A game about dodging white squares
+					</p>
+					<p>
+						<a href="/games/side-scroller/">Side Scroller Game</a>
+						<br>
+						A game about jumping over red things
+					</p>
+					<p>
+						<a href="/games/pong/">Pong</a>
+						<br>
+						A game about bouncing a white square
+					</p>
+				</div>
+			</div>
+		</section>
 
-		<h3>Good Things</h3>
+		<section>
+			<div class="row">
+				<h2>About me</h2>
+			</div>
 
-		<a href="/games/infinistruct/">Infinistruct</a>
-		A kind-of unbalanced derivative game
+			<div class="row">
+				<p class="long-copy">
+					Hi! I'm an random web developer located in the United States.
+					I'm really into math, science, and computers.
+					I'm also too lazy to write a whole summary of my life,
+					so the "About Me" secction is only 3 sentences long.
+				</p>
+			</div>
+		</section>
 
-		<br>
-		<a href="/games/worldly/">Worldly</a>
-		Take over places (beta)
+		<footer>
+			<div class="row">
+				<p>
+					Welcome to the footer!
+					Not much stuff here.
+				</p>
+				<p>
+					Contact me at 99danielh@gmail.com
+				</p>
+				<p>
+					My logo was made with
+					<a target="_blank" href="https://designevo.com">DesignEvo</a>.
+				</p>
+			</div>
+		</footer>
 
-		<br>
-		<a href="/random/passwords/">Password Generator</a>
-		A password generator
-
-		<h3>New Things</h3>
-
-		<a href="/random/game-gen/">Game Idea Generator</a>
-		Create Ideas!
-
-		<br>
-		<a href="/games/monster/">Monster Killer</a>
-		Kill a "MONSTER" - No graphics
-
-		<br>
-		<a href="/games/thing/">Thing</a>
-		Gather things! With prestige!
-
-		<h3>Other Things</h3>
-
-		<a href="/games/dodger/">Dodger</a>
-		A game about dodging white squares
-
-		<br>
-		<a href="/games/side-scroller/">Side Scroller Game</a>
-		A game about jumping over red things
-
-		<br>
-		<a href="/games/pong/">Pong</a>
-		A game about bouncing a white square
-
-		<p>
-			Check out the code 
-			<a href="https://github.com/cubeDhuang/cubeDhuang.github.io">here</a>!
-		</p>
-
-		<h2>
-			Say something!
-		</h2>
-
-		<div id="disqus_thread"></div>
-		<script>
-			var disqus_config = function () {
-				this.page.title = "Main Page";
-				this.page.url = "https://cubedhuang.com";
-				this.page.identifier = "main";
-			};
-			(function () { // DON'T EDIT BELOW THIS LINE
-				var d = document,
-					s = d.createElement('script');
-				s.src = 'https://cubedhuang.disqus.com/embed.js';
-				s.setAttribute('data-timestamp', +new Date());
-				(d.head || d.body).appendChild(s);
-			})();
-		</script>
-
-		<script src="/root/script.js"></script>
+		<script src="./global/jquery.min.js"></script>
+		<script src="./root/script.js"></script>
 	</body>
 </html>

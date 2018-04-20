@@ -38,18 +38,29 @@
 	</head>
 	
     <body>
-		<h1>Game Idea Generator</h1>
+		<div class="row">
+			<br><br>
+			<h2>Game Idea Generator</h2>
+		</div>
 		
-		<p><a href="/" class="btn btn-info">Back</a></p>
-		
-		<p>
-			Randomness "Seed": <input type="number" id="seed">
-			<button id="random">Random Randomness Seed</button>
-		</p>
-
-		<p>
-			Output: <span id="output"></span>
-		</p>
+		<div class="row">
+			<p>
+				<a href="/" class="btn btn-ghost">Back</a>
+			</p>
+		</div>
+		<br>
+		<div class="row">
+			<p>
+				Randomness "Seed": <input type="number" id="seed">
+				<a id="random" class="btn btn-ghost">Random Randomness Seed</a>
+			</p>
+		</div>
+		<br>
+		<div class="row">
+			<p>
+				Output: <span id="output"></span>
+			</p>
+		</div>
 
         <script src="script.js"></script>
     </body>
