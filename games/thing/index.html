@@ -41,9 +41,10 @@
 	<body>
 		<div class="row">
 			<br><br>
-			<p>
+			<p class="center">
 				<a href="/" class="btn btn-ghost">Back</a>
 			</p>
+			<br>
 			<h2>The Things</h2>
 		</div>
 
@@ -58,24 +59,24 @@
 				<p>Boxes will improve your gathering speed!</p>
 				<br>
 				<a @click="buildBox" class="btn btn-ghost">
-					Build a Box out of Parts: {{ boxes }} Boxes |
+					Build a Box: {{ boxes }} Boxes |
 					Cost: {{ bc }} Parts
 				</a>
 				<br><br>
 				<a @click="upgradeBox" class="btn btn-full">
-					Upgrade Your Boxes: Level {{ bl }} |
+					Upgrade Boxes: Level {{ bl }} |
 					Cost: {{ blc }} Parts
 				</a>
 				<br><br>
 				<p>Machines will gather for you!</p>
 				<br>
 				<a @click="buildMachine" class="btn btn-ghost">
-					Build a Machine out of Parts: {{ machines }} Machines |
+					Build a Machine: {{ machines }} Machines |
 					Cost: {{ mc }} Parts
 				</a>
 				<br><br>
 				<a @click="upgradeMachine" class="btn btn-full">
-					Upgrade Your Machines: Level {{ ml }} |
+					Upgrade Machines: Level {{ ml }} |
 					Cost: {{ mlc }} Parts
 				</a>
 			</div>

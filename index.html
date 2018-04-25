@@ -45,7 +45,7 @@
 	<body>
 		<header>
 			<div class="hero-box">
-				<h1>The CubeDHuang, <br> with Games and Stuff</h1>
+				<h1>The CubeDHuang: <br> Games and Stuff</h1>
 				<img src="./logo.png" alt="CubeDHuang Logo" class="logo">
 			</div>
 
@@ -155,6 +155,48 @@
 			</div>
 		</section>
 
+		<section>
+			<div class="row">
+				<h2>Other useful stuff</h2>
+			</div>
+
+			<div class="row">
+				<h3 class="center">Changes</h3>
+				<p class="long-copy">
+					<a href="/changelog/">Here</a>,
+					you can see several changes that have been made to stuff on my website.
+					This could be important and tell you about changes to games.
+				</p>
+			</div>
+			<br>
+
+			<div class="row">
+				<h3 class="center">Comments</h3>
+				<p class="long-copy">
+					Asking questions, giving compliments, reporting bugs,
+					and other stuff like that goes here:
+				</p>
+			</div>
+
+			<div class="row">
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function () {
+						this.page.title = "Main Page";
+						this.page.url = "https://cubedhuang.com/";
+						this.page.identifier = "main";
+					};
+					(function () { // DON'T EDIT BELOW THIS LINE
+						var d = document,
+							s = d.createElement('script');
+						s.src = 'https://cubedhuang.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+			</div>
+		</section>
+
 		<footer>
 			<div class="row">
 				<p>
@@ -163,6 +205,10 @@
 				</p>
 				<p>
 					Contact me at 99danielh@gmail.com
+				</p>
+				<p>
+					Check out my website's code 
+					<a href="https://github.com/cubeDhuang/cubeDhuang.github.io">here</a>!
 				</p>
 				<p>
 					My logo was made with
