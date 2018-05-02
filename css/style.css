@@ -3,8 +3,8 @@
 /* VARIABLES */
 
 :root {
-	--base: #3498db;
-	--second: #2980b9;
+	--base: #0984e3;
+	--basedark: #2980b9;
 }
 
 /* ------------------------------- */
@@ -15,15 +15,14 @@
 	margin: 0;
 	padding: 0;
 	outline: 1px solid transparent;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
 	outline: none !important;
-	border: 1px solid var(--second) !important;
+	border: 1px solid var(--base) !important;
 	-webkit-transition: border 0.2s;
 	transition: border 0.2s;
 	-webkit-transition-timing-function: ease;
@@ -31,7 +30,7 @@ textarea:focus {
 }
 
 input[type="checkbox"]:focus {
-	outline: 1px solid var(--second) !important;
+	outline: 1px solid var(--base) !important;
 }
 
 html,
@@ -229,8 +228,8 @@ input[type="submit"],
 input[type="submit"]:hover,
 .btn-full:hover,
 .btn-full:active {
-	background: var(--second);
-	border: 1px solid var(--second);
+	background: var(--basedark);
+	border: 1px solid var(--basedark);
 	color: #fff;
 }
 
@@ -247,7 +246,7 @@ input[type="submit"]:hover,
 /* ------------------------------ */
 
 header {
-	background: linear-gradient(to top left, #0984e3, #6c5ce7);
+	background: linear-gradient(to top left, #2980b9a0, #9b59b6a0), #000;
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
@@ -289,7 +288,6 @@ header .scroll-arrow:hover {
 	top: 50%;
 	left: 100%;
 	transform: translate(-120%, -65.5%);
-	border-radius: 1000px;
 }
 
 /* ------------------------------ */
