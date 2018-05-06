@@ -66,7 +66,7 @@ body {
 section { padding: 80px 0; }
 
 section:nth-child(odd) {
-	background: #f5f5f5;
+	background: #f8f8f8;
 }
 
 .center {
@@ -132,28 +132,6 @@ h3 {
 	line-height: 145%;
 	font-size: 90%;
 	margin-bottom: 10px;
-}
-
-/* ICONS */
-
-.icon-big {
-	font-size: 300%;
-	display: block;
-	color: var(--base);
-	margin-bottom: 10px;
-	text-align: center;
-}
-
-.icon-small {
-	display: inline-block;
-	width: 30px;
-	text-align: center;
-	font-size: 120%;
-	color: var(--base);
-	margin-right: 10px;
-	margin-top: -5px;
-	line-height: 120%;
-	vertical-align: middle;
 }
 
 /* TABLES */
@@ -240,6 +218,20 @@ input[type="submit"]:hover,
 	border: 1px solid transparent;
 	color: #fff;
 }
+
+/* LISTS */
+
+ul.list {
+	list-style-type: none;
+	margin-top: 10px;
+}
+
+ul.list li {
+	margin-bottom: 5px;
+}
+
+/* BREADCRUMBS */
+
 
 /* ------------------------------ */
 /* ----------- HEADER ----------- */
