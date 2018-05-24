@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="./apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="./apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="./apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="./apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="./apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="./apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="./apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="./apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+		<link rel="manifest" href="./manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#2ecc71">
+
+		<link rel="stylesheet" href="/css/generic.css">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-107754281-2');
+		</script>
+
+		<title>Within</title>
+	</head>
+	<body>
+		<div id="within">
+			<section>
+				<div class="row">
+					<div>
+						<a class="btn btn-full center">Go Back</a>
+					</div>
+
+					<h2>Within</h2>
+
+					<p>There's not enough stuff here yet! Please give some suggestions in the comments on things to add.</p>
+					
+					<ul class="breadcrumbs">
+						<li v-for="id in dir" @click="next(id)">{{ data[id].name }}</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<div class="row">
+					<p v-if="dir.length > 1">
+						<a class="btn btn-full" @click="dir.pop()">Back</a>
+						<br><br>
+					</p>
+
+					<h3>{{ data[current].name }}</h3>
+
+					<p>{{ data[current].desc }}</p>
+					<br>
+					<template v-if="data[current].inside.length > 0">
+						<p>
+							Click one of the buttons to see somthing related.
+						</p>
+
+						<ul class="list">
+							<li v-for="id in data[current].inside">
+								<a class="btn btn-ghost" @click="next(id)">
+									{{ data[id].name }}
+								</a>
+							</li>
+						</ul>
+					</template>
+
+					<p v-else-if="data[0].name !== 'LOADING'">There's nothing else inside of here...</p>
+				</div>
+			</section>
+		</div>
+
+		<script src="/global/vue.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -163,12 +163,13 @@ table tr:nth-child(odd) {
 
 /* LINKS */
 
-a {
+a, ul.breadcrumbs li {
 	color: var(--base);
 	text-decoration: none;
 	border-bottom: 1px solid var(--base);
 	transition: border 0.2s, color 0.2s, background 0.2s;
 	transition-timing-function: ease;
+	cursor: pointer;
 }
 
 a:hover,
@@ -232,6 +233,35 @@ ul.list li {
 
 /* BREADCRUMBS */
 
+ul.breadcrumbs {
+	list-style: none;
+}
+
+ul.breadcrumbs li {
+	display: inline-block;
+	background: #3331;
+	padding: 5px;
+	border-radius: 3px;
+	border: none;
+}
+
+ul.breadcrumbs li::after {
+	content: "⇾";
+	color: var(--base);
+	display: inline-block;
+	cursor: default;
+	margin-left: 8px;
+}
+
+ul.breadcrumbs li:last-child {
+	background: none;
+	color: #3338;
+	cursor: default;
+}
+
+ul.breadcrumbs li:last-child::after {
+	content: "";
+}
 
 /* ------------------------------ */
 /* ----------- HEADER ----------- */
