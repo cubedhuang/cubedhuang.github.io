@@ -1,52 +1,54 @@
 "use strict";
 
-var canvas = document.getElementById("game");
-var ctx = canvas.getContext("2d");
+let canvas = document.getElementById("game");
+let ctx = canvas.getContext("2d");
 
 const CW = canvas.width;
 const CH = canvas.height;
 
-var currentLevelSize = "small";
-var currentLevelNum = 0;
-var currentLevel = null;
-var blockSize = 100;
+let currentLevelSize = "small";
+let currentLevelNum = 0;
+let currentLevel = null;
+let blockSize = 100;
 
-var keyUp = false;
-var keyLeft = false;
-var keyRight = false;
-var toRestart = false;
-var inMenu = true;
+let keyUp = false;
+let keyLeft = false;
+let keyRight = false;
+let toRestart = false;
+let inMenu = true;
 
-var playerX = 0;
-var playerY = 0;
-var playerVX = 0;
-var playerVY = 0;
-var playerSize = 80;
+let playerX = 0;
+let playerY = 0;
+let playerVX = 0;
+let playerVY = 0;
+let playerSize = 80;
 
-var jumpSound = new Howl({
+let testing = false;
+
+let jumpSound = new Howl({
 	src: ["sounds/jump.wav", "sounds/jump.mp3", "sounds/jump.ogg"]
 });
-var bounceSound = new Howl({
+let bounceSound = new Howl({
 	src: ["sounds/bounce.wav", "sounds/bounce.mp3", "sounds/bounce.ogg"]
 });
-var completeSound = new Howl({
+let completeSound = new Howl({
 	src: ["sounds/complete.wav", "sounds/complete.mp3", "sounds/complete.ogg"]
 });
-var hurtSound = new Howl({
+let hurtSound = new Howl({
 	src: ["sounds/hurt.wav", "sounds/hurt.mp3", "sounds/hurt.ogg"]
 });
-var music = new Howl({
+let music = new Howl({
 	src: ["sounds/bensound-buddy.mp3"],
 	autoplay: true,
 	loop: true,
 	volume: 0.5
 });
 
-var logo = new Image();
+let logo = new Image();
 logo.src = "images/logo.png";
 
 function loadJSON(callback) {
-	var xobj = new XMLHttpRequest();
+	let xobj = new XMLHttpRequest();
 	xobj.overrideMimeType("application/json");
 	xobj.open("GET", "levels.json", true);
 	xobj.onreadystatechange = function () {
@@ -58,8 +60,8 @@ function loadJSON(callback) {
 	xobj.send(null);
 }
 
-var levels;
-var menuID;
+let levels;
+let menuID;
 loadJSON(data => {
 	levels = JSON.parse(data);
 	currentLevel = levels[currentLevelSize][currentLevelNum];
@@ -76,7 +78,7 @@ function startLevel() {
 	playerSize = blockSize * 0.8;
 
 	currentLevel.forEach(function (row, ri) {
-		for (var ti = 0; ti < row.length; ti++) {
+		for (let ti = 0; ti < row.length; ti++) {
 			if (row[ti] === "P") {
 				playerX = blockSize * ti + blockSize / 2;
 				playerY = blockSize * ri + blockSize / 2;
@@ -86,14 +88,16 @@ function startLevel() {
 }
 
 function nextLevel() {
-	if (currentLevelNum + 2 > levels[currentLevelSize].length) {
-		currentLevelNum = 0;
-		currentLevelSize = currentLevelSize === "small" ? "normal" :
-			currentLevelSize === "normal" ? "large" : "small";
-	} else currentLevelNum++;
-	currentLevel = levels[currentLevelSize][currentLevelNum];
-	blockSize = currentLevel.length === 6 ? 100 :
-		currentLevel.length === 12 ? 50 : 25;
+	if (!testing) {
+		if (currentLevelNum + 2 > levels[currentLevelSize].length) {
+			currentLevelNum = 0;
+			currentLevelSize = currentLevelSize === "small" ? "medium" :
+				currentLevelSize === "medium" ? "large" : "small";
+		} else currentLevelNum++;
+		currentLevel = levels[currentLevelSize][currentLevelNum];
+		blockSize = currentLevel.length === 6 ? 100 :
+			currentLevel.length === 12 ? 50 : 25;
+	}
 	startLevel();
 }
 
@@ -102,16 +106,16 @@ function nextLevel() {
 ////////////////////////////////////////////////
 
 function getNeighbors(row, col) {
-	var type = currentLevel[row][col];
-	var n = {
+	let type = currentLevel[row][col];
+	let n = {
 		left: "0",
 		right: "0",
 		top: "0",
 		bottom: "0",
 	};
 
-	var rows = currentLevel.length;
-	var cols = currentLevel[0].length;
+	let rows = currentLevel.length;
+	let cols = currentLevel[0].length;
 
 	if (col !== 0) {
 		n.left = currentLevel[row].replace("P", "0")[col - 1];
@@ -138,13 +142,13 @@ function roundRect(x, y, w, h, radius) {
 			bl: radius
 		};
 	} else {
-		var f = {
+		let f = {
 			tl: 0,
 			tr: 0,
 			br: 0,
 			bl: 0
 		};
-		for (var g in f)
+		for (let g in f)
 			if ({}.hasOwnProperty.call(g, f)) radius[g] = radius[g] || f[g];
 	}
 
@@ -171,12 +175,12 @@ const blockRenderer = new Map([
 		baseColor = baseColor === "3" ? "blueviolet" :
 			baseColor === "G" ? "yellow" : "#643a02";
 
-		var neighbors = getNeighbors(row, col);
-		var top = neighbors.top === "0";
-		var left = neighbors.left === "0";
-		var right = neighbors.right === "0";
-		var bottom = neighbors.bottom === "0";
-		var round = blockSize / 20;
+		let neighbors = getNeighbors(row, col);
+		let top = neighbors.top === "0";
+		let left = neighbors.left === "0";
+		let right = neighbors.right === "0";
+		let bottom = neighbors.bottom === "0";
+		let round = blockSize / 20;
 
 		ctx.fillStyle = baseColor;
 		roundRect(col * blockSize, row * blockSize, blockSize, blockSize, {
@@ -209,8 +213,8 @@ const blockRenderer = new Map([
 
 function renderLevel() {
 	currentLevel.forEach(function (row, ri) {
-		for (var ti = 0; ti < row.length; ti++) {
-			var type = currentLevel[ri][ti];
+		for (let ti = 0; ti < row.length; ti++) {
+			let type = currentLevel[ri][ti];
 			blockRenderer.get(type)(ri, ti);
 		}
 	});
@@ -221,8 +225,8 @@ function renderLevel() {
 ////////////////////////////////////////////////
 
 function xMove() {
-	var speed = currentLevelSize === "small" ? 2.5 :
-		currentLevelSize === "normal" ? 1.2 : 0.7; // "large"
+	let speed = currentLevelSize === "small" ? 2.5 :
+		currentLevelSize === "medium" ? 1.2 : 0.7; // "large"
 	if (keyRight) playerVX += speed;
 	if (keyLeft) playerVX -= speed;
 
@@ -238,22 +242,22 @@ function xMove() {
 }
 
 function yMove() {
-	var onGround = false;
-	var jumpAcc = currentLevelSize === "small" ? -10 :
-		currentLevelSize === "normal" ? -5 : -2.5;
-	var trampDiff = 1.45;
+	let onGround = false;
+	let jumpAcc = currentLevelSize === "small" ? -10 :
+		currentLevelSize === "medium" ? -5 : -2.5;
+	let trampDiff = 1.45;
 	
 	currentLevel.forEach(function (row, ri) {
-		for (var ti = 0; ti < row.length; ti++) {
-			var type = row[ti];
+		for (let ti = 0; ti < row.length; ti++) {
+			let type = row[ti];
 
-			var topY = ri * blockSize;
-			var bottomY = topY + blockSize;
-			var rightX = ti * blockSize;
-			var leftX = rightX + blockSize;
+			let topY = ri * blockSize;
+			let bottomY = topY + blockSize;
+			let rightX = ti * blockSize;
+			let leftX = rightX + blockSize;
 
-			var pnx = playerX + playerVX;
-			var pny = playerY + playerVY;
+			let pnx = playerX + playerVX;
+			let pny = playerY + playerVY;
 
 			if (pny + playerSize / 2 >= topY && pny + playerSize / 2 < topY + blockSize / 4 &&
 				pnx + playerSize / 2 >= rightX && pnx - playerSize / 2 <= leftX && playerVY >= 0
@@ -359,9 +363,11 @@ function update() {
 	// Score
 	ctx.textAlign = "right";
 	ctx.font = "30px \"Open Sans\", Lato, sans-serif";
-	ctx.fillText(
-		`Level: ${currentLevelNum+1} | Level Size: ${currentLevelSize[0].toLocaleUpperCase()}${currentLevelSize.slice(1)}`,
-		CW - 10, 40);
+	if (!testing) {
+		ctx.fillText(
+			`Level: ${currentLevelNum+1} | Level Size: ${currentLevelSize[0].toLocaleUpperCase()}${currentLevelSize.slice(1)}`,
+			CW - 10, 40);
+	}
 
 	if (toRestart) {
 		startLevel();
@@ -369,28 +375,28 @@ function update() {
 	}
 }
 
-var currentKeys = [];
-var fullKeys = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-var cheatMode = false;
+let currentKeys = [];
+let fullKeys = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+let cheatMode = false;
 
 function keyHandler(evt) {
-	var setDir = evt.type === "keydown" ? true : false;
+	let setDir = evt.type === "keydown" ? true : false;
 
 	switch (evt.keyCode) {
-	case 37:
-	case 65:
-		keyLeft = setDir;
-		break;
-	case 38:
-	case 87:
-		keyUp = setDir;
-		break;
-	case 39:
-	case 68:
-		keyRight = setDir;
-		break;
-	case 82:
-		toRestart = setDir;
+		case 37:
+		case 65:
+			keyLeft = setDir;
+			break;
+		case 38:
+		case 87:
+			keyUp = setDir;
+			break;
+		case 39:
+		case 68:
+			keyRight = setDir;
+			break;
+		case 82:
+			toRestart = setDir;
 	}
 
 	if (cheatMode && evt.keyCode === 40 && !setDir) nextLevel();
@@ -398,8 +404,8 @@ function keyHandler(evt) {
 	if (setDir === false) {
 		currentKeys.push(evt.keyCode);
 		if (currentKeys.length > fullKeys.length) currentKeys.shift();
-		var correct = true;
-		for (var i = 0; i < fullKeys.length; i++) {
+		let correct = true;
+		for (let i = 0; i < fullKeys.length; i++) {
 			if (currentKeys[i] !== fullKeys[i]) {
 				correct = false;
 				break;
@@ -413,3 +419,18 @@ document.addEventListener("keydown", keyHandler);
 document.addEventListener("keyup", keyHandler);
 
 canvas.addEventListener("click", () => inMenu = false);
+
+document.getElementById("test").addEventListener("click", () => {
+	const level = document.getElementById("code").value.split("-");
+
+	if (level.length !== 6 && level.length !== 12 && level.length !== 24) {
+		alert("Invalid Level Code!");
+		return;
+	}
+
+	testing = true;
+	inMenu = false;
+	currentLevel = level;
+	currentLevelSize = level.length === 6 ? "small" : level.length === 12 ? "medium" : "large";
+	startLevel();
+});

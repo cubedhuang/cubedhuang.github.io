@@ -35,27 +35,43 @@
 		
 		<link rel="stylesheet" href="style.css">
 
-		<title>Platformer Game</title>
+		<title>Platformaker</title>
 	</head>
-	
+
 	<body>
 		<canvas id="game" width="800" height="600">
 			Oh Nose! The current version of your browser does no seem to support HTML5 canvas.
 		</canvas>
 
 		<p>
-			<a href="/games/platformaker/">Platformaker</a>
-			<br>
-			<a href="/">Go Back</a>
-			<br>
-			<a href="https://www.bensound.com/" target="_blank">Music: www.bensound.com</a>
+			<a href="/">Back</a>
+			<a href="/games/platformer/">Platformer Game</a>
 		</p>
 
-		<p>Paste Platformaker Code Here:</p>
-		<input type="text" id="code">
-		<button id="test">Test Level</button>
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.7/howler.min.js"></script>
-		<script src="main.js"></script>
+		<p>Level Size:</p>
+		<select id="size">
+			<option value="small">Small</option>
+			<option value="medium">Medium</option>
+			<option value="large">Large</option>
+		</select>
+
+		<p>Current Block:</p>
+		<select id="current">
+			<option value="1">Ground</option>
+			<option value="0">Air</option>
+			<option value="2">Lava</option>
+			<option value="3">Trampoline</option>
+			<option value="P">Player Start</option>
+			<option value="G">Goal</option>
+		</select>
+
+		<p>
+			<button id="create">
+				Get and Copy Level Code
+			</button>
+		</p>
+		<input type="text" id="code" readonly>
+
+		<script src="script.js"></script>
 	</body>
 </html>

@@ -3,9 +3,10 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-size: 16px;
 	font-family: "Open Sans", Lato, Arial, Helvetica, sans-serif;
 	font-weight: 300;
-	font-size: 16px;
+	color: #333;
 }
 
 body {
@@ -17,12 +18,6 @@ canvas {
 	display: block;
 	margin-right: 10px;
 	border: 1px solid lightgray;
-}
-
-p {
-	margin-top: 10px;
-	margin-bottom: 5px;
-	line-height: 150%;
 }
 
 a {
@@ -38,9 +33,19 @@ a:hover {
 	color: #333;
 }
 
+p {
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+select {
+	padding: 5px;
+	background: white;
+}
+
 button {
 	background: none;
-	padding: 6px 12px;;
+	padding: 8px 16px;;
 	border: 1px solid #0984e3;
 	color: #0984e3;
 	border-radius: 1000px;
