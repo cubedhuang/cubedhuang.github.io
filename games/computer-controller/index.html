@@ -24,6 +24,8 @@
 		<meta name="theme-color" content="#2ecc71">
 
 		<link rel="stylesheet" href="/css/generic.css">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="queries.css">
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
@@ -35,57 +37,44 @@
 			gtag('config', 'UA-107754281-2');
 		</script>
 
-		<title>Within</title>
+		<title>Computer Controller</title>
 	</head>
+
 	<body>
-		<div id="within">
-			<section class="top">
-				<div class="row">
-					<div>
-						<a class="btn btn-full center">Go Back</a>
-					</div>
-
-					<h2>Within</h2>
-
-					<p>There's not enough stuff here yet! Please give some suggestions in the comments on things to add.</p>
-					
-					<ul class="breadcrumbs">
-						<li v-for="id in dir" @click="next(id)">{{ data[id].name }}</li>
-					</ul>
-				</div>
-			</section>
-
-			<section>
-				<div class="row">
-					<p v-if="dir.length > 1">
-						<a class="btn btn-full" @click="dir.pop()">Back</a>
-						<br><br>
+		<section class="top">
+			<h2>Computer Controller</h2>
+			<h3>So far, these are just ideas!!! that game hasn't been made yet!!!</h3>
+		</section>
+		
+		<section id="game">
+			<div class="row">
+				<h3 class="center">Bits</h3>
+				<div class="box">
+					<p class="center">
+						Right now, you have {{ format(bits) }} bits.
+						Bits are 0's and 1's.
+						Almost all computer stuff is made out of bits.
 					</p>
-
-					<h3>{{ data[current].name }}</h3>
-
-					<p>{{ data[current].desc }}</p>
-					<br>
-					<template v-if="data[current].inside.length > 0">
-						<p>
-							Click one of the buttons to see somthing related.
-						</p>
-
-						<ul class="list">
-							<li v-for="id in data[current].inside">
-								<a class="btn btn-ghost" @click="next(id)">
-									{{ data[id].name }}
-								</a>
-							</li>
-						</ul>
-					</template>
-
-					<p v-else-if="data[0].name !== 'LOADING'">There's nothing else inside of here...</p>
 				</div>
-			</section>
-		</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col span-1-of-3" v-for="item in items">
+					<h3 class="center">{{ item.name }}</h3>
+					<div class="box">
+						<p class="center">{{ item.desc }}</p>
+					</div>
+				</div>
+			</div>
 
-		<script src="/global/vue.js"></script>
+			<div class="corner-box">
+				{{ format(bits) }} Bits
+			</div>
+		</section>
+
+		<script src="/global/format.min.js"></script>
+		<script src="/global/decimal.min.js"></script>
+		<script src="/global/vue.min.js"></script>
 		<script src="script.js"></script>
 	</body>
 </html>
