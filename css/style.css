@@ -37,7 +37,7 @@ html,
 body {
 	background: #fff;
 	color: #444;
-	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	font-family: "Open Sans", "Lato", Arial, Helvetica, sans-serif;
 	font-weight: 300;
 	font-size: 20px;
 	text-rendering: optimizeLegibility;
@@ -87,9 +87,14 @@ section.top h2::after {
 	text-align: center;
 }
 
-.m-center {
+.o-center {
 	margin-left: 50%;
 	transform: translateX(-50%);
+	width: fit-content;
+}
+
+small {
+	font-size: 90%;
 }
 
 hr {
@@ -224,19 +229,33 @@ input[type="submit"],
 }
 
 input[type="submit"]:hover,
-.btn-full:hover,
-.btn-full:active {
+.btn-full:hover {
 	background: var(--basedark);
 	border: 1px solid var(--basedark);
 	color: #fff;
 }
 
 input[type="submit"]:hover,
-.btn-ghost:hover,
-.btn-ghost:active {
+.btn-ghost:hover {
 	background: var(--base);
 	border: 1px solid transparent;
 	color: #fff;
+}
+
+.btn-full.disabled,
+.btn-full.disabled:hover {
+	border: 1px solid lightgray;
+	background: lightgray;
+	color: white;
+	cursor: default;
+}
+
+.btn-ghost.disabled,
+.btn-ghost.disabled:hover {
+	border: 1px solid lightgray;
+	background: whitesmoke;
+	color: gray;
+	cursor: default;
 }
 
 /* LISTS */

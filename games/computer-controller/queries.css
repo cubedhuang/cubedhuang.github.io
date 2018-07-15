@@ -1,13 +1,7 @@
-@media only screen and (max-width: 1200px) {
-	.col.span-1-of-3::before {
-		transform: translateX(-20px);
-	}
-}
-
-@media only screen and (max-width: 1024px) {
-	.col.span-1-of-3::before {
-		transform: translate(-5px, 10px);
-		font-size: 180%;
+@media only screen and (min-width: 768px) {
+	.col .o-center {
+		margin: 0;
+		transform: none;
 	}
 }
 
@@ -19,10 +13,10 @@
 	}
 	
 	.col.span-1-of-3::before {
-		content: "⭫";
+		content: "⭫" !important;
 		position: relative;
 		display: block;
-		width: 96%;
+		width: 96% !important;
 		left: 2%;
 		text-align: center;
 		color: var(--base);

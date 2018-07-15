@@ -1,13 +1,17 @@
-.col.span-1-of-3:nth-child(3n+1) {
-	margin-left: 0;
+.col.span-1-of-3:nth-child(3n+1)::before {
+	display: block;
+	content: "";
+	width: 100%;
+}
+.col.span-1-of-3:nth-child(3n)::after {
+	display: block;
+	content: "";
+	width: 100%;
+	float: none;
 }
 
-.col.span-1-of-3::before {
-	content: "⭪";
-	position: absolute;
-	color: var(--base);
-	font-size: 250%;
-	transform: translateX(-50px);
+.col.span-1-of-3:nth-child(3n+1) {
+	margin-left: 0;
 }
 
 .corner-box {
@@ -16,6 +20,9 @@
 	left: 100%;
 	transform: translate(-100%, -100%);
 	padding: 10px;
-	width: 200px;
+	width: fit-content;
 	text-align: right;
+	color: white;
+	background-color: var(--base);
+	border-top-left-radius: 5px;
 }
