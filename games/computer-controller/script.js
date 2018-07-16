@@ -12,6 +12,7 @@ new Vue({
 	},
 
 	data: {
+		section: 0,
 		pTime: 0,
 
 		bits: new Decimal(10000000),
@@ -100,20 +101,20 @@ new Vue({
 
 	computed: {
 		max() {
-			return this.items.map((_, i, a) => {
-				if (i === 0) return Decimal.floor(Decimal.pow(60, i).times(8).div(this.bits));
+			return this.amounts.map((_, i, a) => {
+				if (i === 0) return Decimal.floor(this.bits.div(Decimal.pow(60, i).times(8)));
 				return Decimal.min(
-					Decimal.floor(Decimal.pow(60, i).times(8).div(this.bits)),
-					Decimal.floor(Decimal.pow(1.7, i).div(this.amounts[i - 1]))
+					Decimal.floor(this.bits.div(Decimal.pow(60, i).times(8))),
+					Decimal.floor(a[i - 1].div(Decimal.pow(1.7, i)))
 				);
 			});
 		},
 		able() {
-			return this.items.map((_, i, a) => {
-				return Decimal.min(
-					Decimal.floor(Decimal.pow(60, i).times(8).div(this.bits)),
-					Decimal.floor(Decimal.pow(1.7, i).div(i - 1))
-				);
+			return this.amounts.map((_, i, a) => {
+				if (i === 0) return this.bits.div(Decimal.pow(60, i).times(8)).gte(1);
+				return
+					this.bits.div(Decimal.pow(60, i).times(8)).gte(1) &&
+					a[i - 1].div(Decimal.pow(1.7, i)).gte(1);
 			});
 		}
 	},
