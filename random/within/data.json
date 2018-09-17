@@ -92,7 +92,7 @@
 	},
 	{
 		"name": "Timeline",
-		"desc": "A 4-dimensional collection of 3-dimensional spaces that effect each other chronologically.",
+		"desc": "A 4-dimensional collection of 3-dimensional spaces that are ordered chronologically.",
 		"inside": ["Universe"]
 	},
 
@@ -109,10 +109,30 @@
 	},
 	{
 		"name": "Standard Model",
-		"desc": "NORMAL Physics, with all of the particles and the 4 forces."
+		"desc": "NORMAL Physics, with all of the particles and the 4 forces.",
+		"inside": ["Theory of Everything", "Classical Field"]
 	},
 	{
 		"name": "Quantum Physics",
-		"desc": "SPOOKY Physics, with spooky action at a distance and probability stuff."
+		"desc": "SPOOKY Physics, with spooky action at a distance and probability stuff.",
+		"inside": ["Theory of Everything", "Quantum Field"]
+	},
+	{
+		"name": ["Theory of Everything"],
+		"desc": "Stuff like string theory that unites the Standard Model and Quantum Physics.",
+		"inside": ["Field"]
+	},
+	{
+		"name": ["Field"],
+		"desc": "A bunch of tensors for every particle.",
+		"inside": ["Classical Field, Quantum Field"]
+	},
+	{
+		"name": ["Classical Field"],
+		"desc": "A bunch of tensors for every particle, useful if no quantum stuff is needed."
+	},
+	{
+		"name": ["Quantum Field"],
+		"desc": "Derived verson of Standard Model of Particle Physics for quantum stuff."
 	}
 ]
