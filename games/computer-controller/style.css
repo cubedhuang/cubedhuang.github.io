@@ -26,3 +26,7 @@
 	background-color: var(--base);
 	border-top-left-radius: 5px;
 }
+
+html {
+	overflow: scroll;
+}

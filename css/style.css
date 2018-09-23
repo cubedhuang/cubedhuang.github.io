@@ -104,6 +104,26 @@ hr {
 	margin: 10px 0;
 }
 
+nav.menus {
+	width: 100%;
+	background-color: var(--base);
+	color: white;
+	display: flex;
+	cursor: pointer;
+}
+
+nav.menus span {
+	flex: 1;
+	transition: background 0.2s;
+	text-align: center;
+	padding: 10px 0;
+}
+
+nav.menus span:hover,
+nav.menus span.selected {
+	background-color: var(--basedark);
+}
+
 /* HEADINGS */
 
 h1,

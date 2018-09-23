@@ -45,15 +45,24 @@
 	<body>
 		<section class="top">
 			<h2>Computer Controller</h2>
-			<h3>STILL NOT A GAME yet, please stand by for a few more days</h3>
+			<h4 class=center>
+				Sorry for not doing anything for a while, but I've gotten some more stuff done.
+				<br>
+				I've been unable to update my website recently.
+			</h4>
 		</section>
-		
+
 		<div id="game">
+			<nav class="menus">
+				<span @click="section = 0" :class="section === 0 ? ['selected'] : []">Structures</span>
+				<span @click="section = 1" :class="section === 1 ? ['selected'] : []">Chips</span>
+			</nav>
+
 			<transition
-				enter-active-class="animated bounceIn"
-				leave-active-class="animated rollOut"
+				enter-active-class="animated fadeInLeft"
+				leave-active-class="animated fadeOut"
 				mode="out-in">
-				<section v-if="section === 0">
+				<section v-if="section === 0" key="structures">
 					<div class="row">
 						<h3 class="center">Bits</h3>
 						<div class="box">
@@ -67,28 +76,36 @@
 					</div>
 					<br>
 					<div class="row">
-						<div class="col span-1-of-3" v-for="(item, index) in items">
-							<h3 class="center">{{ item.name }}</h3>
+						<div class="col span-1-of-3" v-for="(struct, index) in structs">
+							<h3 class="center">{{ struct.name }}</h3>
 							<div class="box small">
 								<p class="o-center" style="font-size:90%">
-									{{ item.desc }}
+									{{ struct.desc }}
 									<br>
-									Creates 1 {{ capital((items[index - 1] || 0).name) || "bit" }}
+									Creates 1 {{ capital((structs[index - 1] || 0).name) || "bit" }}
 									every {{ format(Decimal.pow(1.7, index)) }} seconds
 									<br>
-									Costs {{ format(Decimal.pow(60, index).times(8)) }} bits
+									Costs {{ format(Decimal.pow(60, index).times(8)) }} bits<span v-if="index !== 0">,</span>
+									<span v-else>
+										and
+									</span>
+									{{ format(struct.ccost) }} chips
 									<span v-if="index !== 0">
 										and {{ format(Decimal.pow(10, index)) }}
-										{{ capital(items[index - 1].name) }}s
+										{{ capital(structs[index - 1].name) }}s
 									</span>
+
 									<br><br>
+
 									<a
 										class="btn btn-ghost"
+										:class="able[index] ? ['disabled'] : []"
 										style="padding:7px 20px">
 										Buy 1
 									</a>
 									<a
 										class="btn btn-full"
+										:class="able[index] ? ['disabled'] : []"
 										style="padding:7px 20px">
 										Buy Max: {{ format(max[index]) }}
 									</a>
@@ -97,16 +114,32 @@
 						</div>
 					</div>
 				</section>
+
+				<section v-if="section === 1" key="chips">
+					<div class="row">
+						<h3 class="center">Chips</h3>
+						<div class="box">
+							<p class="o-center">
+								Chips are used to moderate structures.
+								Upgrading your chips unlocks more structures.
+								Currently, you have {{ format(chips) }} {{ levels[level] }} chips.
+							</p>
+						</div>
+					</div>
+				</section>
 			</transition>
 
 			<div class="corner-box">
 				{{ capital(format(bits)) }} Bits
+				<br>
+				{{ capital(format(chips)) }} Chips
+				<br>
 			</div>
 		</div>
 
 		<script src="/global/format.min.js"></script>
 		<script src="/global/decimal.min.js"></script>
-		<script src="/global/vue.min.js"></script>
+		<script src="/global/vue.js"></script>
 		<script src="script.js"></script>
 	</body>
 </html>
