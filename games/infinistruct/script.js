@@ -37,7 +37,7 @@ const p42 = new Vue({
 		next(sPassed) {
 			sPassed /= 1000;
 			const temp = this.structs.slice();
-			for (var i = 0; i < temp.length; i++) {
+			for (var i = 1; i < temp.length; i++) {
 				temp[i - 1] = temp[i - 1].plus(temp[i].times(sPassed * (i + 1)));
 			}
 			this.structs = temp;
