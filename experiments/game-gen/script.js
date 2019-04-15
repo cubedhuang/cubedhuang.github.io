@@ -3,12 +3,16 @@ var types = [
 	"A puzzle",
 	"An adventure",
 	"A platformer",
-	"A first-person-shooter",
+	"A shooter",
 	"A simulation",
 	"A sports",
 	"A strategy",
 	"A survival",
 	"A pointless",
+	"A battle royale",
+	"A fighting",
+	"A rhythm",
+	"An RPG",
 ];
 var verbs = [
 	"click",
@@ -18,9 +22,11 @@ var verbs = [
 	"find",
 	"destroy",
 	"conquer",
-	"play with",
 	"create",
+	"observe",
+	"exist as",
 	"fight",
+	"drag",
 ];
 var nouns = [
 	"hearts",

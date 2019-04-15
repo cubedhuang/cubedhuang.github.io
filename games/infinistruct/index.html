@@ -50,24 +50,6 @@
 						</div>
 					</div>
 
-					<p class="navbar-text" v-if="difficulty === null">Choose a Difficulty:</p>
-					<div class="btn-group" role="group" v-if="difficulty === null">
-						<button
-							type="button"
-							v-for="(name, i) in diffNames"
-							:class="['btn', 'btn-sm', 'navbar-btn', `btn-${
-								['info', 'success', 'warning', 'danger', 'default'][i]
-							}`]"
-							@click="setDiff(i)"
-						>
-							{{ name }}
-						</button>
-					</div>
-
-					<p class="navbar-text" v-if="difficulty !== null">
-						Difficulty: {{ diffNames[difficulty] }}
-					</p>
-
 					<button
 						class="btn btn-sm navbar-btn btn-danger"
 						@click="restart">
@@ -85,8 +67,8 @@
 					<button :class="['btn', 'btn-struct', `btn-${
 							tier % 3 === 1 ? 'warning' : tier % 3 === 2 ? 'danger' : 'success'
 						}`]" @click="buy(tier - 1)">
-						Buy a {{ ++tier }}<sup>{{ ordSuff(tier) }}</sup> structure -
-						Amount: {{ numberformat.format(amount) }} -
+						Buy a {{ ++tier }}<sup>{{ ordSuff(tier) }}</sup> structure <br>
+						Amount: {{ numberformat.format(amount) }} <br>
 						Cost: {{ numberformat.format(costs[tier - 1]) }}
 					</button>
 					<span class="text-big infin-text" v-if="tier === 2 && structs.length >= 10">

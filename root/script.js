@@ -1,4 +1,3 @@
-
 $(function() {
 	$(".scroll-arrow").click(function() {
 		$('html, body').animate({

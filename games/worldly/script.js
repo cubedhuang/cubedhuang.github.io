@@ -52,7 +52,7 @@ let worldly = new Vue({
 				}
 			},
 			{
-				name: "Diplomacy (Go to Expansion)",
+				name: "Diplomacy",
 				does: "1.33x Faster Conquering",
 				cost: 300,
 				bought: false,
