@@ -1,5 +1,4 @@
-# My Website
+# stuff
 
-I use this repository to put my projects online.
-
-Check it out [here](https://cubedhuang.github.io).
+idk what [this](https://cubedhuang.com) is but i think its cool
+so you should check it out lol
