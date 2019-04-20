@@ -64,7 +64,7 @@ new Vue({
 			new Struct("Supercomputer", 5, "A very powerful processor and hard disk."),
 			new Struct("Quantum computer", 6, "An extremely powerful computer."),
 			new Struct("orbital computer", 7, "A computer that orbits a star."),
-			new Struct("Asteriod computer", 8, "A computer built through an asteroid."),
+			new Struct("Asteroid computer", 8, "A computer built through an asteroid."),
 			new Struct("Planet computer", 9, "A computer built through a planet."),
 			new Struct("Matrioshka Brain", 10, "A computer encapsulating a star."),
 			new Struct("Dark computer", 11, "A computer harnessing dark energy."),
