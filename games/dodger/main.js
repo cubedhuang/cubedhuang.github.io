@@ -24,29 +24,36 @@ let player = {
 };
 
 let points = 0;
+let highscore = 0;
 
 const random = (min, max) => Math.random() * (max - min) + min;
 
 function newBlock() {
-	let newSize = random(10, 20);
+	let point = false;
+	if (Math.random() < 0.3) point = true;
+	let newSize = point ? random(5, 10) : random(10, 20);
 	blocks.push(new Block(
 		random(newSize * 2, canvas.width - newSize * 2),
 		-newSize,
-		0,
-		random(3, 5),
-		newSize
+		random(0, 0.3) * (point ? 1.2 : 1),
+		random(3, 5) * (point ? 1.2 : 1),
+		newSize,
+		point ? "lime" : "white"
 	));
 }
 
 function collisions() {
-	blocks.forEach((block, index) => {
+	blocks.forEach((block, index, arr) => {
 		if (block.dead) {
 			blocks.splice(index, 1);
 			return;
 		}
 		if (block.x >= player.x - block.size / 2 && block.x <= player.x + player.size + block.size / 2 &&
 			block.y >= player.y - block.size / 2 && block.y <= player.y + player.size + block.size / 2) {
-				player.dead = true;
+				if (block.isPoint) {
+					points++;
+					arr.splice(index, 1);
+				} else player.dead = true;
 		}
 	});
 }
@@ -67,12 +74,10 @@ function movement() {
 	player.x += player.vx;
 	player.y += player.vy;
 
-	blocks.forEach(ball => ball.move(canvas));
+	blocks.forEach(block => block.move(canvas));
 }
 
 function update() {
-	points += 60 / 1000;
-
 	ctx.fillStyle = "black";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -82,22 +87,24 @@ function update() {
 	if (Math.random() < 0.1 && blocks.length < 1000) newBlock();
 	
 	ctx.fillStyle = "white";
-	blocks.forEach(ball => { ball.render(ctx); });
+	blocks.forEach(block => block.render(ctx));
 
 	for (let i = 0; i < 50; ++i) {
 		ctx.fillStyle = `rgba(0, 0, 0, ${(50 - i) / 50})`
 		ctx.fillRect(0, i * 5, canvas.width, 5);
 	}
-	
-	let color = ctx.createLinearGradient(10, 10, 100, 100);
-	color.addColorStop(0, "red");
-	color.addColorStop(0.5, "lime");
-	color.addColorStop(1, "cyan");
-	ctx.fillStyle = color;
-	ctx.font = "30px Lato, Ariel, Heveltica, sans-serif";
+
+	ctx.fillStyle = "cyan";
+	ctx.font = "20px Lato, Ariel, Heveltica, sans-serif";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "hanging";
-	ctx.fillText(`Points: ${ points.toFixed(0) }`, 10, 10);
+	ctx.fillText(`Points: ${points}`, 10, 10);
+
+	if (points > highscore) highscore = points;
+	
+	ctx.textAlign = "right";
+	ctx.textBaseline = "hanging";
+	ctx.fillText(`Highscore: ${highscore}`, canvas.width - 10, 10);
 
 	collisions();
 	movement();
@@ -166,3 +173,12 @@ document.addEventListener("keyup", evt => {
 });
 
 let loopID = setInterval(update, 1000 / 60);
+
+window.onload = function() {
+	let score = localStorage.getItem("highscore");
+	if (score) highscore = score;
+}
+
+window.onbeforeunload = function() {
+	localStorage.setItem("highscore", highscore)
+}

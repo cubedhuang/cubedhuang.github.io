@@ -1,11 +1,13 @@
 class Block {
-	constructor(x, y, vx, vy, size) {
+	constructor(x, y, vx, vy, size, color) {
 		this.x = x;
 		this.y = y;
 		this.vx = vx;
 		this.vy = vy;
 		this.size = size;
 		this.dead = false;
+		this.color = color || "white";
+		this.isPoint = this.color !== "white";
 	}
 
 	move(canvas) {
@@ -18,6 +20,7 @@ class Block {
 
 	render(ctx) {
 		let hs = this.size / 2;
+		ctx.fillStyle = this.color;
 		ctx.fillRect(this.x - hs, this.y - hs, this.size, this.size);
 	}
 }
