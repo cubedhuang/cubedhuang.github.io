@@ -52,28 +52,28 @@
 				<hr>
 				<p>Gain a part!</p>
 				<br>
-				<img src="/logo.png" @click="collect(1)"/>
+				<img src="/logo.png" @click.prevent="collect(1)"/>
 				<br>
 				<p>Boxes will improve your gathering speed!</p>
 				<br>
-				<a @click="buildBox" class="btn btn-ghost">
+				<a @click.prevent="buildBox" class="btn btn-ghost">
 					Build a Box: {{ numberformat.formatShort(boxes) }} Boxes |
 					Cost: {{ numberformat.formatShort(bc) }} Parts
 				</a>
 				<br><br>
-				<a @click="upgradeBox" class="btn btn-full">
+				<a @click.prevent="upgradeBox" class="btn btn-full">
 					Upgrade Boxes: Level {{ numberformat.formatShort(bl) }} |
 					Cost: {{ numberformat.formatShort(blc) }} Parts
 				</a>
 				<br><br>
 				<p>Machines will gather for you!</p>
 				<br>
-				<a @click="buildMachine" class="btn btn-ghost">
+				<a @click.prevent="buildMachine" class="btn btn-ghost">
 					Build a Machine: {{ numberformat.formatShort(machines) }} Machines |
 					Cost: {{ numberformat.formatShort(mc) }} Parts
 				</a>
 				<br><br>
-				<a @click="upgradeMachine" class="btn btn-full">
+				<a @click.prevent="upgradeMachine" class="btn btn-full">
 					Upgrade Machines: Level {{ numberformat.formatShort(ml) }} |
 					Cost: {{ numberformat.formatShort(mlc) }} Parts
 				</a>
@@ -91,9 +91,9 @@
 					If you Study, you will gain {{ numberformat.formatShort(boostGain) }}x Multiplier.
 				</p>
 				<br>
-				<a @click="study" class="btn btn-full">Study!</a>
+				<a @click.prevent="study" class="btn btn-full">Study!</a>
 				<br><br>
-				<a @click="reset" class="btn btn-ghost">FULL RESET</a>
+				<a @click.prevent="reset" class="btn btn-ghost">FULL RESET</a>
 			</div>
 		</div>
 

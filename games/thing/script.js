@@ -1,6 +1,7 @@
 numberformat.default.opts = {
 	backend: "decimal.js",
-	Decimal: Decimal
+	Decimal: Decimal,
+	sigfigs: 5
 }
 
 const thing = new Vue({
@@ -74,16 +75,16 @@ const thing = new Vue({
 
 		study() {
 			if (!confirm("Are you ABSOLUTELY sure you want to restart?")) return;
-			this.boost += this.boostGain;
-			this.boxes = 1;
-			this.machines = 0;
-			this.parts = 0;
-			this.bc = 10;
-			this.bl = 0;
-			this.blc = 1000;
-			this.mc = 1000;
-			this.ml = 0;
-			this.mlc = 1000000;
+			this.boost = this.boost.plus(this.boostGain);
+			this.boxes = new Decimal("1");
+			this.machines = new Decimal("0");
+			this.parts = new Decimal("0");
+			this.bc = new Decimal("10");
+			this.bl = new Decimal("0");
+			this.blc = new Decimal("1000");
+			this.mc = new Decimal("1000");
+			this.ml = new Decimal("0");
+			this.mlc = new Decimal("1000000");
 		},
 
 		saveGame() {
@@ -98,7 +99,10 @@ const thing = new Vue({
 		loadGame() {
 			var save = JSON.parse(localStorage.getItem("save"));
 			if (save === null) return;
-			else if (save.version != this.version) this.reset(true);
+			else if (save.version != this.version) {
+				window.onbeforeunload = () => localStorage.removeItem("save");
+				location.reload(true);
+			};
 			var data = save.data;
 
 			this.total = new Decimal(data.total);
@@ -114,12 +118,7 @@ const thing = new Vue({
 			this.boost = new Decimal(data.boost);
 		},
 
-		reset(force) {
-			if (force) {
-				window.onbeforeunload = () => localStorage.removeItem("save");
-				location.reload(true);
-				return;
-			}
+		reset() {
 			if (confirm("This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?")) {
 				window.onbeforeunload = () => localStorage.removeItem("save");
 				location.reload(true);
