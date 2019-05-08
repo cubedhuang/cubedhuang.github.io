@@ -77,16 +77,16 @@ window.onfocus = p42.save;
 setInterval(p42.save, 30000);
 
 onload = () => {
-	const save = JSON.parse(localStorage.getItem("save"));
-	if (!save) {
-		loop();
-		return;
-	}
-
-	p42.stuff = new Decimal(save.stuff);
-	p42.structs = save.structs.map(e => new Decimal(e));
-	loop(new Date().getTime() - save.last);
 	setTimeout(() => {
+		const save = JSON.parse(localStorage.getItem("save"));
+		if (!save) {
+			loop();
+			return;
+		}
+
+		p42.stuff = new Decimal(save.stuff);
+		p42.structs = save.structs.map(e => new Decimal(e));
+		loop(new Date().getTime() - save.last);
 		alert(`You earned ${ numberformat.format(p42.stuff.minus(save.stuff)) } stuff and some more structures while you were away!`);
 	}, 100)
 };
