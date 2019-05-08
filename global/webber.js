@@ -9,7 +9,7 @@ class Webber {
 		} else if (typeof element === "string") {
 			this.element = document.querySelector(element);
 		} else {
-			throw new Error("Webber element is not a string or HTMLElement!")
+			throw new Error("Webber selector is not a string or HTMLElement!")
 		}
 
 		// Setup for config object

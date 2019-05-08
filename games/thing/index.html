@@ -44,36 +44,38 @@
 			<h2>The Things</h2>
 		</section>
 
+		<br>
+
 		<div id="thing" class="row">
 			<div class="col span-1-of-2">
-				<h3>Parts of Things: {{ parts }}</h3>
+				<h3>Parts of Things: {{ numberformat.formatShort(parts) }}</h3>
 				<hr>
 				<p>Gain a part!</p>
 				<br>
-				<img src="/logo.png" @click="get(1)"/>
+				<img src="/logo.png" @click="collect(1)"/>
 				<br>
 				<p>Boxes will improve your gathering speed!</p>
 				<br>
 				<a @click="buildBox" class="btn btn-ghost">
-					Build a Box: {{ boxes }} Boxes |
-					Cost: {{ bc }} Parts
+					Build a Box: {{ numberformat.formatShort(boxes) }} Boxes |
+					Cost: {{ numberformat.formatShort(bc) }} Parts
 				</a>
 				<br><br>
 				<a @click="upgradeBox" class="btn btn-full">
-					Upgrade Boxes: Level {{ bl }} |
-					Cost: {{ blc }} Parts
+					Upgrade Boxes: Level {{ numberformat.formatShort(bl) }} |
+					Cost: {{ numberformat.formatShort(blc) }} Parts
 				</a>
 				<br><br>
 				<p>Machines will gather for you!</p>
 				<br>
 				<a @click="buildMachine" class="btn btn-ghost">
-					Build a Machine: {{ machines }} Machines |
-					Cost: {{ mc }} Parts
+					Build a Machine: {{ numberformat.formatShort(machines) }} Machines |
+					Cost: {{ numberformat.formatShort(mc) }} Parts
 				</a>
 				<br><br>
 				<a @click="upgradeMachine" class="btn btn-full">
-					Upgrade Machines: Level {{ ml }} |
-					Cost: {{ mlc }} Parts
+					Upgrade Machines: Level {{ numberformat.formatShort(ml) }} |
+					Cost: {{ numberformat.formatShort(mlc) }} Parts
 				</a>
 			</div>
 
@@ -84,9 +86,9 @@
 					Prestige will sacrifice everything,
 					but gives you a small multiplier.
 					<br><br>
-					Current boost: {{ boost }}x Thing Gathering Amount
+					Current boost: {{ numberformat.formatShort(boost) }}x Thing Gathering Amount
 					<br><br>
-					If you Study, you will gain {{ boostGain }}x Multiplier.
+					If you Study, you will gain {{ numberformat.formatShort(boostGain) }}x Multiplier.
 				</p>
 				<br>
 				<a @click="study" class="btn btn-full">Study!</a>
@@ -95,6 +97,8 @@
 			</div>
 		</div>
 
+		<script src="/global/format.min.js"></script>
+		<script src="/global/decimal.min.js"></script>
 		<script src="/global/vue.min.js"></script>
 		<script src="script.js"></script>
 	</body>

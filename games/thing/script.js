@@ -1,67 +1,74 @@
+numberformat.default.opts = {
+	backend: "decimal.js",
+	Decimal: Decimal
+}
+
 const thing = new Vue({
 	el: "#thing",
 
 	created() {
 		this.loadGame();
-		setInterval(() => this.get(this.machines * Math.pow(2, this.ml)), 1000);
+		setInterval(() => this.collect(this.machines.mul(Decimal.pow(2, this.ml))), 1000);
 		setInterval(this.saveGame, 30000);
 	},
 	
 	data: {
-		total: 0,
-		parts: 0,
-		boxes: 1,
-		machines: 0,
-		bc: 10,
-		bl: 0,
-		blc: 1000,
-		mc: 1000,
-		ml: 0,
-		mlc: 1000000,
-		boost: 1
+		total: new Decimal("0"),
+		parts: new Decimal("0"),
+		boxes: new Decimal("1"),
+		machines: new Decimal("0"),
+		bc: new Decimal("10"),
+		bl: new Decimal("0"),
+		blc: new Decimal("1000"),
+		mc: new Decimal("1000"),
+		ml: new Decimal("0"),
+		mlc: new Decimal("1000000"),
+		boost: new Decimal("1"),
+		version: "1.3.5"
 	},
 
 	computed: {
 		boostGain() {
-			return Math.max(Math.floor(Math.pow(this.total / 10, 1 / 3)) - this.boost + 1, 0);
+			return Decimal.max(Decimal.floor(Decimal.pow(this.total.div("10"), 1/3)).minus(this.boost).plus("1"), 0);
 		}
 	},
 
 	methods: {
-		get(amount) {
-			this.total += Math.round(Math.pow(1.2, this.bl) * this.boxes * this.boost * amount);
-			this.parts += Math.round(Math.pow(1.2, this.bl) * this.boxes * this.boost * amount);
+		collect(amount) {
+			let add = Decimal.round(Decimal.pow(1.2, this.bl).mul(this.boxes).mul(this.boost).mul(amount));
+			this.total = this.total.plus(add);
+			this.parts = this.parts.plus(add);
 		},
 
 		buildBox() {
-			if (this.parts >= this.bc) {
-				this.parts -= this.bc;
-				this.boxes++;
-				this.bc = Math.round(this.bc * 1.1);
+			if (this.parts.gte(this.bc)) {
+				this.parts = this.parts.minus(this.bc);
+				this.boxes = this.boxes.plus("1");
+				this.bc = Decimal.round(this.bc.mul("1.1"));
 			}
 		},
 
 		upgradeBox() {
-			if (this.parts >= this.blc) {
-				this.parts -= this.blc;
-				this.bl++;
-				this.blc = Math.round(this.blc * 2);
+			if (this.parts.gte(this.blc)) {
+				this.parts = this.parts.minus(this.blc);
+				this.bl = this.bl.plus("1");
+				this.blc = Decimal.round(this.blc.mul("2"));
 			}
 		},
 
 		buildMachine() {
-			if (this.parts >= this.mc) {
-				this.parts -= this.mc;
-				this.machines++;
-				this.mc = Math.round(this.mc * 1.2);
+			if (this.parts.gte(this.mc)) {
+				this.parts = this.parts.minus(this.mc);
+				this.machines = this.machines.plus("1");
+				this.mc = Decimal.round(this.mc.mul("1.2"));
 			}
 		},
 
 		upgradeMachine() {
-			if (this.parts >= this.mlc) {
-				this.parts -= this.mlc;
-				this.ml++;
-				this.mlc = Math.round(this.mlc * 5);
+			if (this.parts.gte(this.mlc)) {
+				this.parts = this.parts.minus(this.mlc);
+				this.ml = this.ml.plus("1");
+				this.mlc = Decimal.round(this.mlc.mul("5"));
 			}
 		},
 
@@ -80,27 +87,39 @@ const thing = new Vue({
 		},
 
 		saveGame() {
-			localStorage.setItem("save", JSON.stringify(this.$data));
+			localStorage.setItem("save", JSON.stringify(
+				{
+					data: this.$data,
+					version: this.version
+				}
+			));
 		},
 
 		loadGame() {
 			var save = JSON.parse(localStorage.getItem("save"));
 			if (save === null) return;
-			console.log(save);
-			this.total = save.total;
-			this.parts = save.parts;
-			this.boxes = save.boxes;
-			this.machines = save.machines;
-			this.bc = save.bc;
-			this.bl = save.bl;
-			this.blc = save.blc;
-			this.mc = save.mc;
-			this.ml = save.ml;
-			this.mlc = save.mlc;
-			this.boost = save.boost;
+			else if (save.version != this.version) this.reset(true);
+			var data = save.data;
+
+			this.total = new Decimal(data.total);
+			this.parts = new Decimal(data.parts);
+			this.boxes = new Decimal(data.boxes);
+			this.machines = new Decimal(data.machines);
+			this.bc = new Decimal(data.bc);
+			this.bl = new Decimal(data.bl);
+			this.blc = new Decimal(data.blc);
+			this.mc = new Decimal(data.mc);
+			this.ml = new Decimal(data.ml);
+			this.mlc = new Decimal(data.mlc);
+			this.boost = new Decimal(data.boost);
 		},
 
-		reset() {
+		reset(force) {
+			if (force) {
+				window.onbeforeunload = () => localStorage.removeItem("save");
+				location.reload(true);
+				return;
+			}
 			if (confirm("This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?")) {
 				window.onbeforeunload = () => localStorage.removeItem("save");
 				location.reload(true);
