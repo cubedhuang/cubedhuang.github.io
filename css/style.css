@@ -326,7 +326,10 @@ ul.breadcrumbs li:last-child::after {
 /* ------------------------------ */
 
 header {
-	background: linear-gradient(to top left, #2980b9a0, #9b59b6a0), #000;
+	background: linear-gradient(to top left, #297fb962, #9b59b662),
+		linear-gradient(#000000e6, #000000e6),
+		url("../images/cursor-umberto-unsplash.jpg"),
+		#000;
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
@@ -370,6 +373,45 @@ header .scroll-arrow:hover {
 	transform: translate(-120%, -65.5%);
 }
 
+/* ---------------------------------------- */
+/* ----------- MORE EXPERIMENTS ----------- */
+/* ---------------------------------------- */
+
+#section-more {
+	background: linear-gradient(to bottom right, #297fb962, #9b59b662),
+		linear-gradient(#000000e6, #000000e6),
+		url("../images/numbers-sigmund-unsplash.jpg"),
+		#000;
+	background-size: cover;
+	background-position: center;
+	height: 50vh;
+	background-attachment: fixed;
+}
+
+.more-box {
+	position: relative;
+	width: 1140px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#section-more .go {
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	transform: translate(-120%, -50%);
+	font-size: 180%;
+	border: 2px solid white;
+	color: white;
+}
+
+#section-more .go:hover {
+	background: white;
+	border: 2px solid transparent;
+	color: #444;
+}
+
 /* ------------------------------ */
 /* ----------- FOOTER ----------- */
 /* ------------------------------ */
@@ -377,9 +419,9 @@ header .scroll-arrow:hover {
 footer {
 	background: #333;
 	color: #bbb;
-	font-size: 14px;
+	font-size: 0.65em;
 	line-height: 145%;
-	padding: 30px;
+	padding: 20px;
 }
 
 footer a {
@@ -399,7 +441,7 @@ footer a:active {
 
 footer p {
 	text-align: center;
-	margin: 5px auto;
+	margin: 3px auto;
 }
 
 /* ------------------------------ */
