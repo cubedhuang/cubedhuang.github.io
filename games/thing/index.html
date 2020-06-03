@@ -41,7 +41,7 @@
 
 	<body class="container">
 		<div class="row">
-			<h1><br>The Things</h1>
+			<h1><br>Thing</h1>
 		</div>
 
 		<hr><br>
@@ -56,7 +56,7 @@
 				<br>
 				<p>Boxes will improve your gathering speed!</p>
 
-				<button @click.prevent="buildBox" type="button" class="btn btn-outline-success">
+				<button @click.prevent="buildBox(false)" class="btn btn-outline-success">
 					Build a Box: {{ numberformat.formatShort(boxes) }} Boxes |
 					Cost: {{ numberformat.formatShort(bc) }} Parts
 				</button>
@@ -64,7 +64,7 @@
 				
 				<br><br>
 
-				<button @click.prevent="upgradeBox" class="btn btn-outline-success">
+				<button @click.prevent="upgradeBox(false)" class="btn btn-outline-success">
 					Upgrade Boxes: Level {{ numberformat.formatShort(bl) }} |
 					Cost: {{ numberformat.formatShort(blc) }} Parts
 				</button>
@@ -74,7 +74,7 @@
 
 				<p>Machines will gather for you!</p>
 
-				<button @click.prevent="buildMachine" class="btn btn-outline-success">
+				<button @click.prevent="buildMachine(false)" class="btn btn-outline-success">
 					Build a Machine: {{ numberformat.formatShort(machines) }} Machines |
 					Cost: {{ numberformat.formatShort(mc) }} Parts
 				</button>
@@ -83,7 +83,7 @@
 
 				<br><br>
 
-				<button @click.prevent="upgradeMachine" class="btn btn-outline-success">
+				<button @click.prevent="upgradeMachine(false)" class="btn btn-outline-success">
 					Upgrade Machines: Level {{ numberformat.formatShort(ml) }} |
 					Cost: {{ numberformat.formatShort(mlc) }} Parts
 				</button>
