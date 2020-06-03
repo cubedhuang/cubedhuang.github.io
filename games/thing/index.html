@@ -35,65 +35,74 @@
 			gtag('config', 'UA-107754281-2');
 		</script>
 		
-		<link rel="stylesheet" href="/css/generic.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
 
-	<body>
-		<section class="top">
-			<h2>The Things</h2>
-		</section>
+	<body class="container">
+		<div class="row">
+			<h1><br>The Things</h1>
+		</div>
 
-		<br>
+		<hr><br>
 
 		<div id="thing" class="row">
-			<div class="col span-1-of-2">
-				<h3>Parts of Things: {{ numberformat.formatShort(parts) }}</h3>
+			<div class="col">
+				<h3>Parts of Things: {{ numberformat.format(parts) }}</h3>
 				<hr>
 				<p>Gain a part!</p>
-				<br>
 				<img src="/logo.png" @click.prevent="collect(1)"/>
+
 				<br>
 				<p>Boxes will improve your gathering speed!</p>
-				<br>
-				<a @click.prevent="buildBox" class="btn btn-ghost">
+
+				<button @click.prevent="buildBox" type="button" class="btn btn-outline-success">
 					Build a Box: {{ numberformat.formatShort(boxes) }} Boxes |
 					Cost: {{ numberformat.formatShort(bc) }} Parts
-				</a>
+				</button>
+				<button @click.prevent="buildBox(true)" class="btn btn-success float-right text-right">Buy Max</button>
+				
 				<br><br>
-				<a @click.prevent="upgradeBox" class="btn btn-full">
+
+				<button @click.prevent="upgradeBox" class="btn btn-outline-success">
 					Upgrade Boxes: Level {{ numberformat.formatShort(bl) }} |
 					Cost: {{ numberformat.formatShort(blc) }} Parts
-				</a>
+				</button>
+				<button @click.prevent="upgradeBox(true)" class="btn btn-success float-right text-right">Buy Max</button>
+
 				<br><br>
+
 				<p>Machines will gather for you!</p>
-				<br>
-				<a @click.prevent="buildMachine" class="btn btn-ghost">
+
+				<button @click.prevent="buildMachine" class="btn btn-outline-success">
 					Build a Machine: {{ numberformat.formatShort(machines) }} Machines |
 					Cost: {{ numberformat.formatShort(mc) }} Parts
-				</a>
+				</button>
+				<button @click.prevent="buildMachine(true)" class="btn btn-success float-right text-right">Buy Max</button>
+				
+
 				<br><br>
-				<a @click.prevent="upgradeMachine" class="btn btn-full">
+
+				<button @click.prevent="upgradeMachine" class="btn btn-outline-success">
 					Upgrade Machines: Level {{ numberformat.formatShort(ml) }} |
 					Cost: {{ numberformat.formatShort(mlc) }} Parts
-				</a>
+				</button>
+				<button @click.prevent="upgradeMachine(true)" class="btn btn-success float-right text-right">Buy Max</button>
 			</div>
 
-			<div class="col span-1-of-2">
+			<div class="col">
 				<h3>Prestige</h3>
 				<hr>
-				<p>
-					Prestige will sacrifice everything,
-					but gives you a small multiplier.
-					<br><br>
-					Current boost: {{ numberformat.formatShort(boost) }}x Thing Gathering Amount
-					<br><br>
-					If you Study, you will gain {{ numberformat.formatShort(boostGain) }}x Multiplier.
-				</p>
-				<br>
-				<a @click.prevent="study" class="btn btn-full">Study!</a>
+				<p>Prestige will sacrifice everything, but gives you a small multiplier.</p>
+				<p>Current boost: {{ numberformat.formatShort(boost) }}x Thing Gathering Amount</p>
+				<p>If you Prestige, you will gain {{ numberformat.formatShort(boostGain) }}x Multiplier.</p>
+				<button @click.prevent="prestige" class="btn btn-outline-success">Prestige!</button>
+				<button @click.prevent="reset" class="btn btn-success float-right">Wipe Save</button>
 				<br><br>
-				<a @click.prevent="reset" class="btn btn-ghost">FULL RESET</a>
+				<h3>Stats</h3>
+				<hr>
+				<p>Total Parts Ever Gained: {{ numberformat.format(total) }}</p>
+				<p>Total Parts This Era: {{ numberformat.format(curTotal) }}</p>
 			</div>
 		</div>
 

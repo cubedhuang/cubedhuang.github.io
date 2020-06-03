@@ -15,17 +15,28 @@ const thing = new Vue({
 	
 	data: {
 		total: new Decimal("0"),
+		curTotal: new Decimal("0"),
 		parts: new Decimal("0"),
 		boxes: new Decimal("1"),
 		machines: new Decimal("0"),
-		bc: new Decimal("10"),
-		bl: new Decimal("0"),
-		blc: new Decimal("1000"),
-		mc: new Decimal("1000"),
-		ml: new Decimal("0"),
-		mlc: new Decimal("1000000"),
+		bc: new Decimal("10"), // box cost
+		bl: new Decimal("0"), // box level
+		blc: new Decimal("1000"), // box level cost
+		mc: new Decimal("1000"), // machine cost
+		ml: new Decimal("0"), // machine level
+		mlc: new Decimal("1000000"), // machine level cost
 		boost: new Decimal("1"),
-		version: "1.3.5"
+		version: "1.4"
+	},
+
+	watch: {
+		parts(val, prev) {
+			let change = val.sub(prev);
+			if (change.gt("0")) {
+				this.total = this.total.add(change);
+				this.curTotal = this.curTotal.add(change);
+			}
+		}
 	},
 
 	computed: {
@@ -37,44 +48,57 @@ const thing = new Vue({
 	methods: {
 		collect(amount) {
 			let add = Decimal.round(Decimal.pow(1.2, this.bl).mul(this.boxes).mul(this.boost).mul(amount));
-			this.total = this.total.plus(add);
 			this.parts = this.parts.plus(add);
 		},
 
-		buildBox() {
-			if (this.parts.gte(this.bc)) {
-				this.parts = this.parts.minus(this.bc);
-				this.boxes = this.boxes.plus("1");
-				this.bc = Decimal.round(this.bc.mul("1.1"));
+		getBuyingData(parts, amount, cost, multiplier, max) {
+			if (max) {
+				while (parts.gte(cost)) {
+					parts = parts.minus(cost);
+					amount = amount.plus("1");
+					cost = Decimal.round(cost.mul(multiplier));
+				}
+			} else {
+				if (parts.gte(cost)) {
+					parts = parts.minus(cost);
+					amount = amount.plus("1");
+					cost = Decimal.round(cost.mul(multiplier));
+				}
 			}
+			return { parts, amount, cost }
 		},
 
-		upgradeBox() {
-			if (this.parts.gte(this.blc)) {
-				this.parts = this.parts.minus(this.blc);
-				this.bl = this.bl.plus("1");
-				this.blc = Decimal.round(this.blc.mul("2"));
-			}
+		buildBox(max) {
+			let calc = this.getBuyingData(this.parts, this.boxes, this.bc, "1.1", max);
+			this.parts = calc.parts;
+			this.boxes = calc.amount;
+			this.bc = calc.cost;
 		},
 
-		buildMachine() {
-			if (this.parts.gte(this.mc)) {
-				this.parts = this.parts.minus(this.mc);
-				this.machines = this.machines.plus("1");
-				this.mc = Decimal.round(this.mc.mul("1.2"));
-			}
+		upgradeBox(max) {
+			let calc = this.getBuyingData(this.parts, this.bl, this.blc, "2", max);
+			this.parts = calc.parts;
+			this.bl = calc.amount;
+			this.blc = calc.cost;
 		},
 
-		upgradeMachine() {
-			if (this.parts.gte(this.mlc)) {
-				this.parts = this.parts.minus(this.mlc);
-				this.ml = this.ml.plus("1");
-				this.mlc = Decimal.round(this.mlc.mul("5"));
-			}
+		buildMachine(max) {
+			let calc = this.getBuyingData(this.parts, this.machines, this.mc, "1.1", max);
+			this.parts = calc.parts;
+			this.machines = calc.amount;
+			this.mc = calc.cost;
 		},
 
-		study() {
+		upgradeMachine(max) {
+			let calc = this.getBuyingData(this.parts, this.ml, this.mlc, "1.1", max);
+			this.parts = calc.parts;
+			this.ml = calc.amount;
+			this.mlc = calc.cost;
+		},
+
+		prestige() {
 			if (!confirm("Are you ABSOLUTELY sure you want to restart?")) return;
+			this.curTotal = new Decimal("0");
 			this.boost = this.boost.plus(this.boostGain);
 			this.boxes = new Decimal("1");
 			this.machines = new Decimal("0");
@@ -98,28 +122,34 @@ const thing = new Vue({
 
 		loadGame() {
 			var save = JSON.parse(localStorage.getItem("save"));
-			if (save === null) return;
+			if (save === null || save.version !== this.version) return;
 			else if (save.version != this.version) {
 				window.onbeforeunload = () => localStorage.removeItem("save");
 				location.reload(true);
 			};
-			var data = save.data;
+			var s = save.data;
 
-			this.total = new Decimal(data.total);
-			this.parts = new Decimal(data.parts);
-			this.boxes = new Decimal(data.boxes);
-			this.machines = new Decimal(data.machines);
-			this.bc = new Decimal(data.bc);
-			this.bl = new Decimal(data.bl);
-			this.blc = new Decimal(data.blc);
-			this.mc = new Decimal(data.mc);
-			this.ml = new Decimal(data.ml);
-			this.mlc = new Decimal(data.mlc);
-			this.boost = new Decimal(data.boost);
+			this.total = new Decimal(s.total);
+			this.curTotal = new Decimal(s.curTotal);
+			this.parts = new Decimal(s.parts);
+			this.boxes = new Decimal(s.boxes);
+			this.machines = new Decimal(s.machines);
+			this.bc = new Decimal(s.bc);
+			this.bl = new Decimal(s.bl);
+			this.blc = new Decimal(s.blc);
+			this.mc = new Decimal(s.mc);
+			this.ml = new Decimal(s.ml);
+			this.mlc = new Decimal(s.mlc);
+			this.boost = new Decimal(s.boost);
 		},
 
 		reset() {
-			if (confirm("This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?")) {
+			if (
+				confirm("This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?") &&
+				confirm("Are you seriously actually sure you want to do this?") &&
+				confirm("This is you last chance to turn back before you lost your progress forever!") &&
+				confirm("Fine then, just click this button.")
+			) {
 				window.onbeforeunload = () => localStorage.removeItem("save");
 				location.reload(true);
 			}
