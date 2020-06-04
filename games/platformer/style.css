@@ -65,3 +65,7 @@ input:focus, button:focus {
 	outline: none;
 	border-color: #0984e3;
 }
+
+img {
+	display: none;
+}

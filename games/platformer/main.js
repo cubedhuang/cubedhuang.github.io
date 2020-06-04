@@ -1,3 +1,5 @@
+// this is bad code pls dont copy i just added the img stuff stuff and didnt refactor it
+
 "use strict";
 
 let canvas = document.getElementById("game");
@@ -5,6 +7,9 @@ let ctx = canvas.getContext("2d");
 
 const CW = canvas.width;
 const CH = canvas.height;
+
+const SPRITE_LEFT = document.getElementById("sprite-left");
+const SPRITE_RIGHT = document.getElementById("sprite-right");
 
 let currentLevelSize = "small";
 let currentLevelNum = 0;
@@ -332,7 +337,8 @@ function menu() {
 	renderLevel();
 	startLevel();
 	ctx.fillStyle = "black";
-	roundRect(playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize, 5);
+	ctx.drawImage(SPRITE_RIGHT, playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize);
+	// roundRect(playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize, 5);
 
 	// Logo
 	ctx.drawImage(logo, 150, 30);
@@ -340,6 +346,8 @@ function menu() {
 	ctx.textAlign = "center";
 	ctx.font = "50px \"Open Sans\", Lato, sans-serif";
 	ctx.fillText("Click to Begin!", CW / 2, 200);
+	ctx.font = "15px \"Open Sans\", Lato, sans-serif";
+	ctx.fillText("Now Pusheen Edition!", CW / 2, 230);
 
 	if (!inMenu) {
 		setInterval(update, 1000 / 60);
@@ -356,7 +364,10 @@ function update() {
 
 	// Player
 	ctx.fillStyle = "black";
-	roundRect(playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize, blockSize / 20);
+	let img = playerVX < 0 ? SPRITE_LEFT : SPRITE_RIGHT;
+	ctx.drawImage(img, playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize);
+	// roundRect(playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize, blockSize / 20);
+
 	yMove();
 	xMove();
 
