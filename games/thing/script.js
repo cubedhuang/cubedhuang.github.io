@@ -9,8 +9,9 @@ const thing = new Vue({
 
 	created() {
 		this.loadGame();
-		setInterval(() => this.collect(this.machines.mul(Decimal.pow(2, this.ml))), 1000);
-		setInterval(this.saveGame, 30000);
+		let machineMult = 1.2;
+		setInterval(() => this.collect(this.machines.mul(Decimal.pow(machineMult, this.ml))), 1000);
+		setInterval(this.saveGame, 10000);
 	},
 	
 	data: {
@@ -47,7 +48,8 @@ const thing = new Vue({
 
 	methods: {
 		collect(amount) {
-			let add = Decimal.round(Decimal.pow(1.2, this.bl).mul(this.boxes).mul(this.boost).mul(amount));
+			let boxMult = 1.1;
+			let add = Decimal.round(Decimal.pow(boxMult, this.bl).mul(this.boxes).mul(this.boost).mul(amount));
 			this.parts = this.parts.plus(add);
 		},
 
@@ -83,14 +85,14 @@ const thing = new Vue({
 		},
 
 		buildMachine(max) {
-			let calc = this.getBuyingData(this.parts, this.machines, this.mc, "1.1", max);
+			let calc = this.getBuyingData(this.parts, this.machines, this.mc, "1.5", max);
 			this.parts = calc.parts;
 			this.machines = calc.amount;
 			this.mc = calc.cost;
 		},
 
 		upgradeMachine(max) {
-			let calc = this.getBuyingData(this.parts, this.ml, this.mlc, "1.1", max);
+			let calc = this.getBuyingData(this.parts, this.ml, this.mlc, "5", max);
 			this.parts = calc.parts;
 			this.ml = calc.amount;
 			this.mlc = calc.cost;
