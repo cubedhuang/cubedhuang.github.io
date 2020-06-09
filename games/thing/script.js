@@ -27,7 +27,7 @@ const thing = new Vue({
 		ml: new Decimal("0"), // machine level
 		mlc: new Decimal("1000000"), // machine level cost
 		boost: new Decimal("1"),
-		version: "1.4"
+		version: "1.4.1"
 	},
 
 	watch: {
@@ -117,7 +117,8 @@ const thing = new Vue({
 			localStorage.setItem("save", JSON.stringify(
 				{
 					data: this.$data,
-					version: this.version
+					version: this.version,
+					time: Math.floor(Date.now() / 1000)
 				}
 			));
 		},
@@ -143,6 +144,9 @@ const thing = new Vue({
 			this.ml = new Decimal(s.ml);
 			this.mlc = new Decimal(s.mlc);
 			this.boost = new Decimal(s.boost);
+
+			let elapsed = Math.floor(Date.now() / 1000) - save.time;
+			this.collect(this.machines.mul(Decimal.pow(1.2, this.ml)).mul(elapsed));
 		},
 
 		reset() {
