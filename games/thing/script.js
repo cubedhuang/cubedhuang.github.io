@@ -89,13 +89,13 @@ const thing = new Vue({
 				while (parts.gte(cost)) {
 					parts = parts.minus(cost);
 					amount = amount.plus("1");
-					cost = Decimal.round(cost.mul(multiplier));
+					cost = Decimal.floor(cost.mul(multiplier));
 				}
 			} else {
 				if (parts.gte(cost)) {
 					parts = parts.minus(cost);
 					amount = amount.plus("1");
-					cost = Decimal.round(cost.mul(multiplier));
+					cost = Decimal.floor(cost.mul(multiplier));
 				}
 			}
 			return { parts, amount, cost }
