@@ -89,13 +89,13 @@ const thing = new Vue({
 				while (parts.gte(cost)) {
 					parts = parts.minus(cost);
 					amount = amount.plus("1");
-					cost = Decimal.floor(cost.mul(multiplier));
+					cost = Decimal.ceil(cost.mul(multiplier));
 				}
 			} else {
 				if (parts.gte(cost)) {
 					parts = parts.minus(cost);
 					amount = amount.plus("1");
-					cost = Decimal.floor(cost.mul(multiplier));
+					cost = Decimal.ceil(cost.mul(multiplier));
 				}
 			}
 			return { parts, amount, cost }
@@ -134,14 +134,14 @@ const thing = new Vue({
 		},
 
 		buyMM() {
-			let calc = this.getBuyingData(this.tp, this.mm, this.mmc, "5", false);
+			let calc = this.getBuyingData(this.tp, this.mm, this.mmc, "10", false);
 			this.tp = calc.parts;
 			this.mm = calc.amount;
 			this.mmc = calc.cost;
 		},
 
 		buyCC() {
-			let calc = this.getBuyingData(this.tp, this.cc, this.ccc, "5", false);
+			let calc = this.getBuyingData(this.tp, this.cc, this.ccc, "10", false);
 			this.tp = calc.parts;
 			this.cc = calc.amount;
 			this.ccc = calc.cost;
