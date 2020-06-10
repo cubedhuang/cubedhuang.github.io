@@ -1,4 +1,11 @@
-img {
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+
+html {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+img.clicker {
 	width: 100px;
 	height: 100px;
 	display: block;
@@ -18,4 +25,32 @@ img:hover {
     -khtml-user-select: none; /* webkit (konqueror) browsers */
     -ms-user-select: none; /* IE10+ */
     user-select: none; /* IE10+ */
+}
+
+.transcend {
+	color: #8e44ad;
+	font-weight: 900;
+	font-family: "Raleway", inherit;
+}
+
+.prestige {
+	border-color: #8e44ad;
+	color: #8e44ad;
+}
+.prestige:hover,
+.prestige:active {
+    background-color: #8e44ad !important;
+	border-color: #8e44ad !important;
+}
+.prestige:focus {
+	box-shadow: 0 0 0 0.2rem rgba(142, 68, 173, 0.5) !important;
+}
+
+.alert-light {
+	color: #444;
+	border-color: lightgray;
+}
+
+.card {
+	border: none;
 }
