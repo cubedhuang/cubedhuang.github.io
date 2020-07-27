@@ -50,7 +50,7 @@ const debug = new Vue({
 				return output;
 			}
 
-			if (!checkContain(this.debaters, "Karthik", "Pranaya", "Ananya", "Saanvi") || type === 2) {
+			if (!checkContain(this.debaters, "Karthik", "Pranaya", "Ananya", "Saanvi", "Daniel") || type === 2) {
 				this.generate(type);
 				return;
 			}
@@ -73,6 +73,12 @@ const debug = new Vue({
 			}
 			for (let i = 0; i < shuffled.length; i++) {
 				if (isAny(shuffled[i], "Ananya", "Saanvi")){
+					[shuffled[i], shuffled[setIndex]] = [shuffled[setIndex], shuffled[i]];
+					setIndex++;
+				}
+			}
+			for (let i = 0; i < shuffled.length; i++) {
+				if (isAny(shuffled[i], "Daniel")){
 					[shuffled[i], shuffled[setIndex]] = [shuffled[setIndex], shuffled[i]];
 					setIndex++;
 				}
