@@ -30,7 +30,7 @@ let debug = new Vue({
 				x: temp[i].x,
 				y: temp[i].y,
 			});
-			if (temp.length <= 20) temp.push({
+			if (temp.length <= 50) temp.push({
 				value: Math.trunc(Math.random() * 100) + 1,
 				bg: bgc[i2],
 				color: col[i2],

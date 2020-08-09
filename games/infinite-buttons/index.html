@@ -48,7 +48,7 @@
 			</p>
 			<button
 				v-for="(btn, i) in buttons"
-				@click="create(i)"
+				@click.prevent="create(i)"
 				:class="['bg-' + btn.bg, btn.color]"
 				:style="{ top: btn.y + 'px', left: btn.x + 'px' }"
 			>
