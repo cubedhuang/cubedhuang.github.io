@@ -57,7 +57,10 @@ function draw() {
 		background(31, 31, 31, 180);
 	
 		for (const boid of flock) {
-			boid.show();
+			boid.showData();
+		}
+		for (const boid of flock) {
+			boid.showSelf();
 		}
 	}
 
