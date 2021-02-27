@@ -70,16 +70,19 @@ class Boid {
 		this.acc.add(separation);
 	}
 
-	show() {
-		strokeWeight(6);
-		if (hueC.checked()) stroke(map(this.vel.mag(), maxSpeedS.value() / 10, maxSpeedS.value(), 0, 127, true), 255, 255);
-		else stroke(255);
-		point(this.pos.x, this.pos.y)
+	showData() {
+		if (vision1C.checked() || vision2C.checked()) {
+			if (vision1C.checked()) fill(255, 4);
+			else noFill();
 
-		if (visionC.checked()) {
-			noStroke()
-			fill(255, 4);
-			ellipse(this.pos.x, this.pos.y, visionS.value(), visionS.value());
+			if (vision2C.checked()) {
+				strokeWeight(0.5);
+				stroke(255, 80);
+			}
+			else noStroke();
+			
+			let dia = visionS.value() * 2;
+			ellipse(this.pos.x, this.pos.y, dia, dia);
 		}
 		
 		if (directionC.checked()) {
@@ -88,6 +91,13 @@ class Boid {
 			let end = p5.Vector.add(this.pos, p5.Vector.mult(this.vel, 5));
 			line(this.pos.x, this.pos.y, end.x, end.y);
 		}
+	}
+
+	showSelf() {
+		strokeWeight(6);
+		if (hueC.checked()) stroke(map(this.vel.mag(), maxSpeedS.value() / 10, maxSpeedS.value(), 0, 127, true), 255, 255);
+		else stroke(255);
+		point(this.pos.x, this.pos.y)
 	}
 
 	update() {

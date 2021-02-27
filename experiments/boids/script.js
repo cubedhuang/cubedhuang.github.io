@@ -1,7 +1,7 @@
 const flock = [];
 
 let debugP;
-let pauseC, directionC, hueC, visionC;
+let pauseC, directionC, hueC, vision1C, vision2C;
 let alignS, cohesionS, separationS, alignP, cohesionP, separationP;
 let visionS, visionP;
 let maxForceS, maxForceP, maxSpeedS, maxSpeedP;
@@ -15,7 +15,8 @@ function setup() {
 	pauseC = createCheckbox(" paused", false);
 	directionC = createCheckbox(" show direction", true);
 	hueC = createCheckbox(" change hue to indicate speed", true);
-	visionC = createCheckbox(" show vision radius", false);
+	vision1C = createCheckbox(" show vision areas", false);
+	vision2C = createCheckbox(" show vision outlines", false);
 	bounceC = createCheckbox(" bounce off of edges", false);
 
 	visionP = createP("vision: 75");
@@ -47,7 +48,10 @@ function draw() {
 		for (const boid of flock) {
 			boid.flock(flock);
 			boid.update();
-			boid.show();
+			boid.showData();
+		}
+		for (const boid of flock) {
+			boid.showSelf();
 		}
 	} else {
 		background(31, 31, 31, 180);
