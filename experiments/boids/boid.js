@@ -72,7 +72,7 @@ class Boid {
 
 	show() {
 		strokeWeight(6);
-		if (hueC.checked()) stroke(map(this.vel.mag(), 1, maxSpeedS.value(), 0, 127, true), 255, 255);
+		if (hueC.checked()) stroke(map(this.vel.mag(), maxSpeedS.value() / 10, maxSpeedS.value(), 0, 127, true), 255, 255);
 		else stroke(255);
 		point(this.pos.x, this.pos.y)
 
