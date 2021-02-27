@@ -16,6 +16,7 @@ function setup() {
 	directionC = createCheckbox(" show direction", true);
 	hueC = createCheckbox(" change hue to indicate speed", true);
 	visionC = createCheckbox(" show vision radius", false);
+	bounceC = createCheckbox(" bounce off of edges", false);
 
 	visionP = createP("vision: 75");
 	visionS = createSlider(0, 250, 75, 5);

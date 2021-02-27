@@ -96,9 +96,29 @@ class Boid {
 		this.pos.add(this.vel);
 		this.acc.mult(0);
 
-		if (this.pos.x < 0) this.pos.x = width;
-		if (this.pos.x > width) this.pos.x = 0;
-		if (this.pos.y < 0) this.pos.y = height;
-		if (this.pos.y > height) this.pos.y = 0;
+		if (bounceC.checked()) {
+			let ran = false;
+			if (this.pos.x < 0 || this.pos.x > width) {
+				ran = true;
+				this.vel.x = -this.vel.x;
+			}
+			if (this.pos.y < 0 || this.pos.y > height) {
+				ran = true;
+				this.vel.y = -this.vel.y;
+			}
+			if (ran) {
+				let center = createVector(width / 2, height / 2);
+				center.sub(this.pos);
+				center.div(center.dist(this.pos));
+				this.acc.add(center);
+				this.pos.x = constrain(this.pos.x, 0, width);
+				this.pos.y = constrain(this.pos.y, 0, height);
+			}
+		} else {
+			if (this.pos.x < 0) this.pos.x = width;
+			if (this.pos.x > width) this.pos.x = 0;
+			if (this.pos.y < 0) this.pos.y = height;
+			if (this.pos.y > height) this.pos.y = 0;
+		}
 	}
 }
