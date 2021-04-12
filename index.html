@@ -52,120 +52,31 @@
 
 	<body>
 		<header>
+			<canvas id="hero-canvas"></canvas>
+
 			<div class="hero-box">
 				<h1>CubeDHuang: <br> Games and Stuff</h1>
-				<img src="/logo.png" alt="CubeDHuang Logo" class="logo">
+				<img src="/images/logo-wireframe.svg" alt="CubeDHuang Logo" class="logo">
 			</div>
 
 			<div class="scroll-arrow">
-				&darr;
+				<img src="/images/down-arrow.svg" alt="Down">
 			</div>
 		</header>
 
-		<section class="center" id="section-about">
-			<div class="row">
-				<h2>Stuff</h2>
-			</div>
-
+		<section class="section-games">
 			<div class="row">
 				<div class="col box span-1-of-2" style="width: 100%;">
-					<h3>Boids</h3>
-					<p>
-						<a href="https://boids.cubedhuang.com">Boids</a>
-						<br>
-						2D bird flocking simulation based off Craig
-						Reynolds
-					</p>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col box span-1-of-2">
-					<h3>Games</h3>
-					<p>
-						<a href="https://string.cubedhuang.com">Creation</a>
-						<br>
-						The Universe (update in at least 1 month)
-					</p>
-					<p>
-						<a href="/games/platformer/">Platformer</a>
-						<br>
-						A random platformer game
-					</p>
-					<p>
-						<a href="/games/platformaker/">Platformaker</a>
-						<br>
-						Create a level in platformer game
-					</p>
-					<p>
-						<a href="/games/dodger/">Dodger</a>
-						<br>
-						A game about dodging white squares
-					</p>
-				</div>
-
-				<div class="col box span-1-of-2">
-					<h3>More Games</h3>
-					<p>
-						<a href="/games/pong/">Pong</a>
-						<br>
-						A game about bouncing a white square
-					</p>
-					<p>
-						<a href="/games/infinistruct/">Infinistruct</a>
-						<br>
-						this game is still in the "actually not that bad" phase
-					</p>
-					<p>
-						<a href="/games/worldly/">Worldly</a>
-						<br>
-						this game is still in the "not really done" phase
-					</p>
-					<p>
-						<a href="/games/thing/">Thing</a>
-						<br>
-						this game is still in the "thing" phase
-					</p>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col box span-1-of-2">
-					<h3>Experiments</h3>
-					<p>
-						<a href="/experiments/within/">Within</a>
-						<br>
-						A relation thing that isn't done
-					</p>
-					<p>
-						<a href="/experiments/game-gen/">Game Idea Generator</a>
-						<br>
-						A game idea generator
-					</p>
-					<p>
-						<a href="/experiments/passwords/">Password Generator</a>
-						<br>
-						A password generator
-					</p>
-				</div>
-
-				<div class="col box span-1-of-2">
-					<h3>Also Games</h3>
-					<p>
-						<a href="/games/monster/">Monster Killer</a>
-						<br>
-						A game about killing the monster
-					</p>
-					<p>
-						<a href="/games/infinite-buttons/">Infinite Buttons</a>
-						<br>
-						A game about clicking buttons
-					</p>
-					<p>
-						<a href="/games/side-scroller/">Side Scroller</a>
-						<br>
-						A game about jumping over red things
-					</p>
+					<h2>Boids</h2>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Boids</span>
+							<span class="description">interactive flocking simulation</span>
+						</div>
+						<a href="https://boids.cubedhuang.com" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -173,11 +84,159 @@
 		<section id="section-more">
 			<div class="more-box">
 				<h1>More <br> Experiments</h1>
-				<a href="./extras/" class="btn btn-ghost go">Go</a>
+				<a href="./extras/" class="btn btn-ghost go">visit</a>
 			</div>
 		</section>
 
-		<section>
+		<section class="section-games">
+			<div class="row">
+				<div class="col box span-1-of-2">
+					<h3>Games</h3>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Creation</span>
+							<span class="description">unfinished universe incremental</span>
+						</div>
+						<a href="https://string.cubedhuang.com" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Platformer</span>
+							<span class="description">platformer game</span>
+						</div>
+						<a href="/games/platformer/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Platformaker</span>
+							<span class="description">create a level in platformer</span>
+						</div>
+						<a href="/games/platformaker/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Dodger</span>
+							<span class="description">a game about dodging white squares</span>
+						</div>
+						<a href="/games/dodger/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+				</div>
+
+				<div class="col box span-1-of-2">
+					<h3>More Games</h3>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Pong</span>
+							<span class="description">this game is still a classic</span>
+						</div>
+						<a href="/games/pong/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Infinistruct</span>
+							<span class="description">this game is still glitchy but not a priority</span>
+						</div>
+						<a href="/games/infinistruct/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Worldly</span>
+							<span class="description">this game is still not done</span>
+						</div>
+						<a href="/games/worldly/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Thing</span>
+							<span class="description">this game is still a thing</span>
+						</div>
+						<a href="/games/thing/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col box span-1-of-2">
+					<h3>Experiments</h3>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Within</span>
+							<span class="description">a relation thing that isn't done</span>
+						</div>
+						<a href="/experiments/within/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Game Idea Generator</span>
+							<span class="description">a game idea generator</span>
+						</div>
+						<a href="/experiments/game-gen/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Password Generator</span>
+							<span class="description">a password generator</span>
+						</div>
+						<a href="/experiments/passwords/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+				</div>
+
+				<div class="col box span-1-of-2">
+					<h3>Also Games</h3>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Monster Killer</span>
+							<span class="description">a game about killing the monster</span>
+						</div>
+						<a href="/games/monster/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Infinite Buttons</span>
+							<span class="description">a game about clicking buttons</span>
+						</div>
+						<a href="/games/infinite-buttons/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+					<div class="game-card">
+						<div class="text">
+							<span class="title">Side Scroller</span>
+							<span class="description">a game about jumping over red things</span>
+						</div>
+						<a href="/games/side-scroller/" class="visit-link">
+							<img src="/images/right-arrow.svg" alt="visit">
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-about">
 			<div class="row">
 				<h2>Other stuff</h2>
 			</div>
@@ -227,17 +286,9 @@
 					<a target="_blank" href="https://github.com/cubeDhuang/cubeDhuang.github.io">here</a>!
 				</p>
 				<p>
-					Original code on this website is subject to the
+					Original code on this website is under the
 					<a target="_blank" href="https://github.com/cubeDhuang/cubeDhuang.github.io/blob/master/LICENSE">
-						GNU General Public License 3.0
-					</a>
-				</p>
-				<p>
-					Logo made with
-					<a target="_blank" href="https://designevo.com">DesignEvo</a>.
-					Credits to Umberto and Sigmund from
-					<a target="_blank" href="https://unsplash.com">Unsplash</a>
-					for the 2 background pictures.
+						GPL 3.0</a>.
 				</p>
 			</div>
 		</footer>

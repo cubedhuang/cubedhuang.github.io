@@ -1,10 +1,12 @@
-@import url("./fonts.css");
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Open+Sans:wght@300;400;600&display=swap');
 
 /* VARIABLES */
 
 :root {
-	--base: #0984e3;
-	--basedark: #2980b9;
+	/* --base: #ff7675; */
+	--base: #d63031;
+	--darker: linear-gradient(to top left, #0002, #0002);
+	--bg: #15171a;
 }
 
 /* ------------------------------- */
@@ -16,6 +18,7 @@
 	padding: 0;
 	outline: 1px solid transparent;
 	box-sizing: border-box;
+	font-family: "Open Sans", Helvetica, sans-serif;
 }
 
 input:focus,
@@ -23,10 +26,8 @@ select:focus,
 textarea:focus {
 	outline: none !important;
 	border: 1px solid var(--base) !important;
-	-webkit-transition: border 0.2s;
 	transition: border 0.2s;
-	-webkit-transition-timing-function: ease;
-	        transition-timing-function: ease;
+	transition-timing-function: ease;
 }
 
 input[type="checkbox"]:focus {
@@ -35,21 +36,28 @@ input[type="checkbox"]:focus {
 
 html,
 body {
-	background: #fff;
-	color: #444;
-	font-family: "Open Sans", "Lato", Arial, Helvetica, sans-serif;
+	background: var(--bg);
+	color: #fff;
+	font-family: "Open Sans", Helvetica, sans-serif;
 	font-weight: 300;
 	font-size: 20px;
 	text-rendering: optimizeLegibility;
+
+	scrollbar-color: #fff4 #0004;
+	scrollbar-width: thin;
 }
 
-.clearfix { zoom: 1; }
-.clearfix::after {
-	content: ".";
-	clear: both;
-	display: block;
-	height: 0;
-	visibility: hidden;
+::-webkit-scrollbar {
+	width: 5px;
+}
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+	background: #fff4;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #fff3;
 }
 
 /* -------------------------------- */
@@ -65,14 +73,15 @@ body {
 
 section { padding: 80px 0; }
 
-section:nth-child(odd) {
-	background: #f8f8f8;
+section {
+	background: var(--bg);
+	color: #fff;
 }
 
 section.top {
 	padding: 30px 0 15px 0;
 	background: var(--base);
-	color: white;
+	color: #fff;
 }
 
 section.top h2 {
@@ -80,7 +89,7 @@ section.top h2 {
 }
 
 section.top h2::after {
-	background: white;
+	background: #fff;
 }
 
 .center {
@@ -106,8 +115,8 @@ hr {
 
 nav.menus {
 	width: 100%;
-	background-color: var(--base);
-	color: white;
+	background: var(--base);
+	color: #fff;
 	display: flex;
 	cursor: pointer;
 }
@@ -121,7 +130,7 @@ nav.menus span {
 
 nav.menus span:hover,
 nav.menus span.selected {
-	background-color: var(--basedark);
+	background: var(--darker), var(--base);
 }
 
 /* HEADINGS */
@@ -129,10 +138,11 @@ nav.menus span.selected {
 h1,
 h2,
 h3 {
-	font-family: "Lato";
-	font-weight: 300;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	font-family: "Lexend Deca";
+	/* font-weight: 300; */
+	text-transform: lowercase;
+	letter-spacing: 2px;
+	text-shadow: 0 0 10px #fff8;
 }
 
 h1 {
@@ -141,6 +151,7 @@ h1 {
 	margin-bottom: 20px;
 	font-size: 240%;
 	word-spacing: 4px;
+	filter: drop-shadow(0 0 10px #fff4);
 }
 
 h2 {
@@ -161,7 +172,17 @@ h2::after {
 
 h3 {
 	font-size: 130%;
+	text-align: center;
 	margin-bottom: 15px;
+}
+
+h3::after {
+	display: block;
+	height: 2px;
+	background: var(--base);
+	content: "";
+	width: 50px;
+	margin: 10px auto;
 }
 
 /* PARAGRAPHS */
@@ -194,7 +215,7 @@ table th {
 	padding: 10px 8px;
 	font-weight: 400;
 	background: var(--base);
-	color: white;
+	color: #fff;
 }
 
 table td {
@@ -211,15 +232,16 @@ a, ul.breadcrumbs li {
 	color: var(--base);
 	text-decoration: none;
 	border-bottom: 1px solid var(--base);
-	transition: border 0.2s, color 0.2s, background 0.2s;
+	transition: border 0.2s, color 0.2s, background 0.2s, filter 0.2s, transform 0.2s;
 	transition-timing-function: ease;
 	cursor: pointer;
 }
 
 a:hover,
 a:active {
-	color: #444;
+	color: #fff;
 	border: transparent;
+	filter: drop-shadow(0 0 5px #fffb);
 }
 
 /* BUTTONS */
@@ -230,7 +252,7 @@ input[type="submit"],
 	padding: 8px 30px;
 	text-decoration: none;
 	border-radius: 200px;
-	transition: background 0.5s, border 0.5s, color 0.5s;
+	transition: background 0.2s, border 0.2s, color 0.2s;
 	transition-timing-function: ease;
 	cursor: pointer;
 }
@@ -250,8 +272,8 @@ input[type="submit"],
 
 input[type="submit"]:hover,
 .btn-full:hover {
-	background: var(--basedark);
-	border: 1px solid var(--basedark);
+	background: var(--darker), var(--base);
+	border: 1px solid var(--base);
 	color: #fff;
 }
 
@@ -266,7 +288,7 @@ input[type="submit"]:hover,
 .btn-full.disabled:hover {
 	border: 1px solid lightgray;
 	background: lightgray;
-	color: white;
+	color: #fff;
 	cursor: default;
 }
 
@@ -325,24 +347,38 @@ ul.breadcrumbs li:last-child::after {
 /* ----------- HEADER ----------- */
 /* ------------------------------ */
 
+body {
+	background: transparent;
+}
+
 header {
-	background: linear-gradient(to top left, #297fb962, #9b59b662),
-		linear-gradient(#000000e6, #000000e6),
-		url("../images/cursor-umberto-unsplash.jpg"),
+	height: 100vh;
+	background: transparent;
+}
+
+#hero-canvas {
+	background:
+		url("../images/alex-knight-unsplash.jpg"),
 		#000;
 	background-size: cover;
 	background-position: center;
+	position: fixed;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
 	height: 100vh;
-	background-attachment: fixed;
 }
 
 .hero-box {
+	background: transparent;
 	position: absolute;
 	width: 1140px;
 	top: 50%;
 	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	        transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 }
 
 .hero-box > .btn {
@@ -351,26 +387,33 @@ header {
 
 header .scroll-arrow {
 	position: absolute;
+	height: 50px;
+	width: 50px;
 	color: #ffffff80;
 	cursor: pointer;
 	top: 100%;
 	left: 50%;
 	font-size: 300%;
 	transform: translate(-50%, -120%);
-	transition: color 0.2s;
+	opacity: 0.5;
+	filter: invert() drop-shadow(0 0 20px #fffb);
+	user-select: none;
+
+	transition: color 0.2s, opacity 0.2s;
 }
 
 header .scroll-arrow:hover {
+	opacity: 1;
 	color: #ffffff;
 }
-
 .logo {
 	height: 200px;
 	width: auto;
 	position: absolute;
 	top: 50%;
 	left: 100%;
-	transform: translate(-120%, -65.5%);
+	transform: translate(-120%, -60%);
+	filter: drop-shadow(0 0 10px #fff8) drop-shadow(0 0 20px #fff8);
 }
 
 /* ---------------------------------------- */
@@ -378,14 +421,8 @@ header .scroll-arrow:hover {
 /* ---------------------------------------- */
 
 #section-more {
-	background: linear-gradient(to bottom right, #297fb962, #9b59b662),
-		linear-gradient(#000000e6, #000000e6),
-		url("../images/numbers-sigmund-unsplash.jpg"),
-		#000;
-	background-size: cover;
-	background-position: center;
-	height: 50vh;
-	background-attachment: fixed;
+	height: 30vh;
+	background: transparent;
 }
 
 .more-box {
@@ -397,19 +434,81 @@ header .scroll-arrow:hover {
 }
 
 #section-more .go {
+	font-family: "Lexend Deca";
 	position: absolute;
 	top: 50%;
 	left: 100%;
 	transform: translate(-120%, -50%);
 	font-size: 180%;
-	border: 2px solid white;
-	color: white;
+	border: 2px solid #fff;
+	color: #fff;
+	filter: drop-shadow(0 0 10px #fffb);
 }
 
 #section-more .go:hover {
-	background: white;
+	background: #fff;
 	border: 2px solid transparent;
 	color: #444;
+}
+
+/* ---------------------------------- */
+/* ----------- GAME CARDS ----------- */
+/* ---------------------------------- */
+
+.section-games .game-card {
+	padding: 20px;
+	text-align: left;
+	background: var(--darker), var(--bg);
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+
+	transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.game-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 3px 10px #0004;
+}
+
+.section-games .text {
+	flex: 1;
+	margin-right: 5px;
+}
+
+.section-games .title {
+	font-family: "Lexend Deca";
+	display: block;
+	text-transform: lowercase;
+	filter: drop-shadow(0 0 5px #fff8);
+	margin-bottom: 3px;
+}
+
+.visit-link {
+	display: block;
+	border: none;
+	filter: invert();
+	user-select: none;
+	width: 60px;
+}
+
+.visit-link:hover {
+	transform: translateX(5px);
+	filter: invert() drop-shadow(-15px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
+}
+
+.visit-link img {
+	float: right;
+	width: 30px;
+	height: 30px;
+}
+
+/* ---------------------------------------- */
+/* ----------- ABOUT / COMMENTS ----------- */
+/* ---------------------------------------- */
+
+.section-about {
+	background: var(--darker) var(--bg);
 }
 
 /* ------------------------------ */
@@ -417,7 +516,7 @@ header .scroll-arrow:hover {
 /* ------------------------------ */
 
 footer {
-	background: #333;
+	background: #111;
 	color: #bbb;
 	font-size: 0.65em;
 	line-height: 145%;
