@@ -139,10 +139,9 @@ h1,
 h2,
 h3 {
 	font-family: "Lexend Deca";
-	/* font-weight: 300; */
 	text-transform: lowercase;
 	letter-spacing: 2px;
-	text-shadow: 0 0 10px #fff8;
+	filter: drop-shadow(0 0 10px #fff8);
 }
 
 h1 {
@@ -151,7 +150,7 @@ h1 {
 	margin-bottom: 20px;
 	font-size: 240%;
 	word-spacing: 4px;
-	filter: drop-shadow(0 0 10px #fff4);
+	filter: drop-shadow(0 0 10px #fff8) drop-shadow(0 0 10px #fff4);
 }
 
 h2 {
@@ -456,12 +455,14 @@ header .scroll-arrow:hover {
 /* ---------------------------------- */
 
 .section-games .game-card {
+	color: white;
 	padding: 20px;
 	text-align: left;
 	background: var(--darker), var(--bg);
 	display: flex;
 	align-items: center;
 	margin-top: 10px;
+	border: none;
 
 	transition: box-shadow 0.2s, transform 0.2s;
 }
@@ -469,6 +470,7 @@ header .scroll-arrow:hover {
 .game-card:hover {
 	transform: translateY(-3px);
 	box-shadow: 0 3px 10px #0004;
+	filter: none;
 }
 
 .section-games .text {
@@ -488,23 +490,19 @@ header .scroll-arrow:hover {
 	font-size: 80%;
 }
 
-.visit-link {
+img {
 	display: block;
 	border: none;
 	filter: invert();
 	user-select: none;
-	width: 60px;
-}
-
-.visit-link:hover {
-	transform: translateX(5px);
-	filter: invert() drop-shadow(-15px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
-}
-
-.visit-link img {
-	float: right;
 	width: 25px;
 	height: 25px;
+	transition: 0.2s transform, 0.2s filter;
+}
+
+.game-card:hover img {
+	transform: translateX(5px);
+	filter: invert() drop-shadow(-10px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
 }
 
 /* ---------------------------------------- */
