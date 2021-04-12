@@ -484,6 +484,10 @@ header .scroll-arrow:hover {
 	margin-bottom: 3px;
 }
 
+.section-games .description {
+	font-size: 80%;
+}
+
 .visit-link {
 	display: block;
 	border: none;
@@ -499,8 +503,8 @@ header .scroll-arrow:hover {
 
 .visit-link img {
 	float: right;
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 }
 
 /* ---------------------------------------- */
