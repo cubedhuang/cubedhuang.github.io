@@ -1,47 +1,12 @@
-/* Big Tablets - Small Computers */
-@media only screen and (max-width: 1200px) {
-	.row { padding: 0 2%; }
-
-	.hero-box {
-		width: 100%;
-		padding: 0 2%;
-	}
-	.banner-box {
-		width: 100%;
-		padding: 0 2%;
-	}
-}
-
-/* Medium Tablets - Big Tablets */
 @media only screen and (max-width: 1023px) {
 	body { font-size: 16px; }
-	section { padding: 60px 0; }
 	.logo { height: 125px; }
 }
 
-/* Medium Phones - Small Tablets */
 @media only screen and (max-width: 767px) {
-	section { padding: 30px 0; }
-
-	.row { padding: 0 4%; }
-	.col {
-		width: 100%;
-		margin: 0 0 2% 0;
-	}
-
 	h1 { font-size: 180%; }
 	h2 { font-size: 150%; }
 	.logo {
 		height: 80px;
-		position: relative;
-		top: 0;
-		left: 0;
-		transform: translate(0, 0);
 	}
-}
-
-/* Small Phones */
-@media only screen and (max-width: 480px) {
-	body { font-size: 15px; }
-	section { padding: 20px 0; }
 }

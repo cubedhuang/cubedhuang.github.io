@@ -70,7 +70,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col box span-1-of-2">
+				<div class="col">
 					<a href="https://boids.cubedhuang.com" class="game-card">
 						<div class="text">
 							<span class="title">boids</span>
@@ -79,7 +79,7 @@
 						<img src="/images/right-arrow.svg" alt="visit">
 					</a>
 				</div>
-				<div class="col box span-1-of-2">
+				<div class="col">
 					<a href="https://dsc.gg/cubed/" target="_blank" class="game-card">
 						<div class="text">
 							<span class="title">cubed</span>
@@ -100,7 +100,7 @@
 
 		<section class="section-games">
 			<div class="row">
-				<div class="col box span-1-of-2">
+				<div class="col">
 					<h3>Games</h3>
 					<a href="https://string.cubedhuang.com" class="game-card">
 						<div class="text">
@@ -132,7 +132,7 @@
 					</a>
 				</div>
 
-				<div class="col box span-1-of-2">
+				<div class="col">
 					<h3>More Games</h3>
 					<a href="/games/pong/" class="game-card">
 						<div class="text">
@@ -166,7 +166,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col box span-1-of-2">
+				<div class="col">
 					<h3>Experiments</h3>
 					<a href="/experiments/within/" class="game-card">
 						<div class="text">
@@ -191,7 +191,7 @@
 					</a>
 				</div>
 
-				<div class="col box span-1-of-2">
+				<div class="col">
 					<h3>Also Games</h3>
 					<a href="/games/monster/" class="game-card">
 						<div class="text">
@@ -224,40 +224,46 @@
 			</div>
 
 			<div class="row">
-				<h3 class="center">about my website</h3>
-				<p class="long-copy">
-					I'm bored sometimes so I learned how to program and make games,
-					so now I have an ok website with experiments and games.
-				</p>
+				<div class="col">
+					<h3 class="center">about my website</h3>
+					<p class="long-copy">
+						I'm bored sometimes so I learned how to program and make games,
+						so now I have an ok website with experiments and games.
+					</p>
+				</div>
 			</div>
 
 			<br>
 
 			<div class="row">
-				<h3 class="center">Comments</h3>
-				<p class="long-copy">
-					Asking questions, reporting bugs,
-					and other stuff like that could be put here.
-					If you want to.
-				</p>
+				<div class="col">
+					<h3 class="center">Comments</h3>
+					<p class="long-copy">
+						Asking questions, reporting bugs,
+						and other stuff like that could be put here.
+						If you want to.
+					</p>
+				</div>
 			</div>
 
 			<div class="row">
-				<div id="disqus_thread"></div>
-				<script>
-					var disqus_config = function () {
-						this.page.title = "Main Page";
-						this.page.url = "https://cubedhuang.com/";
-						this.page.identifier = "main";
-					};
-					(function () { // DON'T EDIT BELOW THIS LINE
-						var d = document,
-							s = d.createElement('script');
-						s.src = 'https://cubedhuang.disqus.com/embed.js';
-						s.setAttribute('data-timestamp', +new Date());
-						(d.head || d.body).appendChild(s);
-					})();
-				</script>
+				<div class="col">
+					<div id="disqus_thread"></div>
+					<script>
+						var disqus_config = function () {
+							this.page.title = "Main Page";
+							this.page.url = "https://cubedhuang.com/";
+							this.page.identifier = "main";
+						};
+						(function () { // DON'T EDIT BELOW THIS LINE
+							var d = document,
+								s = d.createElement('script');
+							s.src = 'https://cubedhuang.disqus.com/embed.js';
+							s.setAttribute('data-timestamp', +new Date());
+							(d.head || d.body).appendChild(s);
+						})();
+					</script>
+				</div>
 			</div>
 		</section>
 
