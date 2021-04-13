@@ -77,11 +77,11 @@
 	function computerMovement() {
 		let center = P[1].y + PD.H / 2;
 		
-		const movement = survival ? 5 : 1;
+		const movement = survival ? 8 : 1;
 
-		if (center < B.y - 35) {
+		if (center < B.y - 20) {
 			P[1].vy += movement;
-		} else if (center > B.y + 35) {
+		} else if (center > B.y + 20) {
 			P[1].vy -= movement;
 		}
 
@@ -104,7 +104,7 @@
 			B.x = hitter ? width - 50 : 50;
 
 			let deltaY = B.y - (P[hitter].y + PD.H / 2);
-			B.vy = deltaY / 4;
+			B.vy = deltaY / 5;
 		}
 
 		// Change Y Direction
