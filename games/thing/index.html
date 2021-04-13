@@ -31,7 +31,8 @@
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		<meta name="theme-color" content="#2ecc71">
 
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="/css/generic.css">
 		<link rel="stylesheet" href="/global/animate.min.css">
 		<link rel="stylesheet" href="style.css">
 
@@ -54,6 +55,14 @@
 
 	<body>
 		<div id="thing">
+			<section class="top">
+				<div class="row">
+					<div class="col">
+						<h2>Thing</h2>
+					</div>
+				</div>
+			</section>
+
 			<transition
 				name="prestige"
 				mode="out-in"
@@ -62,57 +71,49 @@
 				<div key="main" v-if="!prestigeMode" class="container">
 					<div class="row">
 						<div class="col">
-							<h1><br>Thing</h1>
-						</div>
-					</div>
-					<hr><br>
-					<div class="row">
-						<div class="col">
 							<h3>Parts of Things: {{ numberformat.format(parts) }}</h3>
-							<hr>
+
 							<p>Gain a part!</p>
 							<img src="/logo.png" @click.prevent="collect(1, true)" class="clicker"/>
 
 							<br>
 							<p>Boxes will improve your gathering speed!</p>
 
-							<button @click.prevent="buildBox(false)" class="btn btn-outline-success">
+							<button @click.prevent="buildBox(false)">
 								Build a Box: {{ numberformat.formatShort(boxes) }} Boxes |
 								Cost: {{ numberformat.formatShort(bc) }} Parts
 							</button>
-							<button @click.prevent="buildBox(true)" class="btn btn-success float-right text-right">Buy Max</button>
+							<button @click.prevent="buildBox(true)" class="max">Buy Max</button>
 							
 							<br><br>
 
-							<button @click.prevent="upgradeBox(false)" class="btn btn-outline-success">
+							<button @click.prevent="upgradeBox(false)">
 								Upgrade Boxes: Level {{ numberformat.formatShort(bl) }} |
 								Cost: {{ numberformat.formatShort(blc) }} Parts
 							</button>
-							<button @click.prevent="upgradeBox(true)" class="btn btn-success float-right text-right">Buy Max</button>
+							<button @click.prevent="upgradeBox(true)" class="max">Buy Max</button>
 
 							<br><br>
 
 							<p>Machines will gather for you!</p>
 
-							<button @click.prevent="buildMachine(false)" class="btn btn-outline-success">
+							<button @click.prevent="buildMachine(false)">
 								Build a Machine: {{ numberformat.formatShort(machines) }} Machines |
 								Cost: {{ numberformat.formatShort(mc) }} Parts
 							</button>
-							<button @click.prevent="buildMachine(true)" class="btn btn-success float-right text-right">Buy Max</button>
-							
+							<button @click.prevent="buildMachine(true)" class="max">Buy Max</button>
 
 							<br><br>
 
-							<button @click.prevent="upgradeMachine(false)" class="btn btn-outline-success">
+							<button @click.prevent="upgradeMachine(false)">
 								Upgrade Machines: Level {{ numberformat.formatShort(ml) }} |
 								Cost: {{ numberformat.formatShort(mlc) }} Parts
 							</button>
-							<button @click.prevent="upgradeMachine(true)" class="btn btn-success float-right text-right">Buy Max</button>
+							<button @click.prevent="upgradeMachine(true)" class="max">Buy Max</button>
 						</div>
 
 						<div class="col">
 							<h3>Prestige</h3>
-							<hr>
 							<p>
 								Prestige will sacrifice everything you have made in the material world, but it will increase your
 								universe's <span class="transcend">Degree</span>. For every <span class="transcend">Degree</span>,
@@ -139,25 +140,23 @@
 								<button
 									@click.prevent="prestigeConfirm = true"
 									v-if="!prestigeConfirm"
-									class="btn btn-outline-success prestige"
+									class="prestige"
 								>Prestige!</button>
 
-								<div class="alert alert-light" v-else>
+								<div class="alert" v-else>
 									Are you sure you want to continue? <br><br>
 									<button
-										class="btn btn-outline-success prestige"
+										class="prestige"
 										@click.prevent="prestige"
 									>Yes</button>
 									<button
-										class="btn btn-outline-danger"
 										@click.prevent="prestigeConfirm = false"
 									>Later</button>
 								</div>
 							</transition>
 							
-							<hr>
 							<h3>Stats</h3>
-							<hr>
+
 							<p>Total Parts Ever Gained: {{ numberformat.format(total) }}</p>
 							<p>Total Parts This Era: {{ numberformat.format(curTotal) }}</p>
 							<button @click.prevent="reset" class="btn btn-danger btn-sm">Wipe Save</button>
@@ -167,70 +166,63 @@
 				<div key="prestige" v-if="prestigeMode" class="container dark">
 					<div class="row">
 						<div class="col">
-							<h1><br>Prestige</h1>
+							<h2><br>Prestige</h2>
 						</div>
 					</div>
-					<hr><br>
+
 					<div class="row">
 						<div class="col">
 							<h3 class="transcend">Transcendence Points: {{ numberformat.format(tp) }}</h3>
 						</div>
 						<div class="col">
-							<h3 class="transcend text-right">Degree: {{ numberformat.format(degree) }}</h3>
+							<h3 class="transcend">Degree: {{ numberformat.format(degree) }}</h3>
 						</div>
 					</div>
-					<hr><br>
+
 					<div class="row">
 						<div class="col">
-							<div class="card">
-								<img class="card-img-top" src="./icons/cursor.png" alt="cursor icon">
-								<div class="card-body">
-									<h5 class="card-title">Mortal Mediation</h5>
-									<p class="card-text">
-										Increases the effectiveness of clicks by x2. <br>
-										Level: {{ numberformat.formatShort(mm) }} <br>
-										Cost: {{ numberformat.formatShort(mmc) }} <br>
-										Current Effect: {{ numberformat.format(Decimal.pow(2, this.mm)) }}x
-									</p>
-									<button @click="buyMM" class="btn btn-outline-success prestige">Upgrade</a>
-								</div>
+							<div class="game-card">
+								<img src="./icons/cursor.png" alt="cursor icon">
+								<span class="title">Mortal Mediation</span>
+								<p class="description">
+									Increases the effectiveness of clicks by x2. <br>
+									Level: {{ numberformat.formatShort(mm) }} <br>
+									Cost: {{ numberformat.formatShort(mmc) }} <br>
+									Current Effect: {{ numberformat.format(Decimal.pow(2, this.mm)) }}x
+								</p>
+								<button @click="buyMM" class="prestige">Upgrade</a>
 							</div>
-						</div>
-						<div class="col">
-							<div class="card">
-								<img class="card-img-top" src="./icons/stack.png" alt="stack icon">
-								<div class="card-body">
-									<h5 class="card-title">Calculated Creation</h5>
-									<p class="card-text">
-										Decreases the cost multiplier of everything by 5% (diminishing returns). <br>
-										Level: {{ numberformat.formatShort(cc) }} <br>
-										Cost: {{ numberformat.formatShort(ccc) }} <br>
-										Current Effect: {{ (+Decimal.sub("2", calcCC("2")).mul("100").toString()).toFixed(1) }}%
-									</p>
-									<button @click="buyCC" class="btn btn-outline-success prestige">Upgrade</a>
-								</div>
+							<div class="game-card">
+								<img src="./icons/stack.png" alt="stack icon">
+								<span class="title">Calculated Creation</span>
+								<p class="description">
+									Decreases the cost multiplier of everything by 5% (diminishing returns). <br>
+									Level: {{ numberformat.formatShort(cc) }} <br>
+									Cost: {{ numberformat.formatShort(ccc) }} <br>
+									Current Effect: {{ (+Decimal.sub("2", calcCC("2")).mul("100").toString()).toFixed(1) }}%
+								</p>
+								<button @click="buyCC" class="prestige">Upgrade</a>
 							</div>
-						</div>
-						<div class="col">
-							<div class="card">
-								<img class="card-img-top" src="./icons/tools.png" alt="tools icon">
-								<div class="card-body">
-									<h5 class="card-title">Ultimate Upgrades</h5>
-									<p class="card-text">
-										Increases the effectiveness of upgrades by 5%. <br>
-										Level: {{ numberformat.formatShort(uu) }} <br>
-										Cost: {{ numberformat.formatShort(uuc) }} <br>
-										Current Effect: {{ numberformat.format(uu.mul(5)) }}%
-									</p>
-									<button @click="buyUU" class="btn btn-outline-success prestige">Upgrade</a>
-								</div>
+							<div class="game-card">
+								<img src="./icons/tools.png" alt="tools icon">
+								<span class="title">Ultimate Upgrades</span>
+								<p class="description">
+									Increases the effectiveness of upgrades by 5%. <br>
+									Level: {{ numberformat.formatShort(uu) }} <br>
+									Cost: {{ numberformat.formatShort(uuc) }} <br>
+									Current Effect: {{ numberformat.format(uu.mul(5)) }}%
+								</p>
+								<button @click="buyUU" class="prestige">Upgrade</a>
 							</div>
 						</div>
 					</div>
-					<br>
-					<button class="btn btn-outline-primary btn-lg btn-block prestige" @click="prestigeMode = false">
-						Return
-					</button>
+					<div class="row">
+						<div class="col">
+							<button class="prestige" @click="prestigeMode = false">
+								Return
+							</button>
+						</div>
+					</div>
 				</div>
 			</transition>
 		</div>

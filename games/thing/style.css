@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
 
+:root {
+	--purple: #8e44ad;
+}
+
 html {
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -27,30 +31,59 @@ img:hover {
     user-select: none; /* IE10+ */
 }
 
+body {
+	font-size: 16px;
+}
+
+h3 {
+	margin-top: 20px;
+}
+
 .transcend {
-	color: #8e44ad;
+	--base: var(--purple);
+	color: var(--purple);
 	font-weight: 900;
-	font-family: "Raleway", inherit;
+	font-family: var(--title-font);
 }
 
 .prestige {
-	border-color: #8e44ad;
-	color: #8e44ad;
+	--base: var(--purple);
+	border-color: var(--purple);
+	color: var(--purple);
 }
 .prestige:hover,
 .prestige:active {
-    background-color: #8e44ad !important;
-	border-color: #8e44ad !important;
+    background-color: var(--purple) !important;
+	border-color: var(--purple) !important;
 }
 .prestige:focus {
 	box-shadow: 0 0 0 0.2rem rgba(142, 68, 173, 0.5) !important;
 }
 
-.alert-light {
-	color: #444;
-	border-color: lightgray;
+.alert {
+	background: var(--darkbg);
+	padding: 20px;
+	border-radius: 10px;
+}
+.game-card {
+	display: block;
+	font-size: 120%;
+}
+.game-card img {
+	margin-bottom: 10px;
+	width: 100px;
+	height: 100px;
+	filter: none;
+}
+.game-card:hover img {
+	transform: none;
+	filter: none;
 }
 
-.card {
-	border: none;
+.max {
+	float: right;
+}
+
+h3.transcend::after {
+	display: none;
 }

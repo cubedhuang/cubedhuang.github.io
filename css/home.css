@@ -105,62 +105,6 @@ header .scroll-arrow:hover {
 	color: #444;
 }
 
-/* ---------------------------------- */
-/* ----------- GAME CARDS ----------- */
-/* ---------------------------------- */
-
-.section-games .game-card {
-	color: white;
-	padding: 20px;
-	text-align: left;
-	background: var(--darkbg), var(--bg);
-	display: flex;
-	align-items: center;
-	margin-top: 10px;
-	border: none;
-	text-decoration: none;
-
-	transition: box-shadow 0.2s, transform 0.2s;
-}
-
-.game-card:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 3px 10px #0004;
-	filter: none;
-}
-
-.section-games .text {
-	flex: 1;
-	margin-right: 5px;
-}
-
-.section-games .title {
-	font-family: var(--title-font);
-	display: block;
-	text-transform: lowercase;
-	filter: drop-shadow(0 0 5px #fff8);
-	margin-bottom: 3px;
-}
-
-.section-games .description {
-	font-size: 80%;
-}
-
-.game-card img {
-	display: block;
-	border: none;
-	filter: invert();
-	user-select: none;
-	width: 25px;
-	height: 25px;
-	transition: 0.2s transform, 0.2s filter;
-}
-
-.game-card:hover img {
-	transform: translateX(5px);
-	filter: invert() drop-shadow(-10px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
-}
-
 /* ---------------------------------------- */
 /* ----------- ABOUT / COMMENTS ----------- */
 /* ---------------------------------------- */
