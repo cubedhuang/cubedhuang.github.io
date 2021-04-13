@@ -1,170 +1,206 @@
-let canvas,
-	canvasContext,
+(() => {
+	// declarations ----------------------------------------------------------------
 
-	ballX = 400,
-	ballSpeedX = 10,
-	ballY = 300,
-	ballSpeedY = 2,
+	const width = 800;
+	const height = 600;
 
-	paddle1Y = 250,
-	paddle2Y = 250,
-	AImovement = 5,
+	const canvas = document.getElementById("gameCanvas");
+	const ctx = canvas.getContext("2d");
 
-	player1Score = 0,
-	player2Score = 0,
-
-	winScreen = false;
-
-const PADDLE_WIDTH = 15;
-const PADDLE_HEIGHT = 100;
-
-const WINNING_SCORE = 10;
-
-function calcMousePos(evt) {
-	let rect = canvas.getBoundingClientRect();
-	let root = document.documentElement;
-	let mouseX = evt.clientX - rect.left - root.scrollLeft;
-	let mouseY = evt.clientY - rect.top - root.scrollTop;
-	return {
-		x: mouseX,
-		y: mouseY,
+	const PD = {
+		W: 10,
+		H: 100
 	};
-}
 
-window.onload = function() {
-	canvas = document.getElementById('gameCanvas');
-	canvasContext = canvas.getContext('2d');
-
-	requestAnimationFrame(update);
-
-	canvas.addEventListener('mousemove', function(evt) {
-		let mousePos = calcMousePos(evt);
-		paddle1Y = mousePos.y - PADDLE_HEIGHT / 2;
-	});
-
-	canvas.addEventListener('mousedown', function() {
-		if (winScreen) {
-			player1Score = 0;
-			player2Score = 0;
-			winScreen = false;
+	const P = [
+		{
+			y: 250,
+			score: 0
+		},
+		{
+			y: 250,
+			vy: 0,
+			score: 0
 		}
+	]
+
+	const B = {
+		x: 400,
+		y: 300,
+		vx: 10,
+		vy: Math.random() * 5 - 2.5
+	};
+
+	let menu = true;
+
+	let currentTime = 0;
+	let survival = false;
+	let survivalStart = 0;
+	let survivalTime = 0;
+
+	// events ----------------------------------------------------------------
+
+	window.addEventListener("mousemove", e => {
+		const rect = canvas.getBoundingClientRect();
+		const root = document.documentElement;
+		const y = e.clientY - rect.top - root.scrollTop;
+
+		P[0].y = y - PD.H / 2;
 	});
-}
 
-function update() {
-	requestAnimationFrame(update);
-	move();
-	draw();
-}
+	canvas.addEventListener("mousedown", e => {
+		if (!menu) return;
 
-function computerMovement() {
-	// Follow BallY at center
-	let paddleCenter = paddle2Y + PADDLE_HEIGHT / 2;
+		P[0].score = 0;
+		P[1].score = 0;
+
+		// left = 0
+		survival = !!e.button;
+		if (survival) {
+			survivalStart = currentTime;
+			survivalTime = currentTime;
+			B.vx = Math.abs(B.vx);
+		}
 		
-	if (paddleCenter < ballY - 35) {
-		paddle2Y += AImovement;
-	} else if (paddleCenter > ballY + 35) {
-		paddle2Y -= AImovement;
-	}
-}
+		menu = false;
+	});
 
-function move() {
-	if (winScreen) {
-		return;
-	}
+	canvas.addEventListener("contextmenu", e => e.preventDefault());
 
-	computerMovement();
+	// logic ----------------------------------------------------------------
 
-	// Increment ball X + Y
-	ballX += ballSpeedX;
-	ballY += ballSpeedY;
-	// Change Direction/Reset X
-	if (ballX >= canvas.width) { // Right side
-		if (!(ballY > paddle2Y && ballY < paddle2Y+PADDLE_HEIGHT)) {
-			player1Score++;
-			resetBall();
-		}
-	} else if (ballX <= 0) { // Left side
-		if (!(ballY > paddle1Y && ballY < paddle1Y+PADDLE_HEIGHT)) {
-			player2Score++;
-			resetBall();
-		}
-	}
-	// Hit paddle
-	if (ballX >= canvas.width - 50) { // Right side
-		if (ballY > paddle2Y-10 && ballY < paddle2Y+PADDLE_HEIGHT+10) {
-			ballSpeedX = -ballSpeedX;
-			ballX = canvas.width - 50;
-
-			let deltaY = ballY - (paddle2Y+PADDLE_HEIGHT/2);
-			ballSpeedY = Math.floor(deltaY / 6);
-		}
-	} else if (ballX <= 50) { // Left side
-		if (ballY > paddle1Y-10 && ballY < paddle1Y+PADDLE_HEIGHT+10) {
-			ballSpeedX = -ballSpeedX;
-			ballX = 50;
-
-			let deltaY = ballY - (paddle1Y+PADDLE_HEIGHT/2);
-			ballSpeedY = Math.floor(deltaY / 6);
-		}
+	function rect(x, y, width, height, color) { // XY = TopLeft corner
+		ctx.fillStyle = color;
+		ctx.fillRect(x, y, width, height);
 	}
 
-	// Change Y Direction
-	if (ballY >= canvas.height - 10 || ballY <= 10) {
-		ballSpeedY = -ballSpeedY;
-	}
-}
+	function computerMovement() {
+		let center = P[1].y + PD.H / 2;
+		
+		const movement = survival ? 5 : 1;
 
-function resetBall() {
-	if (player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE) {
-		winScreen = true;
-	}
-
-	ballX = canvas.width / 2;
-	ballY = canvas.height / 2;
-	ballSpeedX = -ballSpeedX;
-	ballSpeedY = Math.floor(Math.random() * 20) - 9;
-}
-
-function drawNet() {
-	for (let i = 0; i < canvas.height; i += 40) {
-		colorRect(canvas.width / 2 - 1, i, 2, 20, 'grey');
-	}
-}
-
-function draw() {
-	colorRect(0, 0, canvas.width, canvas.height, 'black'); // Background
-
-	// Score
-	canvasContext.fillStyle = 'white';
-	canvasContext.font = "30px Courier, monospace";
-	canvasContext.fillText(player1Score, 10, 40);
-	canvasContext.fillText(player2Score, canvas.width-40, 40);
-
-	if (winScreen) {
-		canvasContext.fillStyle = 'white';
-
-		if (player1Score >= WINNING_SCORE) {
-			canvasContext.fillText('You Won!', canvas.width / 2 - 60, canvas.height / 2 - 20);
-		} else if (player2Score >= WINNING_SCORE) {
-			canvasContext.fillText('The Computer Won...', canvas.width / 2 - 160, canvas.height / 2 - 20);
+		if (center < B.y - 35) {
+			P[1].vy += movement;
+		} else if (center > B.y + 35) {
+			P[1].vy -= movement;
 		}
 
-		canvasContext.fillText('Click to Play Again', canvas.width / 2 - 160, canvas.height / 2 + 30);
-		return;
+		P[1].y += P[1].vy;
+
+		P[1].vy *= 0.9;
 	}
 
-	drawNet();
+	function ballMovement() {
+		B.x += B.vx;
+		B.y += B.vy;
 
-	// Paddles
-	colorRect(30, paddle1Y, PADDLE_WIDTH, PADDLE_HEIGHT, 'white'); // Player Paddle
-	colorRect(canvas.width-PADDLE_WIDTH-30, paddle2Y, PADDLE_WIDTH, PADDLE_HEIGHT, 'white'); // Computer Paddle
+		// Hit paddle
+		let hitter =
+			B.x >= width - 50 && B.x <= width - 20 && B.y > P[1].y - 10 && B.y < P[1].y + PD.H + 10 ? 1 :
+			B.x <= 50 && B.x >= 20 && B.y > P[0].y - 10 && B.y < P[0].y + PD.H + 10 ? 0 : -1;
 
-	// Ball
-	colorRect(ballX-5, ballY-5, 20, 20, 'white');
-}
+		if (hitter + 1) {
+			B.vx = -B.vx;
+			B.x = hitter ? width - 50 : 50;
 
-function colorRect(x, y, width, height, color) { // XY = TopLeft corner
-	canvasContext.fillStyle = color;
-	canvasContext.fillRect(x, y, width, height);
-}
+			let deltaY = B.y - (P[hitter].y + PD.H / 2);
+			B.vy = deltaY / 4;
+		}
+
+		// Change Y Direction
+		if (B.y >= height - 10 || B.y <= 10) {
+			B.vy = -B.vy;
+		}
+	}
+
+	function move() {
+		computerMovement();
+		ballMovement();
+
+		if (survival) {
+			survivalTime = currentTime;
+		}
+
+		if (B.x - 30 >= width) { // Right side
+			if (!(B.y > P[1].y && B.y < P[1].y+PD.H)) {
+				P[0].score++;
+				resetBall();
+			}
+		} else if (B.x + 30 <= 0) { // Left side
+			if (!(B.y > P[0].y && B.y < P[0].y+PD.H)) {
+				P[1].score++;
+				resetBall();
+			}
+		}
+	}
+
+	function resetBall() {
+		if (survival && P[1].score >= 1) {
+			menu = true;
+		}
+		if (P[0].score >= 10 || P[1].score >= 10) {
+			menu = true;
+		}
+
+		B.x = width / 2;
+		B.y = height / 2;
+		B.vx = -B.vx;
+		B.vy = Math.random() * 5 - 2.5;
+		P[1].y = 300 - PD.H / 2;
+		P[1].vy = 0;
+	}
+
+	function draw() {
+		rect(0, 0, width, height, "black"); // Background
+
+		// Score
+		ctx.textAlign = "center";
+		ctx.fillStyle = "white";
+		ctx.font = "30px bold Courier, monospace";
+		if (!survival) {
+			ctx.fillText(P[0].score, 30, 40);
+			ctx.fillText(P[1].score, width - 30, 40);
+		} else {
+			ctx.fillText(Math.floor((survivalTime - survivalStart) / 1000), 30, 40);
+		}
+
+		if (menu) {
+			ctx.fillStyle = "white";
+
+			const x = width / 2;
+			const y = height / 2 - 40;
+
+			const winText = survival ? `You survived for ${ Math.floor((survivalTime - survivalStart) / 1000) } seconds!` :
+				P[0].score >= 10 ? "You Won!" :
+				P[1].score >= 10 ? "The Computer Won..." : "";
+
+			ctx.fillText(winText, x, y);
+
+			ctx.fillText("Left Click to Play Normally", x, y + 50);
+			ctx.fillStyle = "red";
+			ctx.fillText("Right Click to Play Survival", x, y + 100);
+			return;
+		}
+
+		for (let i = 10; i < height; i += 40) {
+			rect(width / 2 - 1, i, 2, 20, "grey");
+		}
+
+		// Paddles
+		rect(30, P[0].y, PD.W, PD.H, "white");
+		rect(width - PD.W - 30, P[1].y, PD.W, PD.H, survival ? "red" : "white");
+
+		rect(B.x - 10, B.y - 10, 20, 20, "white");
+	}
+
+	function update(time) {
+		requestAnimationFrame(update);
+
+		currentTime = time;
+
+		if (!menu) move();
+		draw();
+	}
+
+	requestAnimationFrame(update);
+})();
