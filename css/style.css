@@ -388,7 +388,6 @@ header .scroll-arrow {
 	position: absolute;
 	height: 80px;
 	width: 80px;
-	color: #ffffff80;
 	cursor: pointer;
 	top: 100%;
 	left: 50%;
@@ -400,7 +399,7 @@ header .scroll-arrow {
 	display: grid;
 	place-items: center;
 
-	transition: color 0.2s, opacity 0.2s;
+	transition: opacity 0.2s, filter 00.2s, transform 0.2s;
 }
 
 header .scroll-arrow img {
@@ -410,8 +409,10 @@ header .scroll-arrow img {
 
 header .scroll-arrow:hover {
 	opacity: 1;
-	color: #ffffff;
+	transform: translate(-50%, -100%) translateY(5px);
+	filter: invert() drop-shadow(0 -10px 0 var(--base)) drop-shadow(0 0 20px #fffb);
 }
+
 .logo {
 	height: 200px;
 	width: auto;
