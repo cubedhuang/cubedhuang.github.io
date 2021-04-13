@@ -6,7 +6,7 @@
 		width: 100%;
 		padding: 0 2%;
 	}
-	.more-box {
+	.banner-box {
 		width: 100%;
 		padding: 0 2%;
 	}
@@ -23,7 +23,7 @@
 @media only screen and (max-width: 767px) {
 	section { padding: 30px 0; }
 
-	.row, { padding: 0 4%; }
+	.row { padding: 0 4%; }
 	.col {
 		width: 100%;
 		margin: 0 0 2% 0;
