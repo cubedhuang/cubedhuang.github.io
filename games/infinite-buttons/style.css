@@ -71,42 +71,17 @@ p {
 	top: 10px;
 	left: 10px;
 	z-index: 9999;
-	background-color: white;
 }
 
 button {
 	position: fixed;
-	padding: 10px 20px;
-	font-size: 20px;
-	border: none;
-	border-radius: 200px;
 	transition: all 1s, background-color 0.2s;
-	box-shadow: 0 2px 5px lightgray;
+	user-select: none;
 }
 
 button:focus { outline: none; }
 
-button:hover {
-	cursor: pointer;
-	box-shadow: 0 5px 10px lightgray;
-}
-
-.white { color: #fff }
-.black { color: #000 }
-
-.bg-blue { background-color: #4285f4; }
-.bg-green { background-color: #34a853; }
-.bg-yellow { background-color: #fbbc05; }
-.bg-red { background-color: #ea4335; }
-
-a {
-	color: #3498db;
-	text-decoration: none;
-	border-bottom: 2px solid #3498db;
-	transition: all 0.2s ease;
-}
-
-a:hover {
-	color: #144d73;
-	border-bottom: 2px solid transparent;
-}
+.bg-blue { --base: #4285f4; }
+.bg-green { --base: #34a853; }
+.bg-yellow { --base: #fbbc05; }
+.bg-red { --base: #ea4335; }

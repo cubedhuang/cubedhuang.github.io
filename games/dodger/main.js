@@ -4,7 +4,7 @@ canvas.height = 600;
 
 let ctx = canvas.getContext("2d");
 
-document.querySelector("body").appendChild(canvas);
+document.getElementById("game").appendChild(canvas);
 
 let blocks = [];
 

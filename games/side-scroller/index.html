@@ -31,7 +31,7 @@
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		<meta name="theme-color" content="#2ecc71">
 
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="/css/generic.css">
 		<link rel="canonical" href="https://cubedhuang.com/games/side-scroller/">
 		<link rel="author" href="https://cubedhuang.com/">
 		<link rel="publisher" href="https://cubedhuang.com/">
@@ -50,8 +50,18 @@
 	</head>
 
 	<body>
-		<a href="/">Back</a>
-		<canvas width="800" height="600" id="game">Your browser does not support canvas!</canvas>
+		<section class="top">
+			<h2>side scroller</h2>
+			<div class="center">
+				<a href="/" class="button">Back</a>
+			</div>
+		</section>
+
+		<div class="row">
+			<div class="col center">
+				<canvas id="game" width="800" height="600"></canvas>
+			</div>
+		</div>
 
 		<script src="script.js"></script>
 	</body>

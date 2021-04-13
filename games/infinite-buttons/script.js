@@ -5,7 +5,6 @@ let debug = new Vue({
 		buttons: [{
 			value: Math.trunc(Math.random() * 100) + 1,
 			bg: "red",
-			color: "white",
 			x: 100,
 			y: 0
 		}],
@@ -18,7 +17,6 @@ let debug = new Vue({
 			this.score += temp[i].value;
 
 			let bgc = ["red"  , "blue" , "green", "yellow"];
-			let col = ["white", "white", "white", "black"];
 
 			let i1 = Math.floor(Math.random() * bgc.length);
 			let i2 = Math.floor(Math.random() * bgc.length);
@@ -26,14 +24,12 @@ let debug = new Vue({
 			temp.push({
 				value: Math.trunc(Math.random() * 100) + 1,
 				bg: bgc[i1],
-				color: col[i1],
 				x: temp[i].x,
 				y: temp[i].y,
 			});
 			if (temp.length <= 50) temp.push({
 				value: Math.trunc(Math.random() * 100) + 1,
 				bg: bgc[i2],
-				color: col[i2],
 				x: temp[i].x,
 				y: temp[i].y,
 			});

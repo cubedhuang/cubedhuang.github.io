@@ -53,6 +53,8 @@ function onGround() {
 }
 
 function draw() {
+	requestAnimationFrame(draw);
+
 	drawRect(0, 0, CW, CH, '#36cdda'); // Sky
 	// Moving clouds
 	if (Math.random() > 0.98) {
@@ -155,4 +157,4 @@ function drawRect(x, y, w, h, c) {
 	ctx.fillRect(x, y, w, h);
 }
 
-setInterval(draw, 10);
+requestAnimationFrame(draw);

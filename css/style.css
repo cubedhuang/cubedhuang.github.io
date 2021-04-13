@@ -5,8 +5,11 @@
 :root {
 	/* --base: #ff7675; */
 	--base: #d63031;
-	--darker: linear-gradient(to top left, #0002, #0002);
+	--lightbg: linear-gradient(to top left, #fff2, #fff2);
+	--darkbg: linear-gradient(to top left, #0002, #0002);
 	--bg: #15171a;
+	--title-font: "Lexend Deca", Helvetica, sans-serif;
+	--text-font: "Open Sans", Helvetica, sans-serif;
 }
 
 /* ------------------------------- */
@@ -18,28 +21,17 @@
 	padding: 0;
 	outline: 1px solid transparent;
 	box-sizing: border-box;
-	font-family: "Open Sans", Helvetica, sans-serif;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-	outline: none !important;
-	border: 1px solid var(--base) !important;
-	transition: border 0.2s;
-	transition-timing-function: ease;
+	font-family: var(--text-font);
 }
 
 input[type="checkbox"]:focus {
 	outline: 1px solid var(--base) !important;
 }
 
-html,
 body {
 	background: var(--bg);
 	color: #fff;
-	font-family: "Open Sans", Helvetica, sans-serif;
-	font-weight: 300;
+	font-family: var(--text-font);
 	font-size: 20px;
 	text-rendering: optimizeLegibility;
 
@@ -61,9 +53,9 @@ body {
 	background: #fff3;
 }
 
-/* -------------------------------- */
-/* ----------- REUSABLE ----------- */
-/* -------------------------------- */
+/* ------------------------------ */
+/* ----------- LAYOUT ----------- */
+/* ------------------------------ */
 
 .row {
 	width: min(96%, 1140px);
@@ -72,11 +64,8 @@ body {
 	flex-wrap: wrap;
 }
 
-.row > * {
-	flex: 1 1 375px;
-}
-
-.col {
+.row .col {
+	flex: 1 1 300px;
 	padding: 1%;
 }
 
@@ -114,7 +103,7 @@ section.top h2::after {
 hr {
 	border: 0;
 	height: 1px;
-	background: lightgray;
+	background: var(--lightbg) var(--bg);
 	margin: 10px 0;
 }
 
@@ -135,15 +124,17 @@ nav.menus span {
 
 nav.menus span:hover,
 nav.menus span.selected {
-	background: var(--darker), var(--base);
+	background: var(--base);
 }
 
-/* HEADINGS */
+/* ---------------------------------- */
+/* ----------- COMPONENTS ----------- */
+/* ---------------------------------- */
 
 h1,
 h2,
 h3 {
-	font-family: "Lexend Deca";
+	font-family: var(--title-font);
 	text-transform: lowercase;
 	letter-spacing: 2px;
 	filter: drop-shadow(0 0 10px #fff8);
@@ -197,9 +188,8 @@ h3::after {
 	margin-left: 15%;
 }
 
-.box > p {
+p {
 	line-height: 145%;
-	font-size: 90%;
 	margin-bottom: 10px;
 }
 
@@ -232,76 +222,80 @@ table tr:nth-child(odd) {
 
 /* LINKS */
 
-a, ul.breadcrumbs li {
+a.link {
 	color: var(--base);
 	text-decoration: none;
 	border-bottom: 1px solid var(--base);
-	transition: border 0.2s, color 0.2s, background 0.2s, filter 0.2s, transform 0.2s;
-	transition-timing-function: ease;
+	transition: border 0.2s, color 0.2s, filter 0.2s;
 	cursor: pointer;
 }
 
-a:hover,
-a:active {
+a.link:hover,
+a.link:active {
 	color: #fff;
 	border: transparent;
 	filter: drop-shadow(0 0 5px #fffb);
 }
 
+/* INTERACTIVE COMPONENTS ---------------------------------------------------------- */
+
+input[type="number"],
+input[type="text"],
+textarea,
+.button,
+button {
+	font-family: var(--title-font);
+	display: inline-block;
+	padding: 10px 15px;
+	border-radius: 10px;
+	border: 2px solid var(--base);
+	text-decoration: none;
+	user-select: none;
+
+	background-color: var(--bg);
+	color: var(--base);
+}
+
 /* BUTTONS */
 
-input[type="submit"],
-.btn {
-	display: inline-block;
-	padding: 8px 30px;
-	text-decoration: none;
-	border-radius: 200px;
-	transition: background 0.2s, border 0.2s, color 0.2s;
-	transition-timing-function: ease;
+.button,
+button {
+	margin-bottom: 5px;
+	box-shadow: 0 5px 0 var(--base);
 	cursor: pointer;
+	transition: background 0.2s, color 0.2s, filter 0.2s,
+		transform 0.1s, box-shadow 0.1s;
 }
 
-.btn-ghost {
-	color: var(--base);
-	border: 1px solid var(--base);
-	background: transparent;
-}
-
-input[type="submit"],
-.btn-full {
-	color: #fff;
+.button:hover,
+button:hover {
 	background: var(--base);
-	border: 1px solid var(--base);
-}
-
-input[type="submit"]:hover,
-.btn-full:hover {
-	background: var(--darker), var(--base);
-	border: 1px solid var(--base);
 	color: #fff;
+	filter: drop-shadow(0 0 5px #fff4);
 }
 
-input[type="submit"]:hover,
-.btn-ghost:hover {
+.button:active,
+button:active {
+	transform: translateY(3px);
+	box-shadow: 0 2px 0 var(--base);
+}
+
+/* INPUTS */
+
+input[type="number"],
+input[type="text"],
+textarea {
+	transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+:is(
+	input[type="number"],
+	input[type="text"],
+	textarea
+):focus {
+	box-shadow: 0 0 10px #fffb;
 	background: var(--base);
-	border: 1px solid transparent;
 	color: #fff;
-}
-
-.btn-full.disabled,
-.btn-full.disabled:hover {
-	border: 1px solid lightgray;
-	background: lightgray;
-	color: #fff;
-	cursor: default;
-}
-
-.btn-ghost.disabled,
-.btn-ghost.disabled:hover {
-	border: 1px solid lightgray;
-	background: whitesmoke;
-	color: gray;
-	cursor: default;
 }
 
 /* LISTS */
@@ -323,10 +317,10 @@ ul.breadcrumbs {
 
 ul.breadcrumbs li {
 	display: inline-block;
-	background: #3331;
+	background: var(--bg);
 	padding: 5px;
-	border-radius: 3px;
 	border: none;
+	cursor: pointer;
 }
 
 ul.breadcrumbs li::after {
@@ -339,226 +333,10 @@ ul.breadcrumbs li::after {
 
 ul.breadcrumbs li:last-child {
 	background: none;
-	color: #3338;
+	color: #fff;
 	cursor: default;
 }
 
 ul.breadcrumbs li:last-child::after {
 	content: "";
-}
-
-/* ------------------------------ */
-/* ----------- HEADER ----------- */
-/* ------------------------------ */
-
-body {
-	background: transparent;
-}
-
-header {
-	height: 100vh;
-	background: transparent;
-	display: flex;
-	place-items: center;
-}
-
-#hero-canvas {
-	background:
-		url("../images/alex-knight-unsplash.jpg"),
-		#000;
-	background-size: cover;
-	background-position: center;
-	position: fixed;
-	z-index: -1;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100vh;
-}
-
-.hero-box {
-	width: min(96%, 1140px);
-	margin: 0 auto;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-}
-
-.hero-box h1 {
-	flex: 1;
-}
-
-.logo {
-	height: 200px;
-	width: auto;
-	filter: drop-shadow(0 0 10px #fff8) drop-shadow(0 0 20px #fff8);
-}
-
-header .scroll-arrow {
-	position: absolute;
-	height: 80px;
-	width: 80px;
-	cursor: pointer;
-	top: 100%;
-	left: 50%;
-	font-size: 300%;
-	transform: translate(-50%, -100%);
-	opacity: 0.5;
-	filter: invert() drop-shadow(0 0 20px #fffb);
-	user-select: none;
-	display: grid;
-	place-items: center;
-
-	transition: opacity 0.2s, filter 00.2s, transform 0.2s;
-}
-
-header .scroll-arrow img {
-	height: 30px;
-	width: 30px;
-}
-
-header .scroll-arrow:hover {
-	opacity: 1;
-	transform: translate(-50%, -100%) translateY(5px);
-	filter: invert() drop-shadow(0 -10px 0 var(--base)) drop-shadow(0 0 20px #fffb);
-}
-
-/* ---------------------------------------- */
-/* ----------- MORE EXPERIMENTS ----------- */
-/* ---------------------------------------- */
-
-.section-banner {
-	height: 30vh;
-	background: transparent;
-	display: flex;
-	place-items: center;
-}
-
-.banner-box {
-	width: min(96%, 1140px);
-	margin: 0 auto;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-}
-
-.banner-box h1 {
-	flex: 1;
-}
-
-.section-banner .go {
-	font-family: "Lexend Deca";
-	font-size: 180%;
-	border: 2px solid #fff;
-	color: #fff;
-	filter: drop-shadow(0 0 10px #fffb);
-}
-
-.section-banner .go:hover {
-	background: #fff;
-	border: 2px solid transparent;
-	color: #444;
-}
-
-/* ---------------------------------- */
-/* ----------- GAME CARDS ----------- */
-/* ---------------------------------- */
-
-.section-games .game-card {
-	color: white;
-	padding: 20px;
-	text-align: left;
-	background: var(--darker), var(--bg);
-	display: flex;
-	align-items: center;
-	margin-top: 10px;
-	border: none;
-
-	transition: box-shadow 0.2s, transform 0.2s;
-}
-
-.game-card:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 3px 10px #0004;
-	filter: none;
-}
-
-.section-games .text {
-	flex: 1;
-	margin-right: 5px;
-}
-
-.section-games .title {
-	font-family: "Lexend Deca";
-	display: block;
-	text-transform: lowercase;
-	filter: drop-shadow(0 0 5px #fff8);
-	margin-bottom: 3px;
-}
-
-.section-games .description {
-	font-size: 80%;
-}
-
-.game-card img {
-	display: block;
-	border: none;
-	filter: invert();
-	user-select: none;
-	width: 25px;
-	height: 25px;
-	transition: 0.2s transform, 0.2s filter;
-}
-
-.game-card:hover img {
-	transform: translateX(5px);
-	filter: invert() drop-shadow(-10px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
-}
-
-/* ---------------------------------------- */
-/* ----------- ABOUT / COMMENTS ----------- */
-/* ---------------------------------------- */
-
-.section-about {
-	background: var(--darker) var(--bg);
-}
-
-/* ------------------------------ */
-/* ----------- FOOTER ----------- */
-/* ------------------------------ */
-
-footer {
-	background: #111;
-	color: #bbb;
-	font-size: 0.65em;
-	line-height: 145%;
-	padding: 20px;
-}
-
-footer a {
-	background: inherit;
-	color: #bbb;
-	border-bottom: 1px solid #bbb;
-	border-radius: 0;
-	padding: 0;
-}
-
-footer a:hover,
-footer a:active {
-	color: #ddd;
-	border-color: transparent;
-	background: inherit;
-}
-
-footer p {
-	text-align: center;
-	margin: 3px auto;
-}
-
-/* ------------------------------ */
-/* ----------- RANDOM ----------- */
-/* ------------------------------ */
-
-#disqus_thread {
-	margin-top: 20px;
 }

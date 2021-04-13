@@ -49,7 +49,7 @@ $(() => {
 		mouse.ey = e.y || e.touches[0].x;
 	}
 	document.querySelectorAll("header, .section-banner").forEach(
-		e => e.addEventListener("mousedown", e => e.preventDefault()));
+		e => e.addEventListener("mousedown", e => e.button === 0 ? e.preventDefault() : 0));
 	window.onmouseup = window.ontouchend = e => {
 		mouse.down = false;
 		mouse.downTime = Date.now();

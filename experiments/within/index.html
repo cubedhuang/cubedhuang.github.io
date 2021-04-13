@@ -53,46 +53,50 @@
 		<div id="within">
 			<section class="top">
 				<div class="row">
-					<div>
-						<a class="btn btn-full center">Go Back</a>
+					<div class="col">
+						<div>
+							<a href="/" class="button">Go Back</a>
+						</div>
+	
+						<h2>Within</h2>
+	
+						<p>There's not enough stuff here yet! Please give some suggestions in the comments on things to add.</p>
+						
+						<ul class="breadcrumbs">
+							<li v-for="id in dir" @click="next(id)">{{ data[id].name }}</li>
+						</ul>
 					</div>
-
-					<h2>Within</h2>
-
-					<p>There's not enough stuff here yet! Please give some suggestions in the comments on things to add.</p>
-					
-					<ul class="breadcrumbs">
-						<li v-for="id in dir" @click="next(id)">{{ data[id].name }}</li>
-					</ul>
 				</div>
 			</section>
 
 			<section>
 				<div class="row">
-					<p v-if="dir.length > 1">
-						<a class="btn btn-full" @click="dir.pop()">Back</a>
-						<br><br>
-					</p>
-
-					<h3>{{ data[current].name }}</h3>
-
-					<p>{{ data[current].desc }}</p>
-					<br>
-					<template v-if="data[current].inside.length > 0">
-						<p>
-							Click one of the buttons to see somthing related.
+					<div class="col">
+						<p v-if="dir.length > 1">
+							<a class="button" @click="dir.pop()">Back</a>
+							<br><br>
 						</p>
-
-						<ul class="list">
-							<li v-for="id in data[current].inside">
-								<a class="btn btn-ghost" @click="next(id)">
-									{{ data[id].name }}
-								</a>
-							</li>
-						</ul>
-					</template>
-
-					<p v-else-if="data[0].name !== 'LOADING'">There's nothing else inside of here...</p>
+	
+						<h3>{{ data[current].name }}</h3>
+	
+						<p>{{ data[current].desc }}</p>
+						<br>
+						<template v-if="data[current].inside.length > 0">
+							<p>
+								Click one of the buttons to see somthing related.
+							</p>
+	
+							<ul class="list">
+								<li v-for="id in data[current].inside">
+									<button @click="next(id)">
+										{{ data[id].name }}
+									</button>
+								</li>
+							</ul>
+						</template>
+	
+						<p v-else-if="data[0].name !== 'LOADING'">There's nothing else inside of here...</p>
+					</div>
 				</div>
 			</section>
 		</div>

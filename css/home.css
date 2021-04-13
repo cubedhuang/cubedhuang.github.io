@@ -1,0 +1,210 @@
+@import url("./generic.css");
+
+/* ----------------------------------------- */
+/* ----------- HEADER AND BANNER ----------- */
+/* ----------------------------------------- */
+
+header, .section-banner {
+	background: transparent;
+	display: flex;
+	place-items: center;
+}
+
+.hero-box, .banner-box {
+	width: min(96%, 1140px);
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+:is(.hero-box, .banner-box) h1 {
+	flex: 1;
+}
+
+/* ------------------------------ */
+/* ----------- HEADER ----------- */
+/* ------------------------------ */
+
+header {
+	height: 100vh;
+}
+
+#hero-canvas {
+	background:
+		url("../images/alex-knight-unsplash.jpg"),
+		#000;
+	background-size: cover;
+	background-position: center;
+	position: fixed;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+}
+
+.logo {
+	height: 200px;
+	width: auto;
+	filter: drop-shadow(0 0 10px #fff8) drop-shadow(0 0 20px #fff8);
+}
+
+header .scroll-arrow {
+	position: absolute;
+	height: 80px;
+	width: 80px;
+	cursor: pointer;
+	top: 100%;
+	left: 50%;
+	font-size: 300%;
+	transform: translate(-50%, -100%);
+	opacity: 0.5;
+	filter: invert() drop-shadow(0 0 20px #fffb);
+	user-select: none;
+	display: grid;
+	place-items: center;
+
+	transition: opacity 0.2s, filter 00.2s, transform 0.2s;
+}
+
+header .scroll-arrow img {
+	height: 30px;
+	width: 30px;
+}
+
+header .scroll-arrow:hover {
+	opacity: 1;
+	transform: translate(-50%, -100%) translateY(5px);
+	filter: invert() drop-shadow(0 -10px 0 var(--base)) drop-shadow(0 0 20px #fffb);
+}
+
+/* ---------------------------------------- */
+/* ----------- MORE EXPERIMENTS ----------- */
+/* ---------------------------------------- */
+
+.section-banner {
+	height: 30vh;
+}
+
+.section-banner .go {
+	font-family: var(--title-font);
+	font-size: 180%;
+	padding: 8px 30px;
+	text-decoration: none;
+	border-radius: 200px;
+	transition: background 0.2s, color 0.2s;
+	cursor: pointer;
+	border: 2px solid #fff;
+	color: #fff;
+	filter: drop-shadow(0 0 10px #fffb);
+}
+
+.section-banner .go:hover {
+	background: #fff;
+	color: #444;
+}
+
+/* ---------------------------------- */
+/* ----------- GAME CARDS ----------- */
+/* ---------------------------------- */
+
+.section-games .game-card {
+	color: white;
+	padding: 20px;
+	text-align: left;
+	background: var(--darkbg), var(--bg);
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+	border: none;
+	text-decoration: none;
+
+	transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.game-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 3px 10px #0004;
+	filter: none;
+}
+
+.section-games .text {
+	flex: 1;
+	margin-right: 5px;
+}
+
+.section-games .title {
+	font-family: var(--title-font);
+	display: block;
+	text-transform: lowercase;
+	filter: drop-shadow(0 0 5px #fff8);
+	margin-bottom: 3px;
+}
+
+.section-games .description {
+	font-size: 80%;
+}
+
+.game-card img {
+	display: block;
+	border: none;
+	filter: invert();
+	user-select: none;
+	width: 25px;
+	height: 25px;
+	transition: 0.2s transform, 0.2s filter;
+}
+
+.game-card:hover img {
+	transform: translateX(5px);
+	filter: invert() drop-shadow(-10px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
+}
+
+/* ---------------------------------------- */
+/* ----------- ABOUT / COMMENTS ----------- */
+/* ---------------------------------------- */
+
+.section-about {
+	background: var(--darkbg) var(--bg);
+}
+
+/* ------------------------------ */
+/* ----------- FOOTER ----------- */
+/* ------------------------------ */
+
+footer {
+	background: #111;
+	color: #bbb;
+	font-size: 0.65em;
+	line-height: 145%;
+	padding: 20px;
+}
+
+footer a {
+	background: inherit;
+	color: #bbb;
+	border-bottom: 1px solid #bbb;
+	border-radius: 0;
+	padding: 0;
+}
+
+footer a:hover,
+footer a:active {
+	color: #ddd;
+	border-color: transparent;
+	background: inherit;
+}
+
+footer p {
+	text-align: center;
+	margin: 3px auto;
+}
+
+/* ------------------------------ */
+/* ----------- RANDOM ----------- */
+/* ------------------------------ */
+
+#disqus_thread {
+	margin-top: 20px;
+}

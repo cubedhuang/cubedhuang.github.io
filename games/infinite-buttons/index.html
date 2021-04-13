@@ -31,6 +31,7 @@
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		<meta name="theme-color" content="#2ecc71">
 
+		<link rel="stylesheet" href="/css/generic.css">
 		<link rel="stylesheet" href="style.css">
 
 		<link rel="canonical" href="https://cubedhuang.com/games/infinite-buttons/">
@@ -55,7 +56,7 @@
 			<p>
 				Score: {{ score }}
 				<br>
-				<a href="/">Back</a>
+				<a href="/" class="link">Back</a>
 			</p>
 			<button
 				v-for="(btn, i) in buttons"
