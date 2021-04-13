@@ -48,7 +48,7 @@ $(() => {
 		mouse.ex = e.x || e.touches[0].x;
 		mouse.ey = e.y || e.touches[0].x;
 	}
-	document.querySelectorAll("header, #section-more").forEach(
+	document.querySelectorAll("header, #section-banner").forEach(
 		e => e.addEventListener("mousedown", e => e.preventDefault()));
 	window.onmouseup = window.ontouchend = e => {
 		mouse.down = false;

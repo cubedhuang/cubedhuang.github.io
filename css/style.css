@@ -386,19 +386,26 @@ header {
 
 header .scroll-arrow {
 	position: absolute;
-	height: 50px;
-	width: 50px;
+	height: 80px;
+	width: 80px;
 	color: #ffffff80;
 	cursor: pointer;
 	top: 100%;
 	left: 50%;
 	font-size: 300%;
-	transform: translate(-50%, -120%);
+	transform: translate(-50%, -100%);
 	opacity: 0.5;
 	filter: invert() drop-shadow(0 0 20px #fffb);
 	user-select: none;
+	display: grid;
+	place-items: center;
 
 	transition: color 0.2s, opacity 0.2s;
+}
+
+header .scroll-arrow img {
+	height: 30px;
+	width: 30px;
 }
 
 header .scroll-arrow:hover {
@@ -419,12 +426,12 @@ header .scroll-arrow:hover {
 /* ----------- MORE EXPERIMENTS ----------- */
 /* ---------------------------------------- */
 
-#section-more {
+.section-banner {
 	height: 30vh;
 	background: transparent;
 }
 
-.more-box {
+.banner-box {
 	position: relative;
 	width: 1140px;
 	top: 50%;
@@ -432,7 +439,7 @@ header .scroll-arrow:hover {
 	transform: translate(-50%, -50%);
 }
 
-#section-more .go {
+.section-banner .go {
 	font-family: "Lexend Deca";
 	position: absolute;
 	top: 50%;
@@ -444,7 +451,7 @@ header .scroll-arrow:hover {
 	filter: drop-shadow(0 0 10px #fffb);
 }
 
-#section-more .go:hover {
+.section-banner .go:hover {
 	background: #fff;
 	border: 2px solid transparent;
 	color: #444;
@@ -490,7 +497,7 @@ header .scroll-arrow:hover {
 	font-size: 80%;
 }
 
-img {
+.game-card img {
 	display: block;
 	border: none;
 	filter: invert();
