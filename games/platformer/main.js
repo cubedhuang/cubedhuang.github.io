@@ -72,7 +72,7 @@ loadJSON(data => {
 	currentLevel = levels[currentLevelSize][currentLevelNum];
 	startLevel();
 	// START MENU --------------------------------------------
-	menuID = setInterval(menu, 1000 / 60);
+	menuID = requestAnimationFrame(menu);
 });
 
 function startLevel() {
@@ -329,6 +329,12 @@ function yMove() {
 ////////////////////////////////////////////////
 
 function menu() {
+	menuID = requestAnimationFrame(menu);
+	if (!inMenu) {
+		requestAnimationFrame(update);
+		cancelAnimationFrame(menuID);
+	}
+
 	// Sky
 	ctx.fillStyle = "cyan";
 	ctx.fillRect(0, 0, CW, CH);
@@ -348,14 +354,11 @@ function menu() {
 	ctx.fillText("Click to Begin!", CW / 2, 200);
 	ctx.font = "15px \"Open Sans\", Lato, sans-serif";
 	ctx.fillText("Now Pusheen Edition!", CW / 2, 230);
-
-	if (!inMenu) {
-		setInterval(update, 1000 / 60);
-		clearInterval(menuID);
-	}
 }
 
 function update() {
+	requestAnimationFrame(update);
+
 	// Sky
 	ctx.fillStyle = "cyan";
 	ctx.fillRect(0, 0, CW, CH);

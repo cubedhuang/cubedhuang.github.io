@@ -196,6 +196,8 @@ function renderLevel() {
 // ------------------- //
 
 function update() {
+	requestAnimationFrame(update);
+	
 	// Sky
 	ctx.fillStyle = "cyan";
 	ctx.fillRect(0, 0, CW, CH);
@@ -258,4 +260,4 @@ document.getElementById("create").addEventListener("click", () => {
 	alert("Code copied! Now, go to Platformer Game to test your level!")
 });
 
-setInterval(update, 1000 / 60);
+requestAnimationFrame(update);
