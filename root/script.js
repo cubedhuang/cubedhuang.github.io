@@ -1,10 +1,10 @@
-$(() => {
-	$(".scroll-arrow").click(() => {
-		$('html, body').animate({
-			scrollTop: $(".section-games").first().offset().top
-		}, 1000);
-	});
-});
+(() => {
+	document.getElementsByClassName("scroll-arrow")[0]
+		.addEventListener("click", () => scrollBy({
+			top: window.innerHeight,
+			behavior: "smooth"
+		}));
+})();
 
 (() => {
 	const canvas = document.getElementById("hero-canvas");
