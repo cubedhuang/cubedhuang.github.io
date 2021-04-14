@@ -78,6 +78,8 @@ function movement() {
 }
 
 function update() {
+	loopID = requestAnimationFrame(update);
+
 	ctx.fillStyle = "black";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -95,7 +97,7 @@ function update() {
 	}
 
 	ctx.fillStyle = "cyan";
-	ctx.font = "20px Lato, Ariel, Heveltica, sans-serif";
+	ctx.font = "20px bold Courier, monospace";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "hanging";
 	ctx.fillText(`Points: ${points}`, 10, 10);
@@ -119,13 +121,13 @@ function killPlayer() {
 	ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 100);
 	ctx.font = "30px monospace";
 	ctx.fillText("Press [SPACE] to restart.", canvas.width / 2, canvas.height / 2);
-	clearInterval(loopID);
+	cancelAnimationFrame(loopID);
 	loopID = false;
 }
 
 function restart() {
 	if (loopID === false)
-		loopID = setInterval(update, 1000 / 60),
+		loopID = requestAnimationFrame(update),
 		player.dead = false,
 		player.x = canvas.width / 2 - 25,
 		player.y = canvas.height / 3 * 2 - 25,
@@ -172,7 +174,7 @@ document.addEventListener("keyup", evt => {
 	}
 });
 
-let loopID = setInterval(update, 1000 / 60);
+let loopID = requestAnimationFrame(update);
 
 window.onload = function() {
 	let score = localStorage.getItem("highscore");
