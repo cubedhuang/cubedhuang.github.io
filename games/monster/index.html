@@ -46,32 +46,34 @@
 		</script>
 
 		<script src="/global/vue.min.js"></script>
-		<link rel="stylesheet" href="css/foundation.min.css">
-		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="/css/generic.css">
+		<link rel="stylesheet" href="./style.css">
 
 		<title>Monster</title>
 	</head>
 
 	<body>
 		<div id="app">
+			<section class="top">
+				<h2>monster slayer</h2>
+			</section>
+
 			<section class="row">
-				<div class="small-6 columns">
-					<h1 class="text-center" style="color: #2ecc71;">YOU</h1>
+				<div class="col">
+					<h3 class="you">you</h3>
 					<div class="healthbar">
 						<div
-							class="healthbar text-center"
-							style="background-color: #2ecc71; margin: 0; color: black;"
+							class="bar you"
 							:style="{ width: playerHealth + '%' }">
 							{{ playerHealth }}
 						</div>
 					</div>
 				</div>
-				<div class="small-6 columns">
-					<h1 class="text-center" style="color: #e74c3c;">MONSTER</h1>
+				<div class="col">
+					<h3 class="monster">monster</h3>
 					<div class="healthbar">
 						<div
-							class="healthbar text-center"
-							style="background-color: #e74c3c; margin: 0; color: white;"
+							class="bar monster"
 							:style="{ width: monsterHealth / 2 + '%' }">
 							{{ monsterHealth }}
 						</div>
@@ -80,25 +82,26 @@
 			</section>
 
 			<section class="row controls" v-if="!inGame">
-				<div class="small-12 columns">
-					<button id="start-game" @click="start">START NEW GAME</button>
-					<button id="back">
-						<a href="/">BACK</a>
-					</button>
+				<div class="col center">
+					<button id="start-game" @click="start">new game</button>
+					<a class="button" href="/">back</a>
 				</div>
 			</section>
 
 			<section class="row controls" v-else>
-				<div class="small-12 columns">
-					<button id="attack" @click="attack">ATTACK</button>
-					<button id="special-attack" @click="special">SPECIAL ATTACK - COOLDOWN: {{ cooldown }}</button>
-					<button id="heal" @click="heal">HEAL</button>
-					<button id="give-up" @click="giveUp">GIVE UP</button>
+				<div class="col center">
+					<button id="attack" @click="attack">attack</button>
+					<button id="special-attack" @click="special">
+						special attack
+						<template v-if="cooldown">in {{ cooldown }}</template>
+					</button>
+					<button id="heal" @click="heal">heal</button>
+					<button id="give-up" @click="giveUp">give up</button>
 				</div>
 			</section>
 
 			<section class="row log" v-if="log.length !== 0">
-				<div class="small-12 columns">
+				<div class="col center">
 					<ul>
 						<li
 							v-for="data in log"

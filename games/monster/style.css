@@ -1,0 +1,74 @@
+:root {
+	--you: #2ecc71;
+	--monster: #e74c3c;
+}
+
+.you {
+	--base: var(--you);
+}
+
+.healthbar {
+	height: 40px;
+	border-radius: 10px;
+	background: #111;
+	display: flex;
+	place-items: center;
+	text-align: center;
+}
+
+.bar {
+	height: 100%;
+	width: 100%;
+	border-radius: inherit;
+	display: grid;
+	place-items: center;
+	transition: width 0.2s;
+	font-family: var(--title-font);
+	color: #fff;
+}
+
+.bar.you {
+	background: var(--you);
+}
+
+.bar.monster {
+	background: var(--monster);
+}
+
+#start-game,
+#heal {
+	--base: var(--you);
+}
+
+#attack {
+	--base: var(--monster);
+}
+
+#special-attack {
+	--base: #f1c40f;
+}
+
+#give-up {
+	--base: #999;
+}
+
+.controls,
+.log {
+	margin-top: 30px;
+	text-align: center;
+	padding: 10px;
+	background-color: #111;
+	border-radius: 10px;
+}
+
+.log li {
+	list-style: none;
+}
+
+.log .player-turn {
+	color: var(--you);
+}
+
+.log .monster-turn {
+	color: var(--monster);
+}

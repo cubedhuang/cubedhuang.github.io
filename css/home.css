@@ -47,7 +47,76 @@ header {
 .logo {
 	height: 200px;
 	width: auto;
-	filter: drop-shadow(0 0 10px #fff8) drop-shadow(0 0 20px #fff8);
+	animation-name: flicker;
+	animation-duration: 6s;
+	animation-timing-function: ease;
+	animation-iteration-count: infinite;
+}
+
+@keyframes flicker {
+	from {
+		filter: drop-shadow(0 0 5px #fff);
+	}
+
+	18% {
+		filter: drop-shadow(0 0 5px #fff) brightness(95%);
+	}
+
+	20% {
+		filter: drop-shadow(0 0 3px #fff4) brightness(85%);
+	}
+
+	21% {
+		filter: drop-shadow(0 0 10px #fff) brightness(95%);
+		filter: translate(0, 0);
+	}
+
+	21.5% {
+		filter: drop-shadow(5px -5px 0 #f004) drop-shadow(0 0 3px #fff4) brightness(80%);
+		transform: translate(-2px, 2px);
+	}
+
+	22% {
+		filter: drop-shadow(0 0 10px #fff) brightness(95%);
+		transform: translate(0, 0);
+	}
+
+	23% {
+		filter: drop-shadow(0 0 10px #fff);
+	}
+
+	45% {
+		filter: drop-shadow(0 0 5px #fff);
+		filter: translate(0, 0);
+	}
+
+	48% {
+		filter: drop-shadow(5px -5px 0 #f004) drop-shadow(0 0 5px #fff);
+		transform: translate(-2px, 2px);
+	}
+
+	50% {
+		filter: drop-shadow(0 0 5px #fff);
+		filter: translate(0, 0);
+	}
+
+	53% {
+		filter: drop-shadow(-8px 3px 0 #0ff4) drop-shadow(0 0 5px #fff);
+		transform: translate(4px, -2px);
+	}
+
+	57% {
+		filter: drop-shadow(0 0 5px #fff);
+		filter: translate(0, 0);
+	}
+
+	69% {
+		filter: drop-shadow(0 0 10px #fff);
+	}
+
+	to {
+		filter: drop-shadow(0 0 5px #fff);
+	}
 }
 
 header .scroll-arrow {

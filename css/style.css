@@ -237,25 +237,6 @@ a.link:active {
 	filter: drop-shadow(0 0 5px #fffb);
 }
 
-/* INTERACTIVE COMPONENTS ---------------------------------------------------------- */
-
-input[type="number"],
-input[type="text"],
-textarea,
-.button,
-button {
-	font-family: var(--title-font);
-	display: inline-block;
-	padding: 10px 15px;
-	border-radius: 10px;
-	border: 2px solid var(--base);
-	text-decoration: none;
-	user-select: none;
-
-	background-color: var(--bg);
-	color: var(--base);
-}
-
 /* ----------- GAME CARDS ----------- */
 
 .game-card {
@@ -308,6 +289,25 @@ button {
 .game-card:hover img {
 	transform: translateX(5px);
 	filter: invert() drop-shadow(-10px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
+}
+
+/* INTERACTIVE COMPONENTS ---------------------------------------------------------- */
+
+input[type="number"],
+input[type="text"],
+textarea,
+.button,
+button {
+	font-family: var(--title-font);
+	display: inline-block;
+	padding: 10px 15px;
+	border-radius: 10px;
+	border: 2px solid var(--base);
+	text-decoration: none;
+	user-select: none;
+
+	background-color: var(--bg);
+	color: var(--base);
 }
 
 /* BUTTONS */

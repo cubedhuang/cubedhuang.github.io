@@ -1,5 +1,5 @@
-var canvas = document.getElementById('game');
-var ctx = canvas.getContext('2d');
+let canvas = document.getElementById("game");
+let ctx = canvas.getContext("2d");
 
 const CW = canvas.width;
 const CH = canvas.height;
@@ -8,54 +8,59 @@ const PH = 40; // Player Height
 const PX = 20; // Player X
 const PW = 10; // Player Width
 const XV = 5; // X velocity
-var py = (CH/3*2)-PH; // Player Y
-var yv = 0 // Y velocity
+let py = (CH/3*2)-PH; // Player Y
+let yv = 0 // Y velocity
 
 // Keys
-var up = false;
-var down = false;
+let up = false;
+let down = false;
 
 // Background
-var clouds = [];
-var terrain = [];
+let clouds = [];
+let terrain = [];
 
 // Blocks
-var blocks = [];
+let blocks = [];
 const BW = 10; // Block Width
 
 // Game and Rendering
-var score = 0;
-var hurtDelay = 0;
+let score = 0;
+let hurtDelay = 0;
 
-document.addEventListener('keydown', function(e) {
-	if (e.keyCode == 38 || e.keyCode == 87) { // Up key or W key
+let prevTime = 0;
+let delta = 0;
+
+document.addEventListener("keydown", e => {
+	if (e.key === "ArrowUp" || e.key === "w")
 		up = true;
-	} else if (e.keyCode == 40 || e.keyCode == 83) { // Down key or S key
+	else if (e.key === "ArrowDown" || e.key === "s")
 		down = true;
-	}
 });
 
-document.addEventListener('keyup', function(e) {
-	if (e.keyCode == 38 || e.keyCode == 87) {
+document.addEventListener("keyup", e => {
+	if (e.key === "ArrowUp" || e.key === "w")
 		up = false;
-	} else if (e.keyCode == 40 || e.keyCode == 83) {
+	else if (e.key === "ArrowDown" || e.key === "s")
 		down = false;
-	}
 });
 
 function onGround() {
-	if (py < (CH/3*2)-PH) {
+	if (py < CH / 3 * 2 - PH) {
 		return false;
 	};
 	vy = 0;
-	py = (CH/3*2)-PH;
+	py = CH / 3 * 2 - PH;
 	return true;
 }
 
-function draw() {
+function draw(time) {
 	requestAnimationFrame(draw);
 
-	drawRect(0, 0, CW, CH, '#36cdda'); // Sky
+	delta = time - prevTime;
+	prevTime = time;
+
+	drawRect(0, 0, CW, CH, "#36cdda"); // Sky
+
 	// Moving clouds
 	if (Math.random() > 0.98) {
 		clouds.push({
@@ -66,41 +71,38 @@ function draw() {
 			m: Math.floor(Math.random() * 3) + 1
 		});
 	}
-	clouds.forEach(function(cloud, index) {
-		drawRect(cloud.x, cloud.y, cloud.w, cloud.h, 'white');
+
+	for (let i = clouds.length - 1; i >= 0; i--) {
+		const cloud = clouds[i];
+		roundRect(cloud.x, cloud.y, cloud.w, cloud.h, "white", 5);
 		cloud.x -= cloud.m;
 		if (cloud.x < -cloud.w) {
-			clouds.splice(index, 1);
+			clouds.splice(i, 1);
 		}
-	});
+	}
+
 	// Background Terrain
-	if (Math.random() > 0.7) {
+	if (Math.random() < 0.3) {
+		const h = Math.floor(Math.random() * 30) + 40;
 		terrain.push({
 			x: CW,
+			y: CH / 3 * 2 - h + 10,
 			w: Math.floor(Math.random() * 50) + 50,
-			h: Math.floor(Math.random() * 30) + 30,
+			h: h,
 		});
-		var item = terrain[terrain.length-1]
-		item.y = (CH/3*2)-item.h;
 	}
-	terrain.forEach(function(value, index) {
-		drawRect(value.x, value.y, value.w, value.h, 'lightgreen');
-		value.x -= 3;
-		if (value.x < -value.w) {
-			terrain.splice(index, 1);
+
+	for (let i = terrain.length - 1; i >= 0; i--) {
+		const thing = terrain[i];
+		roundRect(thing.x, thing.y, thing.w, thing.h, "lightgreen", 10);
+		thing.x -= 3;
+		if (thing.x < -thing.w) {
+			terrain.splice(i, 1);
 		}
-	});
-
-	// Player
-	if (hurtDelay > 0) {
-		drawRect(PX, py, PW, PH, 'red');
-	} else {
-		drawRect(PX, py, PW, PH, 'black');
 	}
-	hurtDelay--;
 
-	drawRect(0, CH/3*2, CW, CH/3, 'lime'); // Ground Grass
-	drawRect(0, CH/2.5*1.8, CW, CH/2.5, '#643900'); // Ground Dirt
+	drawRect(0, CH / 3 * 2, CW, CH / 3, "lime"); // Ground Grass
+	drawRect(0, CH / 2.5 * 1.8, CW, CH / 2.5, "#643900"); // Ground Dirt
 	
 	// Random block spawning
 	if (Math.random() > 0.98) {
@@ -110,51 +112,94 @@ function draw() {
 		})
 	}
 
-	// Render and move Blocks
-	blocks.forEach(function(block) {
-		drawRect(block.x, (CH/3*2)-block.h, BW, block.h, 'red');
+	// Collision detection
+	for (let i = blocks.length - 1; i >= 0; i--) {
+		const block = blocks[i];
+		if (block.x <= PX + PW && block.x + BW >= PX &&
+			!(CH / 3 * 2 - block.h >= py+PH) && !hurtDelay) {
+			score -= 50;
+			hurtDelay = 30;
+			blocks.splice(i, 1);
+		}
+	}
+
+	for (let i = blocks.length - 1; i >= 0; i--) {
+		const block = blocks[i];
+		roundRect(block.x, CH / 3 * 2 - block.h, BW, block.h + 5, "red", 5);
 		block.x -= XV;
 		if (block.x < -BW) {
-			blocks.shift();
+			blocks.splice(i, 1);
 		}
-	});
-
-	// Collision detection
-	blocks.forEach(function(block) {
-		if (block.x <= PX+PW && block.x+BW >= PX &&
-			!((CH/3*2)-block.h >= py+PH)) {
-			score -= 4;
-			hurtDelay = 10;
-		}
-	});
-
-	// Ground-Pounding
-	if (down && !onGround()) {
-		yv = 8;
 	}
 
 	// Jumping
-	if (up && onGround()) {
-		yv = -8;
-	} else if (!onGround()) {
-		yv += 0.2;
+	if (onGround()) {
+		if (up) yv = -10;
+		else {
+			py = CH / 3 * 2 - PH
+			yv = 0;
+		}
+	} else {
+		if (down) yv = 8;
+		else yv += 0.5;
 	}
 	py += yv;
 
-	// Score Incrementation
-	score += 0.1;
-	if (score > 0) {
-		ctx.fillStyle = 'black';
+	// Player
+	if (hurtDelay > 0) {
+		roundRect(PX, py, PW, PH, "#0004", 5);
+		hurtDelay--;
 	} else {
-		ctx.fillStyle = 'red';
+		roundRect(PX, py, PW, PH, "black", 5);
 	}
-    ctx.font = "30px Courier, monospace";
-    ctx.fillText('Score: ' + Math.round(score), 20, 40);
+
+	// Score Incrementation
+	score += 1 / 100 * delta;
+	if (score > 0) ctx.fillStyle = "black";
+	else ctx.fillStyle = "red";
+
+	ctx.font = "30px bold Courier, monospace";
+    ctx.fillText("Score: " + Math.floor(score), 20, 40);
 }
 
 function drawRect(x, y, w, h, c) {
 	ctx.fillStyle = c;
 	ctx.fillRect(x, y, w, h);
+}
+
+function roundRect(x, y, w, h, c, radius) {
+	if ("number" === typeof radius) {
+		radius = {
+			tl: radius,
+			tr: radius,
+			br: radius,
+			bl: radius
+		};
+	} else {
+		let f = {
+			tl: 0,
+			tr: 0,
+			br: 0,
+			bl: 0
+		};
+		for (let g in f)
+			if ({}.hasOwnProperty.call(g, f)) radius[g] = radius[g] || f[g];
+	}
+
+	ctx.fillStyle = c;
+
+	ctx.beginPath();
+	ctx.moveTo(x + radius.tl, y);
+	ctx.lineTo(x + w - radius.tr, y);
+	ctx.quadraticCurveTo(x + w, y, x + w, y + radius.tr);
+	ctx.lineTo(x + w, y + h - radius.br);
+	ctx.quadraticCurveTo(x + w, y + h, x + w - radius.br, y + h);
+	ctx.lineTo(x + radius.bl, y + h);
+	ctx.quadraticCurveTo(x, y + h, x, y + h - radius.bl);
+	ctx.lineTo(x, y + radius.tl);
+	ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+	ctx.closePath();
+	ctx.fill();
 }
 
 requestAnimationFrame(draw);
