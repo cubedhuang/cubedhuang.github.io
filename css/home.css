@@ -32,7 +32,7 @@ header {
 
 #hero-canvas {
 	background:
-		url("../images/alex-knight-unsplash.jpg"),
+		url("../images/alex-knight-unsplash.webp"),
 		#000;
 	background-size: cover;
 	background-position: center;
@@ -51,6 +51,7 @@ header {
 	animation-duration: 6s;
 	animation-timing-function: ease;
 	animation-iteration-count: infinite;
+	margin: 20px 0;
 }
 
 @keyframes flicker {
@@ -167,6 +168,7 @@ header .scroll-arrow:hover {
 	border: 2px solid #fff;
 	color: #fff;
 	filter: drop-shadow(0 0 10px #fffb);
+	margin: 20px 0;
 }
 
 .section-banner .go:hover {
