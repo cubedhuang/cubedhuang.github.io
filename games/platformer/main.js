@@ -50,7 +50,7 @@ let music = new Howl({
 });
 
 let logo = new Image();
-logo.src = "images/logo.png";
+logo.src = "images/images/logo.png";
 
 function loadJSON(callback) {
 	let xobj = new XMLHttpRequest();
