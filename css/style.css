@@ -296,22 +296,22 @@ a.link:active {
 	transform: translateX(-5px) rotate(135deg);
 }
 
-.arrow span::before {
-	content: "";
-	position: absolute;
-	background: var(--arrow-color);
-	width: var(--arrow-stroke);
-	height: 100%;
-	border-radius: 50px;
-}
-
+.arrow span::before,
 .arrow span::after {
 	content: "";
 	position: absolute;
 	background: var(--arrow-color);
+	border-radius: 50px;
+}
+
+.arrow span::before {
+	width: var(--arrow-stroke);
+	height: 100%;
+}
+
+.arrow span::after {
 	height: var(--arrow-stroke);
 	width: 100%;
-	border-radius: 50px;
 }
 
 /* INTERACTIVE COMPONENTS ---------------------------------------------------------- */
