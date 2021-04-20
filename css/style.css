@@ -276,19 +276,42 @@ a.link:active {
 	font-size: 80%;
 }
 
-.game-card img {
-	display: block;
-	border: none;
-	filter: invert();
-	user-select: none;
-	width: 25px;
-	height: 25px;
+.arrow {
 	transition: 0.2s transform, 0.2s filter;
 }
 
-.game-card:hover img {
+:hover > .arrow {
 	transform: translateX(5px);
-	filter: invert() drop-shadow(-10px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
+	filter: drop-shadow(-10px 0 0 var(--base)) drop-shadow(0 0 10px #fffb);
+}
+
+.arrow span {
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	--arrow-stroke: 2px;
+	--arrow-color: #fff;
+	transform: translateX(-5px) rotate(135deg);
+}
+
+.arrow span::before {
+	content: "";
+	position: absolute;
+	background: var(--arrow-color);
+	width: var(--arrow-stroke);
+	height: 100%;
+	border-radius: 50px;
+}
+
+.arrow span::after {
+	content: "";
+	position: absolute;
+	background: var(--arrow-color);
+	height: var(--arrow-stroke);
+	width: 100%;
+	border-radius: 50px;
 }
 
 /* INTERACTIVE COMPONENTS ---------------------------------------------------------- */

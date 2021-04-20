@@ -1,6 +1,6 @@
 (() => {
-	document.getElementsByClassName("scroll-arrow")[0]
-		.addEventListener("click", () => scrollBy({
+	document.getElementsByClassName("scroller")[0]
+		.addEventListener("click", () => scrollTo({
 			top: window.innerHeight,
 			behavior: "smooth"
 		}));
