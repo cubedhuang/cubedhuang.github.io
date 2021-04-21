@@ -100,12 +100,7 @@
 		}
 
 		draw() {
-			this.points = [];
 			this.rotation += this.vr;
-			for (let i = 0; i < this.num; i++) {
-				const r = Math.PI * (i / this.num * 2) + this.rotation;
-				this.points.push([Math.cos(r), Math.sin(r)]);
-			}
 
 			const alpha = (this.asize - this.size) / this.size / hoverDiv;
 			if (alpha >= 0.01) {
@@ -116,13 +111,18 @@
 				ctx.stroke();
 			}
 
+			ctx.translate(this.x, this.y);
+			ctx.rotate(this.rotation);
+			
 			ctx.beginPath();
 			for (const m of this.points) {
-				ctx.lineTo(this.x + this.asize * m[0], this.y + this.asize * m[1]);
+				ctx.lineTo(this.asize * m[0], this.asize * m[1]);
 			}
 			ctx.closePath();
 			ctx.fillStyle = this.color;
 			ctx.fill();
+
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
 		}
 
 		update() {
