@@ -4,9 +4,7 @@
 			top: window.innerHeight,
 			behavior: "smooth"
 		}));
-})();
 
-(() => {
 	const canvas = document.getElementById("hero-canvas");
 	canvas.width = document.body.clientWidth;
 	canvas.height = window.innerHeight;

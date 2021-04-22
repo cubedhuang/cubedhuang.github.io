@@ -41,59 +41,64 @@
 				<h2>monster slayer</h2>
 			</section>
 
-			<section class="row">
-				<div class="col">
-					<h3 class="you">you</h3>
-					<div class="healthbar">
-						<div
-							class="bar you"
-							:style="{ width: playerHealth + '%' }">
-							{{ playerHealth }}
+			<section>
+				<div class="row">
+					<div class="col">
+						<h3 class="you">you</h3>
+						<div class="healthbar">
+							<div
+								class="bar you"
+								:style="{ width: playerHealth + '%' }">
+								{{ playerHealth }}
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<h3 class="monster">monster</h3>
+						<div class="healthbar">
+							<div
+								class="bar monster"
+								:style="{ width: monsterHealth / 2 + '%' }">
+								{{ monsterHealth }}
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col">
-					<h3 class="monster">monster</h3>
-					<div class="healthbar">
-						<div
-							class="bar monster"
-							:style="{ width: monsterHealth / 2 + '%' }">
-							{{ monsterHealth }}
-						</div>
+			</section>
+
+			<section>
+				<div class="row controls" v-if="!inGame">
+					<div class="col center">
+						<button id="start-game" @click="start">new game</button>
+						<a class="button" href="/">back</a>
+					</div>
+				</div>
+	
+				<div class="row controls" v-else>
+					<div class="col center">
+						<button id="attack" @click="attack">attack</button>
+						<button id="special-attack" @click="special">
+							special attack
+							<template v-if="cooldown">in {{ cooldown }}</template>
+						</button>
+						<button id="heal" @click="heal">heal</button>
+						<button id="give-up" @click="giveUp">give up</button>
+					</div>
+				</div>
+				
+				<div class="row log" v-if="log.length !== 0">
+					<div class="col center">
+						<ul>
+							<li
+								v-for="data in log"
+								:class="{ 'player-turn': data.player, 'monster-turn': !data.player }">
+								{{ data.text }}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</section>
 
-			<section class="row controls" v-if="!inGame">
-				<div class="col center">
-					<button id="start-game" @click="start">new game</button>
-					<a class="button" href="/">back</a>
-				</div>
-			</section>
-
-			<section class="row controls" v-else>
-				<div class="col center">
-					<button id="attack" @click="attack">attack</button>
-					<button id="special-attack" @click="special">
-						special attack
-						<template v-if="cooldown">in {{ cooldown }}</template>
-					</button>
-					<button id="heal" @click="heal">heal</button>
-					<button id="give-up" @click="giveUp">give up</button>
-				</div>
-			</section>
-
-			<section class="row log" v-if="log.length !== 0">
-				<div class="col center">
-					<ul>
-						<li
-							v-for="data in log"
-							:class="{ 'player-turn': data.player, 'monster-turn': !data.player }">
-							{{ data.text }}
-						</li>
-					</ul>
-				</div>
-			</section>	
 		</div>
 
 		<script src="app.js"></script>
