@@ -11,15 +11,16 @@ header, .section-banner {
 }
 
 .hero-box, .banner-box {
-	width: min(96%, 1140px);
+	width: min(100%, 1140px);
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
+	gap: 1em;
 	align-items: center;
 }
 
 :is(.hero-box, .banner-box) h1 {
-	flex: 1;
+	flex: 1 1 400px;
 }
 
 /* ------------------------------ */
@@ -28,6 +29,7 @@ header, .section-banner {
 
 header {
 	height: 100vh;
+	padding: 3em 1em;
 }
 
 #hero-canvas {
@@ -45,13 +47,12 @@ header {
 }
 
 .logo {
-	height: 200px;
+	height: 10em;
 	width: auto;
 	animation-name: flicker;
 	animation-duration: 6s;
 	animation-timing-function: ease;
 	animation-iteration-count: infinite;
-	margin: 20px 0;
 }
 
 @keyframes flicker {
@@ -122,8 +123,8 @@ header {
 
 .scroller {
 	position: absolute;
-	height: 80px;
-	width: 80px;
+	height: 4em;
+	width: 4em;
 	cursor: pointer;
 	top: 100%;
 	left: 50%;
@@ -160,13 +161,14 @@ header {
 /* ---------------------------------------- */
 
 .section-banner {
-	height: 30vh;
+	flex-direction: row;
+	min-height: 30vh;
 }
 
 .section-banner .go {
 	font-family: var(--title-font);
-	font-size: 180%;
-	padding: 8px 30px;
+	font-size: 1.8rem;
+	padding: 0.25em 0.8em;
 	text-decoration: none;
 	border-radius: 200px;
 	transition: background 0.2s, color 0.2s;
@@ -174,7 +176,6 @@ header {
 	border: 2px solid #fff;
 	color: #fff;
 	filter: drop-shadow(0 0 10px #fffb);
-	margin: 20px 0;
 }
 
 .section-banner .go:hover {
@@ -197,9 +198,12 @@ header {
 footer {
 	background: #111;
 	color: #bbb;
-	font-size: 0.65em;
-	line-height: 145%;
-	padding: 20px;
+	padding: 0.5em;
+}
+
+footer .row {
+	flex-direction: column;
+	gap: 0.5em;
 }
 
 footer a.link {
@@ -212,13 +216,6 @@ footer a.link {
 
 footer p {
 	text-align: center;
-	margin: 3px auto;
-}
-
-/* ------------------------------ */
-/* ----------- RANDOM ----------- */
-/* ------------------------------ */
-
-#disqus_thread {
-	margin-top: 20px;
+	margin: 0;
+	font-size: 0.7em;
 }
