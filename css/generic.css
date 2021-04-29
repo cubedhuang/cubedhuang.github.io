@@ -181,7 +181,7 @@ h3::after {
 
 p {
 	font-size: 0.8rem;
-	line-height: 145%;
+	line-height: 1.5em;
 	margin-bottom: 0.5em;
 }
 
@@ -370,7 +370,15 @@ textarea {
 	outline: none;
 	box-shadow: 0 0 0.5em #fffb;
 	background: var(--base);
-	color: #fff;
+	color: #eee;
+}
+
+:is(
+	input[type="number"],
+	input[type="text"],
+	textarea
+):focus::placeholder {
+	color: #bbb;
 }
 
 /* LISTS */

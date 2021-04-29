@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-	<!-- I see that you have entered the source code. I typed up most of this stuff (except for the libraries and stuff duh) -->
+	<!-- hi whats up i typed up most of this stuff - there are no libraries on the main page! -->
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		
-		<meta property="description" content="Web Experiments">
+		<meta name="author" content="cubedhuang">
+		<meta name="description" content="fun web experiments">
+		<meta name="keywords" content="cubedhuang, web experiments, experiments">
+		<meta name="theme-color" content="#d63031">
 		
-		<meta property="og:title" content="CubeDHuang">
-		<meta property="og:description" content="Web Experiments">
+		<meta property="og:title" content="cubedhuang">
+		<meta property="description" content="web experiments">
+		<meta property="og:description" content="web experiments">
 		<meta property="og:url" content="https://cubedhuang.com/">
 		<meta property="og:image" content="https://cubedhuang.com/images/logo.png">
 
 		<link rel="shortcut icon" href="/favicon.ico">
 
+		<link rel="preload" href="/css/modern-normalize.min.css" as="style">
+		<link rel="stylesheet" href="/css/generic.css">
 		<link rel="stylesheet" href="/css/home.css">
 		<link rel="canonical" href="https://cubedhuang.com/">
 		<link rel="author" href="https://cubedhuang.com/">
 		<link rel="publisher" href="https://cubedhuang.com/">
+
+		<title>cubedhuang: web experiments</title>
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
@@ -30,7 +38,7 @@
 			gtag('config', 'UA-107754281-2');
 		</script>
 
-		<title>CubeDHuang</title>
+		<script defer src="/home.js"></script>
 	</head>
 
 	<body>
@@ -38,8 +46,8 @@
 			<canvas id="hero-canvas"></canvas>
 
 			<div class="hero-box">
-				<h1>CubeDHuang: <br> Web Experiments</h1>
-				<img src="/images/logo-wireframe.svg" alt="CubeDHuang Logo" class="logo">
+				<h1>cubedhuang: <br> web experiments</h1>
+				<img src="/images/logo-wireframe.svg" alt="cubedhuang Logo" class="logo" width="200" height="200">
 			</div>
 
 			<div class="scroller">
@@ -67,7 +75,7 @@
 					</a>
 				</div>
 				<div class="col">
-					<a href="https://dsc.gg/cubed/" target="_blank" class="game-card">
+					<a href="https://dsc.gg/cubed/" target="_blank" rel="noopener" class="game-card">
 						<div class="text">
 							<span class="title">cubed</span>
 							<span class="description">generic discord bot</span>
@@ -270,17 +278,15 @@
 		<footer>
 			<div class="row">
 				<p>
-					Check out my website's code
-					<a class="link" target="_blank" href="https://github.com/cubeDhuang/cubeDhuang.github.io">here</a>!
+					Check out my
+					<a class="link" target="_blank" rel="noopener" href="https://github.com/cubedhuang/cubedhuang.github.io">website's code</a>!
 				</p>
 				<p>
 					Original code on this website is under the
-					<a class="link" target="_blank" href="https://github.com/cubeDhuang/cubeDhuang.github.io/blob/master/LICENSE">
+					<a class="link" target="_blank" rel="noopener" href="https://github.com/cubedhuang/cubedhuang.github.io/blob/master/LICENSE">
 						GPL 3.0</a>.
 				</p>
 			</div>
 		</footer>
-
-		<script src="/home.js"></script>
 	</body>
 </html>
