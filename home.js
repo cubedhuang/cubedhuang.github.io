@@ -29,8 +29,8 @@
 	};
 
 	window.onmousemove = window.ontouchmove = e => {
-		mouse.ex = e.x || e.touches[0].clientX;
-		mouse.ey = e.y || e.touches[0].clientY;
+		mouse.ex = e.clientX || e.touches[0].clientX;
+		mouse.ey = e.clientY || e.touches[0].clientY;
 		mouse.inTime = Date.now();
 		if (!mouse.in) {
 			mouse.in = true;
@@ -44,8 +44,8 @@
 	window.onmousedown = window.ontouchstart = e => {
 		mouse.down = !e.touches;
 		mouse.in = true;
-		mouse.ex = e.x || e.touches[0].clientX;
-		mouse.ey = e.y || e.touches[0].clientY;
+		mouse.ex = e.clientX || e.touches[0].clientX;
+		mouse.ey = e.clientY || e.touches[0].clientY;
 	}
 
 	window.onmouseup = window.ontouchend = e => {

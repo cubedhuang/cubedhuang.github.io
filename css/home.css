@@ -19,6 +19,7 @@ header, .section-banner {
 }
 
 :is(.hero-box, .banner-box) h1 {
+	color: #eee;
 	flex: 1 1 400px;
 }
 
@@ -34,7 +35,7 @@ header {
 #hero-canvas {
 	background:
 		url("../images/alex-knight-unsplash.webp"),
-		linear-gradient(to bottom left, steelblue, var(--bg));
+		linear-gradient(to bottom left, steelblue, #111);
 	background-size: cover;
 	background-position: center;
 	background-blend-mode: overlay;
@@ -139,7 +140,7 @@ header {
 	transition: opacity 0.2s;
 }
 
-.scroller:hover {
+.scroller:is(:hover, :focus-visible) {
 	opacity: 1;
 }
 
@@ -147,7 +148,7 @@ header {
 	transition: 0.2s transform, 0.2s filter;
 }
 
-.scroller:hover .arrow {
+.scroller:is(:hover, :focus-visible) .arrow {
 	transform: translateY(0.2em);
 	filter: drop-shadow(0 -0.4em 0 var(--base)) drop-shadow(0 0 0.5em #fffb);
 }
@@ -174,13 +175,13 @@ header {
 	transition: background 0.2s, color 0.2s;
 	cursor: pointer;
 	border: 2px solid #fff;
-	color: #fff;
+	color: var(--white);
 	filter: drop-shadow(0 0 0.5em #fffb);
 }
 
-.section-banner .go:hover {
-	background: #fff;
-	color: #444;
+.section-banner .go:is(:hover, :focus-visible) {
+	background: var(--white);
+	color: var(--dark);
 }
 
 /* ---------------------------------------- */
