@@ -44,7 +44,6 @@
 	window.onmousedown = window.ontouchstart = e => {
 		mouse.down = !e.touches;
 		mouse.in = true;
-		console.log(e);
 		mouse.ex = e.x || e.touches[0].clientX;
 		mouse.ey = e.y || e.touches[0].clientY;
 	}
