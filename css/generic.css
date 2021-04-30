@@ -21,7 +21,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: var(--text-font);
+	scroll-behavior: smooth;
 }
 
 body {
@@ -324,7 +324,6 @@ button {
 	border-radius: 0.5em;
 	border: 2px solid var(--base);
 	text-decoration: none;
-	user-select: none;
 
 	background-color: var(--bg);
 	color: var(--base);

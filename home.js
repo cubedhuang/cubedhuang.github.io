@@ -1,7 +1,8 @@
 (() => {
-	document.getElementsByClassName("scroller")[0]
-		.addEventListener("click", () => scrollTo({
-			top: window.innerHeight,
+	const scroller = document.querySelector(".scroller");
+	if (scroller) scroller.addEventListener(
+		"click",
+		() => document.querySelector('.section-games').scrollIntoView({
 			behavior: "smooth"
 		}));
 
@@ -27,9 +28,9 @@
 		canvas.height = window.innerHeight;
 	};
 
-	window.onmousemove = e => {
-		mouse.ex = e.x;
-		mouse.ey = e.y;
+	window.onmousemove = window.ontouchmove = e => {
+		mouse.ex = e.x || e.touches[0].clientX;
+		mouse.ey = e.y || e.touches[0].clientY;
 		mouse.inTime = Date.now();
 		if (!mouse.in) {
 			mouse.in = true;
@@ -41,13 +42,13 @@
 	};
 
 	window.onmousedown = window.ontouchstart = e => {
-		mouse.down = true;
+		mouse.down = !e.touches;
 		mouse.in = true;
-		mouse.ex = e.x || e.touches[0].x;
-		mouse.ey = e.y || e.touches[0].x;
+		console.log(e);
+		mouse.ex = e.x || e.touches[0].clientX;
+		mouse.ey = e.y || e.touches[0].clientY;
 	}
-	document.querySelectorAll("header, .section-banner").forEach(
-		e => e.addEventListener("mousedown", e => e.button === 0 ? e.preventDefault() : 0));
+
 	window.onmouseup = window.ontouchend = e => {
 		mouse.down = false;
 		mouse.downTime = Date.now();
@@ -173,7 +174,7 @@
 		}
 
 		hoverDiv += ((mouse.down ? 3 : 8) - hoverDiv) / 4;
-		distMult = Math.min(window.innerWidth, window.innerHeight) / 5;
+		distMult = Math.min(window.innerWidth, window.innerHeight) / 4;
 
 		for (const particle of particles) {
 			particle.update();
