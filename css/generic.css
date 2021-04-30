@@ -20,8 +20,12 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 	scroll-behavior: smooth;
+}
+
+*:focus-visible {
+	outline: 2px solid var(--base);
+	outline-offset: 2px;
 }
 
 body {
@@ -340,15 +344,13 @@ button {
 		transform 0.1s, box-shadow 0.1s;
 }
 
-.button:hover,
-button:hover {
+:is(.button, button):hover {
 	background: var(--base);
 	color: #fff;
 	filter: drop-shadow(0 0 0.2em #fff4);
 }
 
-.button:active,
-button:active {
+:is(.button, button):active {
 	transform: translateY(0.2em);
 	box-shadow: 0 0.05em 0 var(--base);
 }

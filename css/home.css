@@ -34,9 +34,10 @@ header {
 #hero-canvas {
 	background:
 		url("../images/alex-knight-unsplash.webp"),
-		#000;
+		linear-gradient(to bottom left, steelblue, var(--bg));
 	background-size: cover;
 	background-position: center;
+	background-blend-mode: overlay;
 	position: fixed;
 	z-index: -1;
 	top: 0;
