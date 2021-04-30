@@ -1,7 +1,5 @@
-let debug = new Vue({
-	el: "#app",
-
-	data: {
+let debug = Vue.createApp({
+	data: () => ({
 		buttons: [{
 			value: Math.trunc(Math.random() * 100) + 1,
 			bg: "red",
@@ -9,7 +7,7 @@ let debug = new Vue({
 			y: 0
 		}],
 		score: 0
-	},
+	}),
 
 	methods: {
 		create(i, event) {
@@ -45,6 +43,6 @@ let debug = new Vue({
 			this.buttons = temp;
 		}
 	}
-});
+}).mount("#app");
 
 setInterval(debug.changePos, 1000);

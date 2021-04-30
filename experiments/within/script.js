@@ -1,6 +1,4 @@
-new Vue({
-	el: "#within",
-
+Vue.createApp({
 	created() {
 		fetch("data.json").then(res => res.json()).then(data => {
 			this.data = [];
@@ -17,7 +15,7 @@ new Vue({
 		});
 	},
 
-	data: {
+	data: () => ({
 		dir: [0],
 		data: [
 			{
@@ -33,7 +31,7 @@ new Vue({
 				inside: []
 			}
 		]
-	},
+	}),
 
 	computed: {
 		current() {
@@ -50,4 +48,4 @@ new Vue({
 			else this.dir.push(id);
 		}
 	}
-});
+}).mount("#within");

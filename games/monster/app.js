@@ -1,14 +1,14 @@
-new Vue({
-	el: "#app",
+const monster = Vue.createApp({
+	data: function() {
+			return {
+			inGame: false,
 
-	data: {
-		inGame: false,
+			playerHealth: 100,
+			cooldown: 0,
+			monsterHealth: 200,
 
-		playerHealth: 100,
-		cooldown: 0,
-		monsterHealth: 200,
-
-		log: []
+			log: []
+		}
 	},
 
 	methods: {
@@ -95,4 +95,4 @@ new Vue({
 			this.turns = [];
 		}
 	}
-});
+}).mount("#app");

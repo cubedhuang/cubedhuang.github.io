@@ -60,6 +60,12 @@
 	border-radius: 10px;
 }
 
+.controls .col {
+	display: flex;
+	justify-content: center;
+	gap: 1em;
+}
+
 .log {
 	margin-top: 30px;
 }

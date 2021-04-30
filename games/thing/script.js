@@ -4,9 +4,7 @@ numberformat.default.opts = {
 	sigfigs: 5
 }
 
-const thing = new Vue({
-	el: "#thing",
-
+const thing = Vue.createApp({
 	created() {
 		this.loadGame();
 		let machineMult = 1.2;
@@ -17,7 +15,7 @@ const thing = new Vue({
 		}, 0);
 	},
 	
-	data: {
+	data: () => ({
 		total: new Decimal("0"),
 		curTotal: new Decimal("0"),
 		parts: new Decimal("0"),
@@ -47,7 +45,7 @@ const thing = new Vue({
 		
 		version: "2.0.0",
 		allowWatch: false,
-	},
+	}),
 
 	watch: {
 		parts(val, prev) {
@@ -211,6 +209,6 @@ const thing = new Vue({
 			}
 		}
 	}
-});
+}).mount("#thing");
 
 window.onbeforeunload = thing.saveGame;

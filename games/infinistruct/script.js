@@ -4,13 +4,11 @@ numberformat.default.opts = {
 	Decimal: Decimal
 };
 
-const p42 = new Vue({
-	el: "#infinistruct",
-
-	data: {
+const p42 = Vue.createApp({
+	data: () => ({
 		stuff: new Decimal(1),
 		structs: [new Decimal(0)],
-	},
+	}),
 
 	computed: {
 		costs() {
@@ -60,7 +58,7 @@ const p42 = new Vue({
 			}));
 		}
 	}
-});
+}).mount("#infinistruct");
 
 let prev = 0;
 

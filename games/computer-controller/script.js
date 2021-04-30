@@ -32,14 +32,12 @@ class Struct {
 	}
 }
 
-new Vue({
-	el: "#game",
-
+Vue.createApp({
 	created() {
 
 	},
 
-	data: {
+	data: () => ({
 		Decimal: Decimal,
 		section: 0,
 
@@ -76,7 +74,7 @@ new Vue({
 			new Struct("Omniverse", 17, "All possible worlds with our dimensions."),
 			new Struct("Everything", 18, "All possible Omniverses."),
 		],
-	},
+	}),
 
 	computed: {
 		max() {
@@ -109,4 +107,4 @@ new Vue({
 			return s.split(" ").map(s => `${ s[0].toUpperCase() }${ s.slice(1) }`).join(" ");
 		}
 	}
-});
+}).mount("#game");
