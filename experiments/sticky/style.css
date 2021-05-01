@@ -1,0 +1,75 @@
+@import url("https://cubedhuang.com/css/modern-normalize.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+	--base: #d63031;
+	--lightbg: linear-gradient(to top left, #fff2, #fff2);
+	--darkbg: linear-gradient(to top left, #0002, #0002);
+	--bg: #15171a;
+	--title-font: "Lexend Deca", Helvetica, sans-serif;
+	--text-font: "Open Sans", Helvetica, sans-serif;
+	font-size: calc(16px + 2 * ((100vw - 320px) / 680));
+	scroll-behavior: smooth;
+}
+
+body {
+	background: var(--bg);
+	color: #eee;
+}
+
+#sidenav {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	gap: 0.5vh;
+	direction: rtl;
+	height: 100vh;
+	top: 0;
+	overflow: visible;
+	justify-content: center;
+}
+
+#sidenav a {
+	font-size: 2.5vh;
+	background: var(--base);
+	color: #eee;
+	text-decoration: none;
+	padding: 0.2vh 0.4em 0.2vh 0.6em;
+	font-family: var(--title-font);
+	text-align: right;
+	width: 100%;
+	transition: transform 0.2s;
+}
+
+#sidenav a:hover,
+#sidenav a:focus {
+	transform: translateX(10px);
+}
+
+#container {
+	width: min(calc(100% - 100px), 500px);
+	margin: 0 auto;
+}
+
+h1 {
+	font-family: var(--title-font);
+	letter-spacing: 1px;
+	filter: drop-shadow(0 0 10px #fff8);
+}
+
+h3 {
+	background: var(--base);
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	padding: 10px;
+	margin: 0;
+}
+
+p {
+	margin: 0.2em 0 0 0;
+}
+
+p:last-child {
+	padding-bottom: 0.8em;
+}

@@ -276,6 +276,10 @@ a.link:focus-visible {
 	font-size: 0.8rem;
 }
 
+.game-card + h3 {
+	margin-top: 1em;
+}
+
 /* ----------- ARROW ----------- */
 
 .arrow {

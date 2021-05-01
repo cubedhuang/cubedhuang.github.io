@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		
 		<meta name="author" content="cubedhuang">
-		<meta name="description" content="Random game ideas...">
-		<meta name="keywords" content="games, game ideas, game generator">
+		<meta name="description" content="Use recursive backtracking to create a randomly generated maze!">
+		<meta name="keywords" content="maze, maze generator, random, recursive, backtracking">
 		<meta name="theme-color" content="#d63031">
 		
-		<meta property="og:title" content="Game Idea Generator">
-		<meta property="description" content="Random game ideas...">
-		<meta property="og:description" content="Random game ideas...">
-		<meta property="og:url" content="https://cubedhuang.com/experiments/game-gen/">
+		<meta property="og:title" content="Maze Generator">
+		<meta property="description" content="Use recursive backtracking to create a randomly generated maze!">
+		<meta property="og:description" content="Use recursive backtracking to create a randomly generated maze!">
+		<meta property="og:url" content="https://cubedhuang.com/experiments/maze/">
 		<meta property="og:image" content="https://cubedhuang.com/images/logo.png">
 
 		<link rel="shortcut icon" href="/favicon.ico">
 
 		<link rel="stylesheet" href="/css/generic.css">
-		<link rel="canonical" href="https://cubedhuang.com/experiments/game-gen/">
+		<link rel="canonical" href="https://cubedhuang.com/experiments/maze/">
 		<link rel="author" href="https://cubedhuang.com/">
 		<link rel="publisher" href="https://cubedhuang.com/">
 
@@ -36,33 +36,22 @@
 		<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "52dcb98c1a10492682592c6cfe35319d"}'></script>
 		<!-- End Cloudflare Web Analytics -->
 
-		<title>Game Idea Generator</title>
+		<title>Maze Generator</title>
 	</head>
-	
-    <body>
+
+	<body>
 		<section class="top">
-			<h2>Game Idea Generator</h2>
-		</section>
-		<br>
-		<div class="row">
-			<div class="col">
+			<h2>maze generator</h2>
+			<div class="center">
 				<a href="/" class="button">Back</a>
 			</div>
-		</div>
-		<br>
+		</section>
+
 		<div class="row">
-			<div class="col">
-				<p>
-					Randomness Seed: <input type="number" id="seed">
-				</p>
-				<a id="random" class="button">Random Randomness Seed</a>
-			</div>
-
-			<div class="col">
-				Output: <span id="output"></span>
-			</div>
+			<div class="col center" id="game"></div>
 		</div>
 
-        <script src="script.js"></script>
-    </body>
+		<script src="./p5.min.js"></script>
+		<script src="./sketch.js"></script>
+	</body>
 </html>
