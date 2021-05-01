@@ -256,7 +256,7 @@ a.link:focus-visible {
 
 .game-card:is(:hover, :focus-visible) {
 	transform: translateY(-0.1em);
-	box-shadow: 0 0.1em 0.5em #0004;
+	box-shadow: 0 0.4em 0.5em -0.3em #0004;
 	filter: none;
 }
 
