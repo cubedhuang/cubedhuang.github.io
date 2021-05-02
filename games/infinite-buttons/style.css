@@ -32,7 +32,7 @@ button {
 
 button:focus { outline: none; }
 
-.bg-blue { --base: #4285f4; }
-.bg-green { --base: #34a853; }
-.bg-yellow { --base: #fbbc05; }
-.bg-red { --base: #ea4335; }
+.bg-blue { --clr-1: #4285f4; }
+.bg-green { --clr-1: #34a853; }
+.bg-yellow { --clr-1: #fbbc05; }
+.bg-red { --clr-1: #ea4335; }

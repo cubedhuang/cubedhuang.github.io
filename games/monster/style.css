@@ -4,7 +4,7 @@
 }
 
 .you {
-	--base: var(--you);
+	--clr-1: var(--you);
 }
 
 .healthbar {
@@ -23,7 +23,7 @@
 	display: grid;
 	place-items: center;
 	transition: width 0.2s;
-	font-family: var(--title-font);
+	font-family: var(--ff-h);
 	color: #fff;
 }
 
@@ -37,19 +37,19 @@
 
 #start-game,
 #heal {
-	--base: var(--you);
+	--clr-1: var(--you);
 }
 
 #attack {
-	--base: var(--monster);
+	--clr-1: var(--monster);
 }
 
 #special-attack {
-	--base: #f1c40f;
+	--clr-1: #f1c40f;
 }
 
 #give-up {
-	--base: #999;
+	--clr-1: #999;
 }
 
 .controls,

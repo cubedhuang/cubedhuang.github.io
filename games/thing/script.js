@@ -71,6 +71,13 @@ const thing = Vue.createApp({
 	},
 
 	methods: {
+		format(val) {
+			return numberformat.format(val);
+		},
+		formatShort(val) {
+			return numberformat.formatShort(val);
+		},
+
 		collect(amount, click) {
 			let boxMult = "1.1";
 			let add = Decimal.round(
@@ -180,10 +187,10 @@ const thing = Vue.createApp({
 
 		loadGame() {
 			var save = JSON.parse(localStorage.getItem("save"));
-			if (save === null || save.data.version !== this.version) return;
-			else if (save.data.version != this.version) {
+			if (save === null || save.data?.version !== this.version) return;
+			else if (save.data.version !== this.version) {
 				window.onbeforeunload = () => localStorage.removeItem("save");
-				location.reload(true);
+				location.reload();
 			}
 
 			let raw = ["version", "prestigeConfirm", "prestigeMode"];

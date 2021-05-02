@@ -2,12 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Open+Sans:wght@300;400;600&display=swap');
 
 :root {
-	--base: #d63031;
-	--lightbg: linear-gradient(to top left, #fff2, #fff2);
-	--darkbg: linear-gradient(to top left, #0002, #0002);
+	--clr-1: #d63031;
 	--bg: #15171a;
-	--title-font: "Lexend Deca", Helvetica, sans-serif;
-	--text-font: "Open Sans", Helvetica, sans-serif;
+	--ff-h: "Lexend Deca", Helvetica, sans-serif;
+	--ff-p: "Open Sans", Helvetica, sans-serif;
 	font-size: calc(16px + 2 * ((100vw - 320px) / 680));
 	scroll-behavior: smooth;
 }
@@ -31,11 +29,11 @@ body {
 
 #sidenav a {
 	font-size: 2.5vh;
-	background: var(--base);
+	background: var(--clr-1);
 	color: #eee;
 	text-decoration: none;
 	padding: 0.2vh 0.4em 0.2vh 0.6em;
-	font-family: var(--title-font);
+	font-family: var(--ff-h);
 	text-align: right;
 	width: 100%;
 	transition: transform 0.2s;
@@ -52,13 +50,13 @@ body {
 }
 
 h1 {
-	font-family: var(--title-font);
+	font-family: var(--ff-h);
 	letter-spacing: 1px;
 	filter: drop-shadow(0 0 10px #fff8);
 }
 
 h3 {
-	background: var(--base);
+	background: var(--clr-1);
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;

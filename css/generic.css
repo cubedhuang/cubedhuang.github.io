@@ -4,18 +4,21 @@
 /* VARIABLES */
 
 :root {
-	--base: #d63031;
-	--white: #fff;
-	--dark: #15171a;
+	--clr-1: #d63031;
+	--clr-2: #0984e3;
+	--clr-w: #f5f6fa;
+	--clr-d: #15171a;
+	--text-color: var(--clr-w);
 
-	--lightbg: linear-gradient(to top left, #fff2, #fff2);
-	--darkbg: linear-gradient(to top left, #0002, #0002);
-	--bg: var(--dark);
-	--text-color: var(--white);
+	--bg: var(--clr-d);
+	--bg-light: #fff2;
+	--bg-dark: #0002;
 
-	--title-font: "Lexend Deca", Helvetica, sans-serif;
-	--text-font: "Open Sans", Helvetica, sans-serif;
+	--ff-h: "Lexend Deca", Helvetica, sans-serif;
+	--ff-p: "Open Sans", Helvetica, sans-serif;
+	
 	font-size: calc(16px + 2 * ((100vw - 320px) / 680));
+	scroll-behavior: smooth;
 }
 
 /* ------------------------------- */
@@ -25,22 +28,21 @@
 * {
 	margin: 0;
 	padding: 0;
-	scroll-behavior: smooth;
 }
 
 *:focus-visible {
-	outline: 2px solid var(--base);
+	outline: 2px solid var(--clr-1);
 	outline-offset: 2px;
 }
 
 body {
 	background: var(--bg);
 	color: var(--text-color);
-	font-family: var(--text-font);
+	font-family: var(--ff-p);
 	text-rendering: optimizeLegibility;
 
 	overflow-x: hidden;
-	scrollbar-color: var(--lightbg) var(--darkbg);
+	scrollbar-color: var(--bg-light) var(--bg-dark);
 	scrollbar-width: thin;
 }
 
@@ -48,10 +50,10 @@ body {
 	width: 5px;
 }
 ::-webkit-scrollbar-track {
-	background: var(--bg);
+	background: var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb {
-	background: var(--lightbg);
+	background: var(--bg-light);
 }
 ::-webkit-scrollbar-thumb:hover {
 	background: #fff1;
@@ -78,15 +80,11 @@ body {
 section {
 	padding: 3em 2em;
 	background: var(--bg);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 }
 
 section.top {
 	padding: 2em 0;
-	background: var(--base);
+	background: var(--clr-1);
 	margin-bottom: 1em;
 }
 
@@ -111,13 +109,13 @@ section.top h2::after {
 hr {
 	border: 0;
 	height: 1px;
-	background: var(--lightbg) var(--bg);
+	background: var(--bg-light) var(--bg);
 	margin: 0.5em 0;
 }
 
 nav.menus {
 	width: 100%;
-	background: var(--base);
+	background: var(--clr-1);
 	color: var(--text-color);
 	display: flex;
 	cursor: pointer;
@@ -131,7 +129,7 @@ nav.menus span {
 }
 
 nav.menus span:is(:hover, :focus-visible, .selected) {
-	background: var(--base);
+	background: var(--clr-1);
 }
 
 /* ---------------------------------- */
@@ -141,7 +139,7 @@ nav.menus span:is(:hover, :focus-visible, .selected) {
 h1,
 h2,
 h3 {
-	font-family: var(--title-font);
+	font-family: var(--ff-h);
 	text-transform: lowercase;
 	letter-spacing: 1px;
 	filter: drop-shadow(0 0 0.2em #fff8);
@@ -169,7 +167,7 @@ h3 {
 :is(h2, h3)::after {
 	display: block;
 	height: 2px;
-	background: var(--base);
+	background: var(--clr-1);
 	content: "";
 	margin: 0.5em auto;
 }
@@ -205,7 +203,7 @@ table th, table td {
 table th {
 	padding: 0.5em 0.4em;
 	font-weight: 400;
-	background: var(--base);
+	background: var(--clr-1);
 }
 
 table td {
@@ -213,15 +211,15 @@ table td {
 }
 
 table tr:nth-child(odd) {
-	background: #f8f8f8;
+	background: var(--bg-light);
 }
 
 /* LINKS */
 
 a.link {
-	color: var(--base);
+	color: var(--clr-1);
 	text-decoration: none;
-	border-bottom: 1px solid var(--base);
+	border-bottom: 1px solid var(--clr-1);
 	transition: border 0.2s, color 0.2s, filter 0.2s;
 	cursor: pointer;
 }
@@ -240,7 +238,7 @@ a.link:focus-visible {
 	color: var(--text-color);
 	padding: 1em;
 	text-align: left;
-	background: var(--darkbg);
+	background: var(--bg-dark);
 	display: flex;
 	align-items: center;
 	margin-top: 0.5em;
@@ -265,7 +263,7 @@ a.link:focus-visible {
 }
 
 .game-card .title {
-	font-family: var(--title-font);
+	font-family: var(--ff-h);
 	display: block;
 	text-transform: lowercase;
 	filter: drop-shadow(0 0 0.2em #fff8);
@@ -288,7 +286,7 @@ a.link:focus-visible {
 
 :is(:hover, :focus-visible) > .arrow {
 	transform: translateX(0.2em);
-	filter: drop-shadow(-0.4em 0 0 var(--base)) drop-shadow(0 0 0.5em #fffb);
+	filter: drop-shadow(-0.4em 0 0 var(--clr-1)) drop-shadow(0 0 0.5em #fffb);
 }
 
 .arrow span {
@@ -327,15 +325,15 @@ input[type="text"],
 textarea,
 .button,
 button {
-	font-family: var(--title-font);
+	font-family: var(--ff-h);
 	display: inline-block;
 	padding: 0.5em 0.75em;
 	border-radius: 0.5em;
-	border: 2px solid var(--base);
+	border: 2px solid var(--clr-1);
 	text-decoration: none;
 
 	background-color: var(--bg);
-	color: var(--base);
+	color: var(--clr-1);
 }
 
 /* BUTTONS */
@@ -343,21 +341,21 @@ button {
 .button,
 button {
 	margin-bottom: 0.25em;
-	box-shadow: 0 0.25em 0 var(--base);
+	box-shadow: 0 0.25em 0 var(--clr-1);
 	cursor: pointer;
 	transition: background 0.2s, color 0.2s, filter 0.2s,
 		transform 0.1s, box-shadow 0.1s;
 }
 
 :is(.button, button):is(:hover, :focus-visible) {
-	background: var(--base);
+	background: var(--clr-1);
 	color: var(--text-color);
 	filter: drop-shadow(0 0 0.2em #fff4);
 }
 
 :is(.button, button):active {
 	transform: translateY(0.2em);
-	box-shadow: 0 0.05em 0 var(--base);
+	box-shadow: 0 0.05em 0 var(--clr-1);
 }
 
 /* INPUTS */
@@ -375,7 +373,7 @@ textarea {
 ):focus {
 	outline: none;
 	box-shadow: 0 0 0.5em #fffb;
-	background: var(--base);
+	background: var(--clr-1);
 	color: var(--text-color);
 }
 
@@ -414,7 +412,7 @@ ul.breadcrumbs li {
 
 ul.breadcrumbs li::after {
 	content: "⇾";
-	color: var(--base);
+	color: var(--clr-1);
 	display: inline-block;
 	cursor: default;
 	margin-left: 0.4em;

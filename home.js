@@ -1,11 +1,16 @@
 (() => {
-	const scroller = document.querySelector(".scroller");
-	if (scroller) scroller.addEventListener(
-		"click",
-		() => document.querySelector('.section-games').scrollIntoView({
-			behavior: "smooth"
-		}));
+	const $scroller = document.querySelector(".scroller");
+	const $games = document.querySelector('.section-games');
+	function scroll() {
+		$games.scrollIntoView({ behavior: "smooth" });
+	}
+	if ($scroller) {
+		$scroller.addEventListener("click", scroll);
+		$scroller.addEventListener("keypress", e => e.key === "Enter" ? scroll() : 0);
+	}
+})();
 
+(() => {
 	const canvas = document.getElementById("hero-canvas");
 	canvas.width = document.body.clientWidth;
 	canvas.height = window.innerHeight;
@@ -29,8 +34,8 @@
 	};
 
 	window.onmousemove = window.ontouchmove = e => {
-		mouse.ex = e.clientX || e.touches[0].clientX;
-		mouse.ey = e.clientY || e.touches[0].clientY;
+		mouse.ex = e.clientX ?? e.touches[0].clientX;
+		mouse.ey = e.clientY ?? e.touches[0].clientY;
 		mouse.inTime = Date.now();
 		if (!mouse.in) {
 			mouse.in = true;
@@ -44,8 +49,8 @@
 	window.onmousedown = window.ontouchstart = e => {
 		mouse.down = !e.touches;
 		mouse.in = true;
-		mouse.ex = e.clientX || e.touches[0].clientX;
-		mouse.ey = e.clientY || e.touches[0].clientY;
+		mouse.ex = e.clientX ?? e.touches[0].clientX;
+		mouse.ey = e.clientY ?? e.touches[0].clientY;
 	}
 
 	window.onmouseup = window.ontouchend = e => {

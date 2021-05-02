@@ -40,14 +40,14 @@ h3 {
 }
 
 .transcend {
-	--base: var(--purple);
+	--clr-1: var(--purple);
 	color: var(--purple);
 	font-weight: 900;
-	font-family: var(--title-font);
+	font-family: var(--ff-h);
 }
 
 .prestige {
-	--base: var(--purple);
+	--clr-1: var(--purple);
 	border-color: var(--purple);
 	color: var(--purple);
 }
@@ -61,7 +61,7 @@ h3 {
 }
 
 .alert {
-	background: var(--darkbg);
+	background: var(--bg-dark);
 	padding: 20px;
 	border-radius: 10px;
 }
