@@ -67,6 +67,16 @@ const thing = Vue.createApp({
 		},
 		degreeMult() {
 			return Decimal.add("1", this.degree.div("20"));
+		},
+
+		effectMM() {
+			return this.format(Decimal.pow(2, this.mm));
+		},
+		effectCC() {
+			return Decimal.sub("2", this.calcCC("2")).mul("100").toFixed(1)
+		},
+		effectUU() {
+			return this.format(this.uu.mul(5));
 		}
 	},
 

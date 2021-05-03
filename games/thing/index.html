@@ -177,7 +177,7 @@
 									Increases the effectiveness of clicks by x2. <br>
 									Level: {{ formatShort(mm) }} <br>
 									Cost: {{ formatShort(mmc) }} <br>
-									Current Effect: {{ format(Decimal.pow(2, this.mm)) }}x
+									Current Effect: {{ effectMM }}x
 								</p>
 								<button @click="buyMM" class="prestige">Upgrade</a>
 							</div>
@@ -188,7 +188,7 @@
 									Decreases the cost multiplier of everything by 5% (diminishing returns). <br>
 									Level: {{ formatShort(cc) }} <br>
 									Cost: {{ formatShort(ccc) }} <br>
-									Current Effect: {{ (+Decimal.sub("2", calcCC("2")).mul("100").toString()).toFixed(1) }}%
+									Current Effect: {{ effectCC }}%
 								</p>
 								<button @click="buyCC" class="prestige">Upgrade</a>
 							</div>
@@ -199,7 +199,7 @@
 									Increases the effectiveness of upgrades by 5%. <br>
 									Level: {{ formatShort(uu) }} <br>
 									Cost: {{ formatShort(uuc) }} <br>
-									Current Effect: {{ format(uu.mul(5)) }}%
+									Current Effect: {{ effectUU }}%
 								</p>
 								<button @click="buyUU" class="prestige">Upgrade</a>
 							</div>
