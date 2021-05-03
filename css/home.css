@@ -28,7 +28,7 @@ header, .section-banner {
 /* ------------------------------ */
 
 header {
-	min-height: 50vh;
+	min-height: 100vh;
 	padding: 3em 1em;
 	position: relative;
 }
