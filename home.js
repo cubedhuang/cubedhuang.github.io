@@ -8,6 +8,19 @@
 		$scroller.addEventListener("click", scroll);
 		$scroller.addEventListener("keypress", e => e.key === "Enter" ? scroll() : 0);
 	}
+
+	const $cards = document.getElementsByClassName("game-card");
+	const scrollObserver = new IntersectionObserver(
+		entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting)
+					entry.target.classList.remove("disappear");
+			});
+		}, { rootMargin: "0px 0px -5% 0px" });
+	for (const card of $cards) {
+		card.classList.add("disappear");
+		scrollObserver.observe(card);
+	}
 })();
 
 (() => {

@@ -198,6 +198,16 @@ header {
 	backdrop-filter: blur(0.25em);
 }
 
+.game-card {
+	transition: box-shadow 0.2s, transform 0.2s, opacity 1s;
+}
+
+.disappear {
+	transform: translateY(1.5em);
+	opacity: 0;
+	transition: none;
+}
+
 /* ---------------------------------------- */
 /* ----------- ABOUT / COMMENTS ----------- */
 /* ---------------------------------------- */
