@@ -10,13 +10,14 @@
 	}
 
 	const $cards = document.getElementsByClassName("game-card");
-	const scrollObserver = new IntersectionObserver(
-		entries => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting)
-					entry.target.classList.remove("disappear");
-			});
-		}, { rootMargin: "0px 0px -5% 0px" });
+	const scrollObserver = new IntersectionObserver(entries => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting)
+				entry.target.classList.remove("disappear");
+		});
+	}, {
+		threshold: 1
+	});
 	for (const card of $cards) {
 		card.classList.add("disappear");
 		scrollObserver.observe(card);
