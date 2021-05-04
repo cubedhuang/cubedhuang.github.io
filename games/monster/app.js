@@ -1,6 +1,6 @@
 const monster = Vue.createApp({
-	data: function() {
-			return {
+	data: function () {
+		return {
 			inGame: false,
 
 			playerHealth: 100,
@@ -8,7 +8,7 @@ const monster = Vue.createApp({
 			monsterHealth: 200,
 
 			log: []
-		}
+		};
 	},
 
 	methods: {
@@ -47,7 +47,7 @@ const monster = Vue.createApp({
 		},
 
 		monster() {
-			if(this.checkState()) return;
+			if (this.checkState()) return;
 			this.cooldown = Math.max(this.cooldown - 1, 0);
 			var damage;
 			if (Math.random() < 0.2) damage = this.rand(15, 20);
@@ -55,7 +55,9 @@ const monster = Vue.createApp({
 			this.playerHealth -= damage;
 			this.log.unshift({
 				player: false,
-				text: `${ damage >= 15 ? "Critical Hit!" : "" } The monster hit you for ${ damage }.`
+				text: `${
+					damage >= 15 ? "Critical Hit!" : ""
+				} The monster hit you for ${damage}.`
 			});
 			this.checkState();
 		},
@@ -65,7 +67,7 @@ const monster = Vue.createApp({
 			this.monsterHealth -= damage;
 			this.log.unshift({
 				player: true,
-				text: `You hit the monster for ${ damage }.`
+				text: `You hit the monster for ${damage}.`
 			});
 			this.monster();
 		},
@@ -77,7 +79,7 @@ const monster = Vue.createApp({
 			this.monsterHealth -= damage;
 			this.log.unshift({
 				player: true,
-				text: `You used a special attack on the monster for ${ damage }.`
+				text: `You used a special attack on the monster for ${damage}.`
 			});
 
 			this.monster();

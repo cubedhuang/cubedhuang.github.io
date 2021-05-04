@@ -26,7 +26,8 @@ section.list {
 	width: 70%;
 }
 
-section.info, section.info * {
+section.info,
+section.info * {
 	text-align: right;
 	font-size: 24px;
 	font-weight: normal;
@@ -55,7 +56,8 @@ button {
 	background: white;
 	margin-top: 5px;
 }
-button:hover, button:focus {
+button:hover,
+button:focus {
 	background: #95b1e8;
 	border-color: #638edd;
 	outline: none;

@@ -22,7 +22,7 @@
 			vy: 0,
 			score: 0
 		}
-	]
+	];
 
 	const B = {
 		x: 400,
@@ -61,7 +61,7 @@
 			survivalTime = currentTime;
 			B.vx = Math.abs(B.vx);
 		}
-		
+
 		menu = false;
 	});
 
@@ -69,14 +69,15 @@
 
 	// logic ----------------------------------------------------------------
 
-	function rect(x, y, width, height, color) { // XY = TopLeft corner
+	function rect(x, y, width, height, color) {
+		// XY = TopLeft corner
 		ctx.fillStyle = color;
 		ctx.fillRect(x, y, width, height);
 	}
 
 	function computerMovement() {
 		let center = P[1].y + PD.H / 2;
-		
+
 		const movement = survival ? 8 : 1;
 
 		if (center < B.y - 20) {
@@ -96,8 +97,17 @@
 
 		// Hit paddle
 		let hitter =
-			B.x >= width - 50 && B.x <= width - 20 && B.y > P[1].y - 10 && B.y < P[1].y + PD.H + 10 ? 1 :
-			B.x <= 50 && B.x >= 20 && B.y > P[0].y - 10 && B.y < P[0].y + PD.H + 10 ? 0 : -1;
+			B.x >= width - 50 &&
+			B.x <= width - 20 &&
+			B.y > P[1].y - 10 &&
+			B.y < P[1].y + PD.H + 10
+				? 1
+				: B.x <= 50 &&
+				  B.x >= 20 &&
+				  B.y > P[0].y - 10 &&
+				  B.y < P[0].y + PD.H + 10
+				? 0
+				: -1;
 
 		if (hitter + 1) {
 			B.vx = -B.vx;
@@ -121,13 +131,15 @@
 			survivalTime = currentTime;
 		}
 
-		if (B.x - 30 >= width) { // Right side
-			if (!(B.y > P[1].y && B.y < P[1].y+PD.H)) {
+		if (B.x - 30 >= width) {
+			// Right side
+			if (!(B.y > P[1].y && B.y < P[1].y + PD.H)) {
 				P[0].score++;
 				resetBall();
 			}
-		} else if (B.x + 30 <= 0) { // Left side
-			if (!(B.y > P[0].y && B.y < P[0].y+PD.H)) {
+		} else if (B.x + 30 <= 0) {
+			// Left side
+			if (!(B.y > P[0].y && B.y < P[0].y + PD.H)) {
 				P[1].score++;
 				resetBall();
 			}
@@ -170,9 +182,15 @@
 			const x = width / 2;
 			const y = height / 2 - 40;
 
-			const winText = survival ? `You survived for ${ Math.floor((survivalTime - survivalStart) / 1000) } seconds!` :
-				P[0].score >= 10 ? "You Won!" :
-				P[1].score >= 10 ? "The Computer Won..." : "";
+			const winText = survival
+				? `You survived for ${Math.floor(
+						(survivalTime - survivalStart) / 1000
+				  )} seconds!`
+				: P[0].score >= 10
+				? "You Won!"
+				: P[1].score >= 10
+				? "The Computer Won..."
+				: "";
 
 			ctx.fillText(winText, x, y);
 

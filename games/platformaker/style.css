@@ -45,7 +45,7 @@ select {
 
 button {
 	background: none;
-	padding: 8px 16px;;
+	padding: 8px 16px;
 	border: 1px solid #0984e3;
 	color: #0984e3;
 	border-radius: 1000px;
@@ -58,7 +58,7 @@ button:hover {
 	color: white;
 }
 
-input[type=text] {
+input[type="text"] {
 	padding: 6px 12px;
 	border: 1px solid #bbb;
 	border-radius: 1000px;
@@ -66,7 +66,8 @@ input[type=text] {
 	width: 150px;
 }
 
-input:focus, button:focus {
+input:focus,
+button:focus {
 	outline: none;
 	border-color: #0984e3;
 }

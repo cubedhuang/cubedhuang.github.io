@@ -8,8 +8,8 @@ const PH = 40; // Player Height
 const PX = 20; // Player X
 const PW = 10; // Player Width
 const XV = 5; // X velocity
-let py = (CH/3*2)-PH; // Player Y
-let yv = 0 // Y velocity
+let py = (CH / 3) * 2 - PH; // Player Y
+let yv = 0; // Y velocity
 
 // Keys
 let up = false;
@@ -31,25 +31,21 @@ let prevTime = 0;
 let delta = 0;
 
 document.addEventListener("keydown", e => {
-	if (e.key === "ArrowUp" || e.key === "w")
-		up = true;
-	else if (e.key === "ArrowDown" || e.key === "s")
-		down = true;
+	if (e.key === "ArrowUp" || e.key === "w") up = true;
+	else if (e.key === "ArrowDown" || e.key === "s") down = true;
 });
 
 document.addEventListener("keyup", e => {
-	if (e.key === "ArrowUp" || e.key === "w")
-		up = false;
-	else if (e.key === "ArrowDown" || e.key === "s")
-		down = false;
+	if (e.key === "ArrowUp" || e.key === "w") up = false;
+	else if (e.key === "ArrowDown" || e.key === "s") down = false;
 });
 
 function onGround() {
-	if (py < CH / 3 * 2 - PH) {
+	if (py < (CH / 3) * 2 - PH) {
 		return false;
-	};
+	}
 	vy = 0;
-	py = CH / 3 * 2 - PH;
+	py = (CH / 3) * 2 - PH;
 	return true;
 }
 
@@ -65,7 +61,7 @@ function draw(time) {
 	if (Math.random() > 0.98) {
 		clouds.push({
 			x: CW,
-			y: Math.floor(Math.random() * (CH/3)) - CH/20,
+			y: Math.floor(Math.random() * (CH / 3)) - CH / 20,
 			w: Math.floor(Math.random() * 50) + 50,
 			h: Math.floor(Math.random() * 10) + 10,
 			m: Math.floor(Math.random() * 3) + 1
@@ -86,9 +82,9 @@ function draw(time) {
 		const h = Math.floor(Math.random() * 30) + 40;
 		terrain.push({
 			x: CW,
-			y: CH / 3 * 2 - h + 10,
+			y: (CH / 3) * 2 - h + 10,
 			w: Math.floor(Math.random() * 50) + 50,
-			h: h,
+			h: h
 		});
 	}
 
@@ -101,22 +97,26 @@ function draw(time) {
 		}
 	}
 
-	drawRect(0, CH / 3 * 2, CW, CH / 3, "lime"); // Ground Grass
-	drawRect(0, CH / 2.5 * 1.8, CW, CH / 2.5, "#643900"); // Ground Dirt
-	
+	drawRect(0, (CH / 3) * 2, CW, CH / 3, "lime"); // Ground Grass
+	drawRect(0, (CH / 2.5) * 1.8, CW, CH / 2.5, "#643900"); // Ground Dirt
+
 	// Random block spawning
 	if (Math.random() > 0.98) {
 		blocks.push({
 			x: CW,
 			h: Math.floor(Math.random() * 30) + 20
-		})
+		});
 	}
 
 	// Collision detection
 	for (let i = blocks.length - 1; i >= 0; i--) {
 		const block = blocks[i];
-		if (block.x <= PX + PW && block.x + BW >= PX &&
-			!(CH / 3 * 2 - block.h >= py+PH) && !hurtDelay) {
+		if (
+			block.x <= PX + PW &&
+			block.x + BW >= PX &&
+			!((CH / 3) * 2 - block.h >= py + PH) &&
+			!hurtDelay
+		) {
 			score -= 50;
 			hurtDelay = 30;
 			blocks.splice(i, 1);
@@ -125,7 +125,7 @@ function draw(time) {
 
 	for (let i = blocks.length - 1; i >= 0; i--) {
 		const block = blocks[i];
-		roundRect(block.x, CH / 3 * 2 - block.h, BW, block.h + 5, "red", 5);
+		roundRect(block.x, (CH / 3) * 2 - block.h, BW, block.h + 5, "red", 5);
 		block.x -= XV;
 		if (block.x < -BW) {
 			blocks.splice(i, 1);
@@ -136,7 +136,7 @@ function draw(time) {
 	if (onGround()) {
 		if (up) yv = -10;
 		else {
-			py = CH / 3 * 2 - PH
+			py = (CH / 3) * 2 - PH;
 			yv = 0;
 		}
 	} else {
@@ -154,12 +154,12 @@ function draw(time) {
 	}
 
 	// Score Incrementation
-	score += 1 / 100 * delta;
+	score += (1 / 100) * delta;
 	if (score > 0) ctx.fillStyle = "black";
 	else ctx.fillStyle = "red";
 
 	ctx.font = "30px bold Courier, monospace";
-    ctx.fillText("Score: " + Math.floor(score), 20, 40);
+	ctx.fillText("Score: " + Math.floor(score), 20, 40);
 }
 
 function drawRect(x, y, w, h, c) {

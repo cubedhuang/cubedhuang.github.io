@@ -2,14 +2,16 @@
 /* ----------- HEADER AND BANNER ----------- */
 /* ----------------------------------------- */
 
-header, .section-banner {
+header,
+.section-banner {
 	background: transparent;
 	display: flex;
 	place-items: center;
 	user-select: none;
 }
 
-.hero-box, .banner-box {
+.hero-box,
+.banner-box {
 	width: min(100%, 1140px);
 	margin: 0 auto;
 	display: flex;
@@ -34,8 +36,7 @@ header {
 }
 
 #hero-canvas {
-	background:
-		url("../images/alex-knight-unsplash.webp"),
+	background: url("../images/alex-knight-unsplash.webp"),
 		linear-gradient(225deg, #0984e380, #00000080);
 	background-size: cover;
 	background-position: center;
@@ -76,7 +77,8 @@ header {
 	}
 
 	21.5% {
-		filter: drop-shadow(5px -5px 0 #f004) drop-shadow(0 0 3px #fff4) brightness(80%);
+		filter: drop-shadow(5px -5px 0 #f004) drop-shadow(0 0 3px #fff4)
+			brightness(80%);
 		transform: translate(-2px, 2px);
 	}
 

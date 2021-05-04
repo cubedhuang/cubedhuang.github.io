@@ -2,7 +2,7 @@
  * This project uses the recursive backtracking algorithm to generate mazes
  * It uses a stack to avoid recursive callback errors
  * https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_backtracker
- * 
+ *
  * 1. Choose the initial cell and mark it as visited
  * 2. While there are unvisited cells
  *    1. If the current cell has any neighbours which have not been visited
@@ -13,7 +13,7 @@
  *    2. Else, if the stack is not empty
  *       1. Pop a cell from the stack
  *       2. Make it the current cell
-*/
+ */
 
 let cols, rows;
 let w = 20;
@@ -43,27 +43,27 @@ function setup() {
 
 function draw() {
 	background(255);
-	
+
 	frameRate(200);
-	
+
 	for (let i = 0; i < grid.length; i++) {
 		grid[i].show();
 	}
 	current.highlight();
 
 	// STEP 2
-	
+
 	// STEP 2.1.1
 	let next = current.getNeighbor();
-	
+
 	// STEP 2.1
 	if (next) {
 		// STEP 2.1.2
 		stack.push(current);
-		
+
 		// STEP 2.1.3
 		removeWalls(current, next);
-		
+
 		// STEP 2.1.4
 		current = next;
 		current.visited = true;
@@ -117,14 +117,14 @@ class Cell {
 		this.i = i;
 		this.j = j;
 		//            top  right bottom left
-		this.walls = [true, true, true, true]
+		this.walls = [true, true, true, true];
 		this.visited = false;
 	}
 
 	show() {
 		let x = this.i * w;
 		let y = this.j * w;
-				
+
 		noStroke();
 
 		let render = false;
@@ -145,14 +145,14 @@ class Cell {
 			fill(0, 255, 0);
 			render = true;
 		}
-		
+
 		if (render) rect(x, y, w, w);
 
 		stroke(0);
-		if (this.walls[0]) line(x    , y    , x + w, y);
-		if (this.walls[1]) line(x + w, y    , x + w, y + w);
-		if (this.walls[2]) line(x + w, y + w, x    , y + w);
-		if (this.walls[3]) line(x    , y + w, x    , y);
+		if (this.walls[0]) line(x, y, x + w, y);
+		if (this.walls[1]) line(x + w, y, x + w, y + w);
+		if (this.walls[2]) line(x + w, y + w, x, y + w);
+		if (this.walls[3]) line(x, y + w, x, y);
 	}
 
 	highlight() {
@@ -171,7 +171,7 @@ class Cell {
 			grid[index(i, j - 1)], // top
 			grid[index(i + 1, j)], // right
 			grid[index(i, j + 1)], // bottom
-			grid[index(i - 1, j)], // left
+			grid[index(i - 1, j)] // left
 		];
 		for (let cell of possible) {
 			if (cell && !cell.visited) {

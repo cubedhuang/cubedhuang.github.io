@@ -56,7 +56,7 @@ const levels = {
 		"00000000000000000000000000000000",
 		"P0000000000000000000000000000000",
 		"1111111111111111111111111111111G"
-	],
+	]
 };
 
 let currentLevel = levels.small;
@@ -110,7 +110,7 @@ function getNeighbors(row, col) {
 		left: "0",
 		right: "0",
 		top: "0",
-		bottom: "0",
+		bottom: "0"
 	};
 
 	var rows = currentLevel.length;
@@ -134,52 +134,93 @@ function getNeighbors(row, col) {
 
 const blockRenderer = new Map([
 	// Placeholders
-	["0", () => {}], // eslint-disable-line
-	["P", (row, col) => {
-		ctx.fillStyle = "black";
-		const playerSize = blockSize * 0.8;
-		const offset = blockSize * 0.1;
-		roundRect(col * blockSize + offset, row * blockSize + offset, playerSize, playerSize, blockSize / 20);
-	}],
-	["1", (row, col, baseColor = "1", topColor = "1") => {
-		topColor = topColor === "1" ? "lime" : "red";
-		baseColor = baseColor === "3" ? "blueviolet" :
-			baseColor === "G" ? "yellow" : "#643a02";
-
-		const neighbors = getNeighbors(row, col);
-		const top = neighbors.top === "0";
-		const left = neighbors.left === "0";
-		const right = neighbors.right === "0";
-		const bottom = neighbors.bottom === "0";
-		const round = blockSize / 20;
-
-		ctx.fillStyle = baseColor;
-		roundRect(col * blockSize, row * blockSize, blockSize, blockSize, {
-			tl: top && left ? round * 1.25 : 0,
-			tr: top && right ? round * 1.25 : 0,
-			bl: left && bottom ? round : 0,
-			br: right && bottom ? round : 0
-		}, true, false);
-
-		if (baseColor === "#643a02" && top) {
-			ctx.fillStyle = topColor;
-			roundRect(col * blockSize, row * blockSize, blockSize, blockSize / 5, {
-				tl: left ? round : 0,
-				tr: right ? round : 0,
-				bl: 0,
-				br: 0
-			}, true, false);
+	["0", () => {}],
+	[
+		"P",
+		(row, col) => {
+			ctx.fillStyle = "black";
+			const playerSize = blockSize * 0.8;
+			const offset = blockSize * 0.1;
+			roundRect(
+				col * blockSize + offset,
+				row * blockSize + offset,
+				playerSize,
+				playerSize,
+				blockSize / 20
+			);
 		}
-	}],
-	["2", (row, col) => {
-		blockRenderer.get("1")(row, col, null, "2");
-	}],
-	["3", (row, col) => {
-		blockRenderer.get("1")(row, col, "3");
-	}],
-	["G", (row, col) => {
-		blockRenderer.get("1")(row, col, "G");
-	}]
+	],
+	[
+		"1",
+		(row, col, baseColor = "1", topColor = "1") => {
+			topColor = topColor === "1" ? "lime" : "red";
+			baseColor =
+				baseColor === "3"
+					? "blueviolet"
+					: baseColor === "G"
+					? "yellow"
+					: "#643a02";
+
+			const neighbors = getNeighbors(row, col);
+			const top = neighbors.top === "0";
+			const left = neighbors.left === "0";
+			const right = neighbors.right === "0";
+			const bottom = neighbors.bottom === "0";
+			const round = blockSize / 20;
+
+			ctx.fillStyle = baseColor;
+			roundRect(
+				col * blockSize,
+				row * blockSize,
+				blockSize,
+				blockSize,
+				{
+					tl: top && left ? round * 1.25 : 0,
+					tr: top && right ? round * 1.25 : 0,
+					bl: left && bottom ? round : 0,
+					br: right && bottom ? round : 0
+				},
+				true,
+				false
+			);
+
+			if (baseColor === "#643a02" && top) {
+				ctx.fillStyle = topColor;
+				roundRect(
+					col * blockSize,
+					row * blockSize,
+					blockSize,
+					blockSize / 5,
+					{
+						tl: left ? round : 0,
+						tr: right ? round : 0,
+						bl: 0,
+						br: 0
+					},
+					true,
+					false
+				);
+			}
+		}
+	],
+	[
+		"2",
+		(row, col) => {
+			blockRenderer.get("1")(row, col, null, "2");
+		}
+	],
+	[
+		"3",
+		(row, col) => {
+			blockRenderer.get("1")(row, col, "3");
+		}
+	],
+	[
+		"G",
+		(row, col) => {
+			blockRenderer.get("1")(row, col, "G");
+		}
+	]
 ]);
 
 function renderLevel() {
@@ -197,7 +238,7 @@ function renderLevel() {
 
 function update() {
 	requestAnimationFrame(update);
-	
+
 	// Sky
 	ctx.fillStyle = "cyan";
 	ctx.fillRect(0, 0, CW, CH);
@@ -237,19 +278,25 @@ function update() {
 
 canvas.addEventListener("mousemove", e => {
 	const rect = canvas.getBoundingClientRect();
-	mouseX = e.clientX - rect.left,
-	mouseY = e.clientY - rect.top
+	(mouseX = e.clientX - rect.left), (mouseY = e.clientY - rect.top);
 });
-canvas.addEventListener("mouseleave", () => mouseX = -1, mouseY = -1, drawing = false);
+canvas.addEventListener(
+	"mouseleave",
+	() => (mouseX = -1),
+	(mouseY = -1),
+	(drawing = false)
+);
 
-canvas.addEventListener("mousedown", () => drawing = true);
-canvas.addEventListener("mouseup", () => drawing = false);
+canvas.addEventListener("mousedown", () => (drawing = true));
+canvas.addEventListener("mouseup", () => (drawing = false));
 
 document.getElementById("size").addEventListener("input", e => {
 	currentLevel = levels[e.target.value];
 	blockSize = CH / currentLevel.length;
 });
-document.getElementById("current").addEventListener("input", e => brush = e.target.value);
+document
+	.getElementById("current")
+	.addEventListener("input", e => (brush = e.target.value));
 
 document.getElementById("create").addEventListener("click", () => {
 	const codeEl = document.getElementById("code");
@@ -257,7 +304,7 @@ document.getElementById("create").addEventListener("click", () => {
 
 	codeEl.select();
 	document.execCommand("copy");
-	alert("Code copied! Now, go to Platformer Game to test your level!")
+	alert("Code copied! Now, go to Platformer Game to test your level!");
 });
 
 requestAnimationFrame(update);

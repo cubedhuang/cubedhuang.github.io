@@ -53,7 +53,7 @@ function next() {
 			matingPool.push(population[i]);
 		}
 	}
-	
+
 	if (matingPool.length == 0) {
 		startPop();
 	}
@@ -67,20 +67,32 @@ function next() {
 			let partnerB = matingPool[b];
 			// Crossover
 			let child;
-			if (partnerA.fitness === highest.fitness && partnerB.fitness === highest.fitness) child = partnerA.crossover(partnerB);
-			if (partnerA.fitness === highest.fitness) child = partnerA.crossover(partnerA);
-			if (partnerB.fitness === highest.fitness) child = partnerB.crossover(partnerB);
+			if (
+				partnerA.fitness === highest.fitness &&
+				partnerB.fitness === highest.fitness
+			)
+				child = partnerA.crossover(partnerB);
+			if (partnerA.fitness === highest.fitness)
+				child = partnerA.crossover(partnerA);
+			if (partnerB.fitness === highest.fitness)
+				child = partnerB.crossover(partnerB);
 			else child = partnerA.crossover(partnerB);
 			// Mutation
-			if (!(partnerA.fitness === highest.fitness || partnerB.fitness === highest.fitness)) child.mutate(mutationRate);
-			else if(Math.random() < mutationRate) child.mutate(mutationRate);
+			if (
+				!(
+					partnerA.fitness === highest.fitness ||
+					partnerB.fitness === highest.fitness
+				)
+			)
+				child.mutate(mutationRate);
+			else if (Math.random() < mutationRate) child.mutate(mutationRate);
 
 			// Overwriting population members with new generation
 			population[i] = child;
 		}
 	}
 	generation++;
-	
+
 	requestAnimationFrame(next);
 }
 
@@ -92,7 +104,7 @@ const highFitDisplay = document.getElementById("highest-fit");
 
 function display() {
 	highestDisplay.textContent = highest.getPhrase();
-	highFitDisplay.textContent = (highest.fitness).toFixed(3);
+	highFitDisplay.textContent = highest.fitness.toFixed(3);
 	averageDisplay.textContent = (fitSum / totalPopulation).toFixed(3);
 
 	genDisplay.textContent = generation;
@@ -114,7 +126,7 @@ function begin() {
 		alert(err);
 		throw err;
 	}
-	mutationRate = (1/Math.E) / (target.length);
+	mutationRate = 1 / Math.E / target.length;
 	document.getElementById("mutation").innerHTML = mutationRate.toFixed(8);
 	startPop();
 	highest = new DNA(target);

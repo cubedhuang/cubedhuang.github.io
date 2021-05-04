@@ -1,20 +1,21 @@
-var mems = [
-	["temp"],
-	"1234567890".split(""),
-	"!@$%&".split("")
-];
+var mems = [["temp"], "1234567890".split(""), "!@$%&".split("")];
 
-fetch("./words.txt").then(res => res.text()).then(text => {
-	mems[0] = text.split("\n");
-	setPasswords();
-});
+fetch("./words.txt")
+	.then(res => res.text())
+	.then(text => {
+		mems[0] = text.split("\n");
+		setPasswords();
+	});
 
-var easyChars = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM".split("");
-var strongChars ="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()-=[];\'\"\\<>/".
-	split("");
-var insaneChars =
-"`1234567890-=qwertyuiop[]\\asdfghjkl;\'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?".
-	split("");
+var easyChars = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM".split(
+	""
+);
+var strongChars = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()-=[];'\"\\<>/".split(
+	""
+);
+var insaneChars = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?".split(
+	""
+);
 
 strongChars[strongChars.indexOf("<")] = "&lt;";
 strongChars[strongChars.indexOf("&")] = "&amp;";

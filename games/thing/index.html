@@ -4,12 +4,12 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		
+
 		<meta name="author" content="cubedhuang">
 		<meta name="description" content="Prestigious incremental game!">
 		<meta name="keywords" content="game, prestige, incremental, infinite, transcend">
 		<meta name="theme-color" content="#d63031">
-		
+
 		<meta property="og:title" content="Thing">
 		<meta property="description" content="Prestigious incremental game!">
 		<meta property="og:description" content="Prestigious incremental game!">
@@ -30,13 +30,14 @@
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107754281-2"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
+			function gtag() { dataLayer.push(arguments); }
 			gtag('js', new Date());
 
 			gtag('config', 'UA-107754281-2');
 		</script>
 		<!-- Cloudflare Web Analytics -->
-		<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "52dcb98c1a10492682592c6cfe35319d"}'></script>
+		<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+			data-cf-beacon='{"token": "52dcb98c1a10492682592c6cfe35319d"}'></script>
 		<!-- End Cloudflare Web Analytics -->
 
 		<title>Thing</title>
@@ -52,10 +53,7 @@
 				</div>
 			</section>
 
-			<transition
-				name="prestige"
-				mode="out-in"
-				enter-active-class="animated fadeInUp"
+			<transition name="prestige" mode="out-in" enter-active-class="animated fadeInUp"
 				leave-active-class="animated flipOutY">
 				<div key="main" v-if="!prestigeMode" class="container">
 					<div class="row">
@@ -63,7 +61,8 @@
 							<h3>Parts of Things: {{ format(parts) }}</h3>
 
 							<p>Gain a part!</p>
-							<img src="/images/logo.png" @click.prevent="collect(1, true)" class="clicker" tabindex="0">
+							<img src="/images/logo.png" @click.prevent="collect(1, true)"
+								class="clicker" tabindex="0">
 
 							<br>
 							<p>Boxes will improve your gathering speed!</p>
@@ -73,7 +72,7 @@
 								Cost: {{ formatShort(bc) }} Parts
 							</button>
 							<button @click.prevent="buildBox(true)" class="max">Buy Max</button>
-							
+
 							<br><br>
 
 							<button @click.prevent="upgradeBox(false)">
@@ -87,7 +86,8 @@
 							<p>Machines will gather for you!</p>
 
 							<button @click.prevent="buildMachine(false)">
-								Build a Machine: {{ formatShort(machines) }} Machines |
+								Build a Machine: {{ formatShort(machines) }}
+								Machines |
 								Cost: {{ formatShort(mc) }} Parts
 							</button>
 							<button @click.prevent="buildMachine(true)" class="max">Buy Max</button>
@@ -98,21 +98,33 @@
 								Upgrade Machines: Level {{ formatShort(ml) }} |
 								Cost: {{ formatShort(mlc) }} Parts
 							</button>
-							<button @click.prevent="upgradeMachine(true)" class="max">Buy Max</button>
+							<button @click.prevent="upgradeMachine(true)" class="max">Buy
+								Max</button>
 						</div>
 
 						<div class="col">
 							<h3>Prestige</h3>
 							<p>
-								Prestige will sacrifice everything you have made in the material world, but it will increase your
-								universe's <span class="transcend">Degree</span>. For every <span class="transcend">Degree</span>,
-								you gain a 5% bonus. You will also gain 1 <span class="transcend">Transcendence Point</span> per
-								<span class="transcend">Degree</span>, which can be used for certain upgrades to increase production.
+								Prestige will sacrifice everything you have made
+								in the material world, but it will
+								increase
+								your
+								universe's <span class="transcend">Degree</span>. For every
+								<span class="transcend">Degree</span>,
+								you gain a 5% bonus. You will also gain 1 <span
+									class="transcend">Transcendence
+									Point</span>
+								per
+								<span class="transcend">Degree</span>, which can
+								be used for certain upgrades to
+								increase
+								production.
 							</p>
 							<p v-if="degree.gt(0)">
 								Your universe's <span class="transcend">Degree</span> is
 								{{ formatShort(degree) }} <br>
-								You have {{ formatShort(tp) }} <span class="transcend">Transcendence Points</span>
+								You have {{ formatShort(tp) }} <span class="transcend">Transcendence
+									Points</span>
 							</p>
 							<p>
 								If you Prestige now, you will gain
@@ -121,34 +133,25 @@
 								</span>.
 							</p>
 
-							<transition
-								name="prestige-confirm"
-								mode="out-in"
+							<transition name="prestige-confirm" mode="out-in"
 								enter-active-class="animated fadeInRight"
 								leave-active-class="animated fadeOutRight">
-								<button
-									@click.prevent="prestigeConfirm = true"
-									v-if="!prestigeConfirm"
-									class="prestige"
-								>Prestige!</button>
+								<button @click.prevent="prestigeConfirm = true"
+									v-if="!prestigeConfirm" class="prestige">Prestige!</button>
 
 								<div class="alert" v-else>
 									Are you sure you want to continue? <br><br>
-									<button
-										class="prestige"
-										@click.prevent="prestige"
-									>Yes</button>
-									<button
-										@click.prevent="prestigeConfirm = false"
-									>Later</button>
+									<button class="prestige" @click.prevent="prestige">Yes</button>
+									<button @click.prevent="prestigeConfirm = false">Later</button>
 								</div>
 							</transition>
-							
+
 							<h3>Stats</h3>
 
 							<p>Total Parts Ever Gained: {{ format(total) }}</p>
 							<p>Total Parts This Era: {{ format(curTotal) }}</p>
-							<button @click.prevent="reset" class="btn btn-danger btn-sm">Wipe Save</button>
+							<button @click.prevent="reset" class="btn btn-danger btn-sm">Wipe
+								Save</button>
 						</div>
 					</div>
 				</div>
@@ -161,10 +164,12 @@
 
 					<div class="row">
 						<div class="col">
-							<h3 class="transcend">Transcendence Points: {{ format(tp) }}</h3>
+							<h3 class="transcend">Transcendence Points: {{
+								format(tp) }}</h3>
 						</div>
 						<div class="col">
-							<h3 class="transcend">Degree: {{ format(degree) }}</h3>
+							<h3 class="transcend">Degree: {{ format(degree) }}
+							</h3>
 						</div>
 					</div>
 
@@ -174,7 +179,8 @@
 								<img src="./icons/cursor.png" alt="cursor icon">
 								<span class="title">Mortal Mediation</span>
 								<p class="description">
-									Increases the effectiveness of clicks by x2. <br>
+									Increases the effectiveness of clicks by x2.
+									<br>
 									Level: {{ formatShort(mm) }} <br>
 									Cost: {{ formatShort(mmc) }} <br>
 									Current Effect: {{ effectMM }}x
@@ -185,7 +191,8 @@
 								<img src="./icons/stack.png" alt="stack icon">
 								<span class="title">Calculated Creation</span>
 								<p class="description">
-									Decreases the cost multiplier of everything by 5% (diminishing returns). <br>
+									Decreases the cost multiplier of everything
+									by 5% (diminishing returns). <br>
 									Level: {{ formatShort(cc) }} <br>
 									Cost: {{ formatShort(ccc) }} <br>
 									Current Effect: {{ effectCC }}%
@@ -196,7 +203,8 @@
 								<img src="./icons/tools.png" alt="tools icon">
 								<span class="title">Ultimate Upgrades</span>
 								<p class="description">
-									Increases the effectiveness of upgrades by 5%. <br>
+									Increases the effectiveness of upgrades by
+									5%. <br>
 									Level: {{ formatShort(uu) }} <br>
 									Cost: {{ formatShort(uuc) }} <br>
 									Current Effect: {{ effectUU }}%

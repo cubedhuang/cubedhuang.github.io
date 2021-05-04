@@ -79,7 +79,8 @@ function startLevel() {
 	playerVX = 0;
 	playerVY = 0;
 
-	blockSize = currentLevel.length === 6 ? 100 : currentLevel.length === 12 ? 50 : 25;
+	blockSize =
+		currentLevel.length === 6 ? 100 : currentLevel.length === 12 ? 50 : 25;
 	playerSize = blockSize * 0.8;
 
 	currentLevel.forEach(function (row, ri) {
@@ -96,12 +97,16 @@ function nextLevel() {
 	if (!testing) {
 		if (currentLevelNum + 2 > levels[currentLevelSize].length) {
 			currentLevelNum = 0;
-			currentLevelSize = currentLevelSize === "small" ? "medium" :
-				currentLevelSize === "medium" ? "large" : "small";
+			currentLevelSize =
+				currentLevelSize === "small"
+					? "medium"
+					: currentLevelSize === "medium"
+					? "large"
+					: "small";
 		} else currentLevelNum++;
 		currentLevel = levels[currentLevelSize][currentLevelNum];
-		blockSize = currentLevel.length === 6 ? 100 :
-			currentLevel.length === 12 ? 50 : 25;
+		blockSize =
+			currentLevel.length === 6 ? 100 : currentLevel.length === 12 ? 50 : 25;
 	}
 	startLevel();
 }
@@ -116,7 +121,7 @@ function getNeighbors(row, col) {
 		left: "0",
 		right: "0",
 		top: "0",
-		bottom: "0",
+		bottom: "0"
 	};
 
 	let rows = currentLevel.length;
@@ -175,45 +180,77 @@ const blockRenderer = new Map([
 	// Placeholders
 	["0", () => {}], // eslint-disable-line
 	["P", () => {}], // eslint-disable-line
-	["1", (row, col, baseColor = "1", topColor = "1") => {
-		topColor = topColor === "1" ? "lime" : "red";
-		baseColor = baseColor === "3" ? "blueviolet" :
-			baseColor === "G" ? "yellow" : "#643a02";
+	[
+		"1",
+		(row, col, baseColor = "1", topColor = "1") => {
+			topColor = topColor === "1" ? "lime" : "red";
+			baseColor =
+				baseColor === "3"
+					? "blueviolet"
+					: baseColor === "G"
+					? "yellow"
+					: "#643a02";
 
-		let neighbors = getNeighbors(row, col);
-		let top = neighbors.top === "0";
-		let left = neighbors.left === "0";
-		let right = neighbors.right === "0";
-		let bottom = neighbors.bottom === "0";
-		let round = blockSize / 20;
+			let neighbors = getNeighbors(row, col);
+			let top = neighbors.top === "0";
+			let left = neighbors.left === "0";
+			let right = neighbors.right === "0";
+			let bottom = neighbors.bottom === "0";
+			let round = blockSize / 20;
 
-		ctx.fillStyle = baseColor;
-		roundRect(col * blockSize, row * blockSize, blockSize, blockSize, {
-			tl: top && left ? round * 1.25 : 0,
-			tr: top && right ? round * 1.25 : 0,
-			bl: left && bottom ? round : 0,
-			br: right && bottom ? round : 0
-		}, true, false);
+			ctx.fillStyle = baseColor;
+			roundRect(
+				col * blockSize,
+				row * blockSize,
+				blockSize,
+				blockSize,
+				{
+					tl: top && left ? round * 1.25 : 0,
+					tr: top && right ? round * 1.25 : 0,
+					bl: left && bottom ? round : 0,
+					br: right && bottom ? round : 0
+				},
+				true,
+				false
+			);
 
-		if (baseColor === "#643a02" && top) {
-			ctx.fillStyle = topColor;
-			roundRect(col * blockSize, row * blockSize, blockSize, blockSize / 5, {
-				tl: left ? round : 0,
-				tr: right ? round : 0,
-				bl: 0,
-				br: 0
-			}, true, false);
+			if (baseColor === "#643a02" && top) {
+				ctx.fillStyle = topColor;
+				roundRect(
+					col * blockSize,
+					row * blockSize,
+					blockSize,
+					blockSize / 5,
+					{
+						tl: left ? round : 0,
+						tr: right ? round : 0,
+						bl: 0,
+						br: 0
+					},
+					true,
+					false
+				);
+			}
 		}
-	}],
-	["2", (row, col) => {
-		blockRenderer.get("1")(row, col, null, "2");
-	}],
-	["3", (row, col) => {
-		blockRenderer.get("1")(row, col, "3");
-	}],
-	["G", (row, col) => {
-		blockRenderer.get("1")(row, col, "G");
-	}]
+	],
+	[
+		"2",
+		(row, col) => {
+			blockRenderer.get("1")(row, col, null, "2");
+		}
+	],
+	[
+		"3",
+		(row, col) => {
+			blockRenderer.get("1")(row, col, "3");
+		}
+	],
+	[
+		"G",
+		(row, col) => {
+			blockRenderer.get("1")(row, col, "G");
+		}
+	]
 ]);
 
 function renderLevel() {
@@ -230,8 +267,12 @@ function renderLevel() {
 ////////////////////////////////////////////////
 
 function xMove() {
-	let speed = currentLevelSize === "small" ? 2.5 :
-		currentLevelSize === "medium" ? 1.2 : 0.7; // "large"
+	let speed =
+		currentLevelSize === "small"
+			? 2.5
+			: currentLevelSize === "medium"
+			? 1.2
+			: 0.7; // "large"
 	if (keyRight) playerVX += speed;
 	if (keyLeft) playerVX -= speed;
 
@@ -248,10 +289,14 @@ function xMove() {
 
 function yMove() {
 	let onGround = false;
-	let jumpAcc = currentLevelSize === "small" ? -10 :
-		currentLevelSize === "medium" ? -5 : -2.5;
+	let jumpAcc =
+		currentLevelSize === "small"
+			? -10
+			: currentLevelSize === "medium"
+			? -5
+			: -2.5;
 	let trampDiff = 1.45;
-	
+
 	currentLevel.forEach(function (row, ri) {
 		for (let ti = 0; ti < row.length; ti++) {
 			let type = row[ti];
@@ -264,48 +309,56 @@ function yMove() {
 			let pnx = playerX + playerVX;
 			let pny = playerY + playerVY;
 
-			if (pny + playerSize / 2 >= topY && pny + playerSize / 2 < topY + blockSize / 4 &&
-				pnx + playerSize / 2 >= rightX && pnx - playerSize / 2 <= leftX && playerVY >= 0
+			if (
+				pny + playerSize / 2 >= topY &&
+				pny + playerSize / 2 < topY + blockSize / 4 &&
+				pnx + playerSize / 2 >= rightX &&
+				pnx - playerSize / 2 <= leftX &&
+				playerVY >= 0
 			) {
 				switch (type) {
-				case "1":
-					playerVY = 0;
-					playerY = topY - playerSize / 2;
-					onGround = true;
-					break;
-				case "G":
-					nextLevel();
-					completeSound.play();
+					case "1":
+						playerVY = 0;
+						playerY = topY - playerSize / 2;
+						onGround = true;
+						break;
+					case "G":
+						nextLevel();
+						completeSound.play();
 					// eslint-disable-next-line
-				case "2":
-					startLevel();
-					if (type === "2") hurtSound.play();
-					break;
-				case "3":
-					playerY = playerVY >= 0 ? topY - playerSize / 2 : playerY;
-					playerVY = Math.min(-playerVY * 0.8, jumpAcc * trampDiff);
-					bounceSound.play();
+					case "2":
+						startLevel();
+						if (type === "2") hurtSound.play();
+						break;
+					case "3":
+						playerY = playerVY >= 0 ? topY - playerSize / 2 : playerY;
+						playerVY = Math.min(-playerVY * 0.8, jumpAcc * trampDiff);
+						bounceSound.play();
 				}
 			}
-			if (pny - playerSize / 2 >= bottomY - blockSize / 4 && pny - playerSize / 2 <= bottomY &&
-				pnx + playerSize / 2 >= rightX && pnx - playerSize / 2 <= leftX && playerVY <= 0
+			if (
+				pny - playerSize / 2 >= bottomY - blockSize / 4 &&
+				pny - playerSize / 2 <= bottomY &&
+				pnx + playerSize / 2 >= rightX &&
+				pnx - playerSize / 2 <= leftX &&
+				playerVY <= 0
 			) {
 				switch (type) {
-				case "1":
-				case "2":
-					playerVY = 0;
-					playerY = bottomY + playerSize / 2;
-					break;
-				case "G":
-					nextLevel();
-					completeSound.play();
-					// eslint-disable-next-line
-				case "3":
-					if (playerVY <= 0) {
+					case "1":
+					case "2":
+						playerVY = 0;
 						playerY = bottomY + playerSize / 2;
-						playerVY = 5;
-						bounceSound.play();
-					}
+						break;
+					case "G":
+						nextLevel();
+						completeSound.play();
+					// eslint-disable-next-line
+					case "3":
+						if (playerVY <= 0) {
+							playerY = bottomY + playerSize / 2;
+							playerVY = 5;
+							bounceSound.play();
+						}
 				}
 			}
 		}
@@ -343,16 +396,22 @@ function menu() {
 	renderLevel();
 	startLevel();
 	ctx.fillStyle = "black";
-	ctx.drawImage(SPRITE_RIGHT, playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize);
+	ctx.drawImage(
+		SPRITE_RIGHT,
+		playerX - playerSize / 2,
+		playerY - playerSize / 2,
+		playerSize,
+		playerSize
+	);
 	// roundRect(playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize, 5);
 
 	// Logo
 	ctx.drawImage(logo, 150, 30);
 	ctx.fillStyle = "black";
 	ctx.textAlign = "center";
-	ctx.font = "50px \"Open Sans\", Lato, sans-serif";
+	ctx.font = '50px "Open Sans", Lato, sans-serif';
 	ctx.fillText("Click to Begin!", CW / 2, 200);
-	ctx.font = "15px \"Open Sans\", Lato, sans-serif";
+	ctx.font = '15px "Open Sans", Lato, sans-serif';
 	ctx.fillText("Now Pusheen Edition!", CW / 2, 230);
 }
 
@@ -368,7 +427,13 @@ function update() {
 	// Player
 	ctx.fillStyle = "black";
 	let img = playerVX < 0 ? SPRITE_LEFT : SPRITE_RIGHT;
-	ctx.drawImage(img, playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize);
+	ctx.drawImage(
+		img,
+		playerX - playerSize / 2,
+		playerY - playerSize / 2,
+		playerSize,
+		playerSize
+	);
 	// roundRect(playerX - playerSize / 2, playerY - playerSize / 2, playerSize, playerSize, blockSize / 20);
 
 	yMove();
@@ -376,11 +441,17 @@ function update() {
 
 	// Score
 	ctx.textAlign = "right";
-	ctx.font = "30px \"Open Sans\", Lato, sans-serif";
+	ctx.font = '30px "Open Sans", Lato, sans-serif';
 	if (!testing) {
 		ctx.fillText(
-			`Level: ${currentLevelNum+1} | Level Size: ${currentLevelSize[0].toLocaleUpperCase()}${currentLevelSize.slice(1)}`,
-			CW - 10, 40);
+			`Level: ${
+				currentLevelNum + 1
+			} | Level Size: ${currentLevelSize[0].toLocaleUpperCase()}${currentLevelSize.slice(
+				1
+			)}`,
+			CW - 10,
+			40
+		);
 	}
 
 	if (toRestart) {
@@ -432,7 +503,7 @@ function keyHandler(evt) {
 document.addEventListener("keydown", keyHandler);
 document.addEventListener("keyup", keyHandler);
 
-canvas.addEventListener("click", () => inMenu = false);
+canvas.addEventListener("click", () => (inMenu = false));
 
 document.getElementById("test").addEventListener("click", () => {
 	const level = document.getElementById("code").value.split("-");
@@ -445,6 +516,7 @@ document.getElementById("test").addEventListener("click", () => {
 	testing = true;
 	inMenu = false;
 	currentLevel = level;
-	currentLevelSize = level.length === 6 ? "small" : level.length === 12 ? "medium" : "large";
+	currentLevelSize =
+		level.length === 6 ? "small" : level.length === 12 ? "medium" : "large";
 	startLevel();
 });

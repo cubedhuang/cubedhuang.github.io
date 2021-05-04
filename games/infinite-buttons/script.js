@@ -1,11 +1,13 @@
 let debug = Vue.createApp({
 	data: () => ({
-		buttons: [{
-			value: Math.trunc(Math.random() * 100) + 1,
-			bg: "red",
-			x: 100,
-			y: 0
-		}],
+		buttons: [
+			{
+				value: Math.trunc(Math.random() * 100) + 1,
+				bg: "red",
+				x: 100,
+				y: 0
+			}
+		],
 		score: 0
 	}),
 
@@ -17,21 +19,22 @@ let debug = Vue.createApp({
 			let temp = this.buttons.slice();
 			this.score += temp[i].value;
 
-			let bgc = ["red"  , "blue" , "green", "yellow"];
+			let bgc = ["red", "blue", "green", "yellow"];
 
 			let i1 = Math.floor(Math.random() * bgc.length);
 
-			if (temp.length <= 50) temp.push({
-				value: Math.trunc(Math.random() * 100) + 1,
-				bg: bgc[i1],
-				x: temp[i].x,
-				y: temp[i].y,
-			});
+			if (temp.length <= 50)
+				temp.push({
+					value: Math.trunc(Math.random() * 100) + 1,
+					bg: bgc[i1],
+					x: temp[i].x,
+					y: temp[i].y
+				});
 
 			this.buttons = temp;
 			this.changePos();
 		},
-		
+
 		changePos() {
 			let temp = this.buttons.slice();
 

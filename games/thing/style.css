@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap");
 
 :root {
 	--purple: #8e44ad;
@@ -24,11 +24,11 @@ img:hover {
 }
 
 * {
-    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-    -moz-user-select: none; /* mozilla browsers */
-    -khtml-user-select: none; /* webkit (konqueror) browsers */
-    -ms-user-select: none; /* IE10+ */
-    user-select: none; /* IE10+ */
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
+	user-select: none; /* IE10+ */
 }
 
 body {
@@ -53,7 +53,7 @@ h3 {
 }
 .prestige:hover,
 .prestige:active {
-    background-color: var(--purple) !important;
+	background-color: var(--purple) !important;
 	border-color: var(--purple) !important;
 }
 .prestige:focus {

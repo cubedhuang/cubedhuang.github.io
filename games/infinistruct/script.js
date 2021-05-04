@@ -7,7 +7,7 @@ numberformat.default.opts = {
 const p42 = Vue.createApp({
 	data: () => ({
 		stuff: new Decimal(1),
-		structs: [new Decimal(0)],
+		structs: [new Decimal(0)]
 	}),
 
 	computed: {
@@ -40,9 +40,10 @@ const p42 = Vue.createApp({
 			}
 			this.structs = temp;
 			this.stuff = this.stuff.plus(this.structs[0].times(sPassed));
-			if (this.structs[this.structs.length - 1].gte(1)) this.structs.push(new Decimal(0));
+			if (this.structs[this.structs.length - 1].gte(1))
+				this.structs.push(new Decimal(0));
 		},
-		
+
 		restart() {
 			// eslint-disable-next-line
 			if (!confirm("Are you sure want to RESTART the game?")) return;
@@ -51,11 +52,14 @@ const p42 = Vue.createApp({
 		},
 
 		save() {
-			localStorage.setItem("save", JSON.stringify({
-				stuff: p42.stuff.toString(),
-				structs: p42.structs.map(e => e.toString()),
-				last: new Date().getTime()
-			}));
+			localStorage.setItem(
+				"save",
+				JSON.stringify({
+					stuff: p42.stuff.toString(),
+					structs: p42.structs.map(e => e.toString()),
+					last: new Date().getTime()
+				})
+			);
 		}
 	}
 }).mount("#infinistruct");
@@ -85,6 +89,10 @@ onload = () => {
 		p42.stuff = new Decimal(save.stuff);
 		p42.structs = save.structs.map(e => new Decimal(e));
 		loop(new Date().getTime() - save.last);
-		alert(`You earned ${ numberformat.format(p42.stuff.minus(save.stuff)) } stuff and some more structures while you were away!`);
-	}, 100)
+		alert(
+			`You earned ${numberformat.format(
+				p42.stuff.minus(save.stuff)
+			)} stuff and some more structures while you were away!`
+		);
+	}, 100);
 };

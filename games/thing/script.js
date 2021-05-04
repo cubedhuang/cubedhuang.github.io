@@ -2,19 +2,27 @@ numberformat.default.opts = {
 	backend: "decimal.js",
 	Decimal: Decimal,
 	sigfigs: 5
-}
+};
 
 const thing = Vue.createApp({
 	created() {
 		this.loadGame();
 		let machineMult = 1.2;
-		setInterval(() => this.collect(this.machines.mul(Decimal.mul(machineMult, Decimal.pow("1.05", this.uu)))), 1000);
+		setInterval(
+			() =>
+				this.collect(
+					this.machines.mul(
+						Decimal.mul(machineMult, Decimal.pow("1.05", this.uu))
+					)
+				),
+			1000
+		);
 		setInterval(this.saveGame, 10000);
 		setTimeout(() => {
 			this.allowWatch = true;
 		}, 0);
 	},
-	
+
 	data: () => ({
 		total: new Decimal("0"),
 		curTotal: new Decimal("0"),
@@ -29,7 +37,7 @@ const thing = Vue.createApp({
 		mc: new Decimal("1000"), // machine cost
 		ml: new Decimal("0"), // machine level
 		mlc: new Decimal("1000000"), // machine level cost
-		
+
 		degree: new Decimal("0"),
 		tp: new Decimal("0"), // transcendence points
 
@@ -39,12 +47,12 @@ const thing = Vue.createApp({
 		ccc: new Decimal("1"),
 		uu: new Decimal("0"), // ultimate upgrades
 		uuc: new Decimal("1"),
-		
+
 		prestigeConfirm: false,
 		prestigeMode: false,
-		
+
 		version: "2.0.0",
-		allowWatch: false,
+		allowWatch: false
 	}),
 
 	watch: {
@@ -63,7 +71,12 @@ const thing = Vue.createApp({
 
 	computed: {
 		degreeGain() {
-			return Decimal.max(Decimal.floor(Decimal.pow(this.total.div("10"), 1 / 3)).minus(this.degree), 0);
+			return Decimal.max(
+				Decimal.floor(Decimal.pow(this.total.div("10"), 1 / 3)).minus(
+					this.degree
+				),
+				0
+			);
 		},
 		degreeMult() {
 			return Decimal.add("1", this.degree.div("20"));
@@ -73,7 +86,7 @@ const thing = Vue.createApp({
 			return this.format(Decimal.pow(2, this.mm));
 		},
 		effectCC() {
-			return Decimal.sub("2", this.calcCC("2")).mul("100").toFixed(1)
+			return Decimal.sub("2", this.calcCC("2")).mul("100").toFixed(1);
 		},
 		effectUU() {
 			return this.format(this.uu.mul(5));
@@ -92,10 +105,11 @@ const thing = Vue.createApp({
 			let boxMult = "1.1";
 			let add = Decimal.round(
 				Decimal.pow(Decimal.mul(boxMult, Decimal.pow("1.05", this.uu)), this.bl)
-				.mul(this.boxes)
-				.mul(this.degreeMult)
-				.mul(amount)
-				.mul(click ? Decimal.pow(2, this.mm) : "1"));
+					.mul(this.boxes)
+					.mul(this.degreeMult)
+					.mul(amount)
+					.mul(click ? Decimal.pow(2, this.mm) : "1")
+			);
 			this.parts = this.parts.plus(add);
 		},
 
@@ -113,7 +127,7 @@ const thing = Vue.createApp({
 					cost = Decimal.ceil(cost.mul(multiplier));
 				}
 			}
-			return { parts, amount, cost }
+			return { parts, amount, cost };
 		},
 
 		calcCC(val) {
@@ -121,28 +135,52 @@ const thing = Vue.createApp({
 		},
 
 		buildBox(max) {
-			let calc = this.getBuyingData(this.parts, this.boxes, this.bc, this.calcCC("1.1"), max);
+			let calc = this.getBuyingData(
+				this.parts,
+				this.boxes,
+				this.bc,
+				this.calcCC("1.1"),
+				max
+			);
 			this.parts = calc.parts;
 			this.boxes = calc.amount;
 			this.bc = calc.cost;
 		},
 
 		upgradeBox(max) {
-			let calc = this.getBuyingData(this.parts, this.bl, this.blc, this.calcCC("2"), max);
+			let calc = this.getBuyingData(
+				this.parts,
+				this.bl,
+				this.blc,
+				this.calcCC("2"),
+				max
+			);
 			this.parts = calc.parts;
 			this.bl = calc.amount;
 			this.blc = calc.cost;
 		},
 
 		buildMachine(max) {
-			let calc = this.getBuyingData(this.parts, this.machines, this.mc, this.calcCC("1.5"), max);
+			let calc = this.getBuyingData(
+				this.parts,
+				this.machines,
+				this.mc,
+				this.calcCC("1.5"),
+				max
+			);
 			this.parts = calc.parts;
 			this.machines = calc.amount;
 			this.mc = calc.cost;
 		},
 
 		upgradeMachine(max) {
-			let calc = this.getBuyingData(this.parts, this.ml, this.mlc, this.calcCC("5"), max);
+			let calc = this.getBuyingData(
+				this.parts,
+				this.ml,
+				this.mlc,
+				this.calcCC("5"),
+				max
+			);
 			this.parts = calc.parts;
 			this.ml = calc.amount;
 			this.mlc = calc.cost;
@@ -187,12 +225,13 @@ const thing = Vue.createApp({
 		},
 
 		saveGame() {
-			localStorage.setItem("save", JSON.stringify(
-				{
+			localStorage.setItem(
+				"save",
+				JSON.stringify({
 					data: this.$data,
 					time: Math.floor(Date.now() / 1000)
-				}
-			));
+				})
+			);
 		},
 
 		loadGame() {
@@ -204,22 +243,30 @@ const thing = Vue.createApp({
 			}
 
 			let raw = ["version", "prestigeConfirm", "prestigeMode"];
-			for(let i in save.data) {
+			for (let i in save.data) {
 				if (save.data.hasOwnProperty(i)) {
 					if (i === "allowWatch") this.$data[i] = false;
 					else if (raw.includes(i)) this.$data[i] = save.data[i];
-					else this.$data[i] = new Decimal(save.data[i])
+					else this.$data[i] = new Decimal(save.data[i]);
 				}
 			}
 
 			let elapsed = Math.floor(Date.now() / 1000) - save.time;
-			this.collect(this.machines.mul(Decimal.mul("1.2", Decimal.pow("1.05", this.uu).mul(elapsed))));
+			this.collect(
+				this.machines.mul(
+					Decimal.mul("1.2", Decimal.pow("1.05", this.uu).mul(elapsed))
+				)
+			);
 		},
 
 		reset() {
 			if (
-				confirm("This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?") &&
-				confirm("This is you last chance to turn back before you lost your progress forever!")
+				confirm(
+					"This will COMPLETELY WIPE YOUR SAVE! Are you sure you want to continue?"
+				) &&
+				confirm(
+					"This is you last chance to turn back before you lost your progress forever!"
+				)
 			) {
 				window.onbeforeunload = () => localStorage.removeItem("save");
 				location.reload(true);

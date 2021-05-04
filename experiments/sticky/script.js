@@ -1,7 +1,8 @@
 const rand = new Math.seedrandom("seed");
 const { floor } = Math;
 
-const randint = (a, b) => floor(b ? rand() * (b - a + 1) + a : rand() * (a + 1));
+const randint = (a, b) =>
+	floor(b ? rand() * (b - a + 1) + a : rand() * (a + 1));
 const char = pool => {
 	const skewedRandom = rand() ** 2;
 	return pool[floor(skewedRandom * pool.length)];
@@ -36,9 +37,9 @@ function word() {
 	const length = randint(1, 3);
 
 	let text = "";
-	
+
 	for (let i = 0; i < length; i++) text += syllable();
-	
+
 	return text;
 }
 
@@ -51,7 +52,7 @@ function sentence() {
 	for (let i = 1; i < length; i++) {
 		let w = word();
 		if (rand() < 0.05) {
-			let t = rand() < 0.5 ? "b" : "i"
+			let t = rand() < 0.5 ? "b" : "i";
 			w = `<${t}>${w}</${t}>`;
 		}
 		text += " " + w;
@@ -67,13 +68,13 @@ function paragraph() {
 	const length = randint(3, 8);
 
 	let text = "<p>";
-	
+
 	for (let i = 0; i < length; i++) text += " " + sentence();
 	if (rand() < 0.1) {
 		text += "</p><p>";
 		for (let i = 0; i < length; i++) text += " " + sentence();
 	}
-	
+
 	return text + "</p>";
 }
 
@@ -91,11 +92,11 @@ const $nav = document.getElementById("sidenav");
 for (const section of sections) {
 	$container.innerHTML += `
 	<div>
-		<h3 id="${ section[0].toLowerCase() }">${ section[0] }</h3>
-		${ section[1] }
+		<h3 id="${section[0].toLowerCase()}">${section[0]}</h3>
+		${section[1]}
 	</div>
 	`;
 	$nav.innerHTML += `
-	<a href="#${ section[0].toLowerCase() }">${ section[0] }</a>
+	<a href="#${section[0].toLowerCase()}">${section[0]}</a>
 	`;
 }

@@ -1,5 +1,5 @@
 @import url("./modern-normalize.min.css");
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Open+Sans:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Open+Sans:wght@300;400;600&display=swap");
 
 /* VARIABLES */
 
@@ -16,7 +16,7 @@
 
 	--ff-h: "Lexend Deca", Helvetica, sans-serif;
 	--ff-p: "Open Sans", Helvetica, sans-serif;
-	
+
 	font-size: calc(16px + 2 * ((100vw - 320px) / 680));
 	scroll-behavior: smooth;
 }
@@ -196,7 +196,8 @@ table {
 	margin-top: 0.5em;
 }
 
-table th, table td {
+table th,
+table td {
 	border: 1px solid lightgray;
 }
 
@@ -343,8 +344,8 @@ button {
 	margin-bottom: 0.25em;
 	box-shadow: 0 0.25em 0 var(--clr-1);
 	cursor: pointer;
-	transition: background 0.2s, color 0.2s, filter 0.2s,
-		transform 0.1s, box-shadow 0.1s;
+	transition: background 0.2s, color 0.2s, filter 0.2s, transform 0.1s,
+		box-shadow 0.1s;
 }
 
 :is(.button, button):is(:hover, :focus-visible) {
@@ -366,22 +367,14 @@ textarea {
 	transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-:is(
-	input[type="number"],
-	input[type="text"],
-	textarea
-):focus {
+:is(input[type="number"], input[type="text"], textarea):focus {
 	outline: none;
 	box-shadow: 0 0 0.5em #fffb;
 	background: var(--clr-1);
 	color: var(--text-color);
 }
 
-:is(
-	input[type="number"],
-	input[type="text"],
-	textarea
-):focus::placeholder {
+:is(input[type="number"], input[type="text"], textarea):focus::placeholder {
 	color: #bbb;
 }
 
@@ -433,7 +426,9 @@ ul.breadcrumbs li:last-child::after {
 /* ----------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-	*, *::before, *::after {
+	*,
+	*::before,
+	*::after {
 		animation-delay: -1ms !important;
 		animation-duration: 1ms !important;
 		animation-iteration-count: 1 !important;

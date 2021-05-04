@@ -11,7 +11,7 @@ class Block {
 	}
 
 	move(canvas) {
-		if (this.y + (this.size / 2) + this.vy >= canvas.height) {
+		if (this.y + this.size / 2 + this.vy >= canvas.height) {
 			this.dead = true;
 		}
 		this.x += this.vx;

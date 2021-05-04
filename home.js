@@ -1,23 +1,27 @@
 (() => {
 	const $scroller = document.querySelector(".scroller");
-	const $games = document.querySelector('.section-games');
+	const $games = document.querySelector(".section-games");
 	function scroll() {
 		$games.scrollIntoView({ behavior: "smooth" });
 	}
 	if ($scroller) {
 		$scroller.addEventListener("click", scroll);
-		$scroller.addEventListener("keypress", e => e.key === "Enter" ? scroll() : 0);
+		$scroller.addEventListener("keypress", e =>
+			e.key === "Enter" ? scroll() : 0
+		);
 	}
 
 	const $cards = document.getElementsByClassName("game-card");
-	const scrollObserver = new IntersectionObserver(entries => {
-		entries.forEach(entry => {
-			if (entry.isIntersecting)
-				entry.target.classList.remove("disappear");
-		});
-	}, {
-		threshold: 1
-	});
+	const scrollObserver = new IntersectionObserver(
+		entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) entry.target.classList.remove("disappear");
+			});
+		},
+		{
+			threshold: 1
+		}
+	);
 	for (const card of $cards) {
 		card.classList.add("disappear");
 		scrollObserver.observe(card);
@@ -39,8 +43,8 @@
 		in: false,
 		inTime: 0,
 		down: false,
-		downTime: 0,
-	}
+		downTime: 0
+	};
 
 	window.onresize = e => {
 		canvas.width = document.body.clientWidth;
@@ -65,12 +69,12 @@
 		mouse.in = true;
 		mouse.ex = e.clientX ?? e.touches[0].clientX;
 		mouse.ey = e.clientY ?? e.touches[0].clientY;
-	}
+	};
 
 	window.onmouseup = window.ontouchend = e => {
 		mouse.down = false;
 		mouse.downTime = Date.now();
-	}
+	};
 
 	const range = (a, b) => Math.random() * (b - a) + a;
 	const rint = (a, b) => Math.floor(Math.random() * (b - a + 1) + a);
@@ -79,15 +83,12 @@
 	let distMult = 0;
 
 	class Particle {
-		static colors = [
-			"#0984e360",
-			"#6c5ce760",
-		];
+		static colors = ["#0984e360", "#6c5ce760"];
 
 		constructor() {
 			this.x = range(0, canvas.width);
 			this.y = range(0, canvas.height);
-			
+
 			let r = range(0, Math.PI * 2);
 			this.vx = Math.cos(r) / range(2, 4);
 			this.vy = Math.sin(r) / range(2, 4);
@@ -104,7 +105,7 @@
 
 			this.points = [];
 			for (let i = 0; i < this.num; i++) {
-				const r = Math.PI * (i / this.num * 2) + this.rotation;
+				const r = Math.PI * ((i / this.num) * 2) + this.rotation;
 				this.points.push([Math.cos(r), Math.sin(r)]);
 			}
 		}
@@ -124,13 +125,13 @@
 				ctx.beginPath();
 				ctx.moveTo(mouse.x, mouse.y);
 				ctx.lineTo(this.x, this.y);
-				ctx.strokeStyle = `rgba(255, 255, 255, ${ alpha })`;
+				ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
 				ctx.stroke();
 			}
 
 			ctx.translate(this.x, this.y);
 			ctx.rotate(this.rotation);
-			
+
 			ctx.beginPath();
 			for (const m of this.points) {
 				ctx.lineTo(this.asize * m[0], this.asize * m[1]);
@@ -167,7 +168,10 @@
 			}
 
 			// goal size
-			const gsize = Math.max(Math.min((distMult * this.size) / this.dist(), this.size * 2), this.size);
+			const gsize = Math.max(
+				Math.min((distMult * this.size) / this.dist(), this.size * 2),
+				this.size
+			);
 			this.asize += (gsize - this.asize) / 4;
 		}
 	}
@@ -187,7 +191,11 @@
 
 		const now = Date.now();
 		const delay = 1000;
-		if (!mouse.down && now - mouse.inTime > delay && now - mouse.downTime > delay) {
+		if (
+			!mouse.down &&
+			now - mouse.inTime > delay &&
+			now - mouse.downTime > delay
+		) {
 			mouse.in = false;
 		}
 
@@ -198,7 +206,7 @@
 			particle.update();
 			particle.draw();
 		}
-		
+
 		requestAnimationFrame(loop);
 	}
 
