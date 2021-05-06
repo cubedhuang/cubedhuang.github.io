@@ -91,8 +91,8 @@ const $nav = document.getElementById("sidenav");
 
 for (const section of sections) {
 	$container.innerHTML += `
-	<div>
-		<h3 id="${section[0].toLowerCase()}">${section[0]}</h3>
+	<div id="${section[0].toLowerCase()}">
+		<h3>${section[0]}</h3>
 		${section[1]}
 	</div>
 	`;
