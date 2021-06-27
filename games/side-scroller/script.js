@@ -58,19 +58,22 @@ function draw(time) {
 	drawRect(0, 0, CW, CH, "#36cdda"); // Sky
 
 	// Moving clouds
-	if (Math.random() > 0.98) {
+	if (Math.random() < 0.05) {
+		const col = Math.floor(Math.random() * 50 + 206);
 		clouds.push({
 			x: CW,
 			y: Math.floor(Math.random() * (CH / 3)) - CH / 20,
 			w: Math.floor(Math.random() * 50) + 50,
 			h: Math.floor(Math.random() * 10) + 10,
-			m: Math.floor(Math.random() * 3) + 1
+			m: Math.floor(Math.random() * 3) + 1,
+			c: `rgb(${col}, ${col}, ${col})`
 		});
+		clouds.sort((a, b) => b.m - a.m);
 	}
 
 	for (let i = clouds.length - 1; i >= 0; i--) {
 		const cloud = clouds[i];
-		roundRect(cloud.x, cloud.y, cloud.w, cloud.h, "white", 5);
+		roundRect(cloud.x, cloud.y, cloud.w, cloud.h, cloud.c, 5);
 		cloud.x -= cloud.m;
 		if (cloud.x < -cloud.w) {
 			clouds.splice(i, 1);
@@ -78,33 +81,37 @@ function draw(time) {
 	}
 
 	// Background Terrain
-	if (Math.random() < 0.3) {
-		const h = Math.floor(Math.random() * 30) + 40;
+	if (Math.random() < 0.5) {
+		const h = Math.floor(Math.random() * 120) + 20;
 		terrain.push({
 			x: CW,
 			y: (CH / 3) * 2 - h + 10,
-			w: Math.floor(Math.random() * 50) + 50,
-			h: h
+			w: Math.floor(Math.random() * 50) + 100,
+			h: h,
+			c: `rgb(0, ${200 - Math.floor(Math.sqrt(h)) * 10}, 0)`,
+			m: (300 - h) / 40
 		});
+		terrain.sort((a, b) => b.m - a.m);
 	}
 
 	for (let i = terrain.length - 1; i >= 0; i--) {
 		const thing = terrain[i];
-		roundRect(thing.x, thing.y, thing.w, thing.h, "lightgreen", 10);
-		thing.x -= 3;
+		roundRect(thing.x, thing.y, thing.w, thing.h, thing.c, 10);
+		thing.x -= thing.m;
 		if (thing.x < -thing.w) {
 			terrain.splice(i, 1);
 		}
 	}
 
-	drawRect(0, (CH / 3) * 2, CW, CH / 3, "lime"); // Ground Grass
+	drawRect(0, (CH / 3) * 2, CW, CH / 3, "#27ae60"); // Ground Grass
 	drawRect(0, (CH / 2.5) * 1.8, CW, CH / 2.5, "#643900"); // Ground Dirt
 
 	// Random block spawning
 	if (Math.random() > 0.98) {
 		blocks.push({
 			x: CW,
-			h: Math.floor(Math.random() * 30) + 20
+			h: Math.floor(Math.random() * 30) + 20,
+			c: `rgb(${Math.floor(Math.random() * 100 + 156)}, 0, 0)`
 		});
 	}
 
@@ -125,7 +132,7 @@ function draw(time) {
 
 	for (let i = blocks.length - 1; i >= 0; i--) {
 		const block = blocks[i];
-		roundRect(block.x, (CH / 3) * 2 - block.h, BW, block.h + 5, "red", 5);
+		roundRect(block.x, (CH / 3) * 2 - block.h, BW, block.h + 5, block.c, 5);
 		block.x -= XV;
 		if (block.x < -BW) {
 			blocks.splice(i, 1);
