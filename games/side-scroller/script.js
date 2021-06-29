@@ -28,15 +28,14 @@ let score = 0;
 let hurtDelay = 0;
 
 let prevTime = 0;
-let delta = 0;
 
 document.addEventListener("keydown", e => {
-	if (e.key === "ArrowUp" || e.key === "w") up = true;
+	if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") up = true;
 	else if (e.key === "ArrowDown" || e.key === "s") down = true;
 });
 
 document.addEventListener("keyup", e => {
-	if (e.key === "ArrowUp" || e.key === "w") up = false;
+	if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") up = false;
 	else if (e.key === "ArrowDown" || e.key === "s") down = false;
 });
 
@@ -51,9 +50,6 @@ function onGround() {
 
 function draw(time) {
 	requestAnimationFrame(draw);
-
-	delta = time - prevTime;
-	prevTime = time;
 
 	drawRect(0, 0, CW, CH, "#36cdda"); // Sky
 
@@ -161,7 +157,7 @@ function draw(time) {
 	}
 
 	// Score Incrementation
-	score += (1 / 100) * delta;
+	score += (1 / 60) * 10;
 	if (score > 0) ctx.fillStyle = "black";
 	else ctx.fillStyle = "red";
 
