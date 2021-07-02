@@ -7,7 +7,7 @@ const CH = canvas.height;
 const PH = 40; // Player Height
 const PX = 20; // Player X
 const PW = 10; // Player Width
-const XV = 5; // X velocity
+const XV = 6; // X velocity
 let py = (CH / 3) * 2 - PH; // Player Y
 let yv = 0; // Y velocity
 
@@ -77,7 +77,7 @@ function draw(time) {
 	}
 
 	// Background Terrain
-	if (Math.random() < 0.5) {
+	if (Math.random() < 1) {
 		const h = Math.floor(Math.random() * 120) + 20;
 		terrain.push({
 			x: CW,
@@ -85,7 +85,7 @@ function draw(time) {
 			w: Math.floor(Math.random() * 50) + 100,
 			h: h,
 			c: `rgb(0, ${200 - Math.floor(Math.sqrt(h)) * 10}, 0)`,
-			m: (300 - h) / 40
+			m: (300 - h) / 60
 		});
 		terrain.sort((a, b) => b.m - a.m);
 	}
@@ -99,7 +99,7 @@ function draw(time) {
 		}
 	}
 
-	drawRect(0, (CH / 3) * 2, CW, CH / 3, "#27ae60"); // Ground Grass
+	drawRect(0, (CH / 3) * 2, CW, CH / 3, "#2b692e"); // Ground Grass
 	drawRect(0, (CH / 2.5) * 1.8, CW, CH / 2.5, "#643900"); // Ground Dirt
 
 	// Random block spawning
@@ -121,7 +121,7 @@ function draw(time) {
 			!hurtDelay
 		) {
 			score -= 50;
-			hurtDelay = 30;
+			hurtDelay = 90;
 			blocks.splice(i, 1);
 		}
 	}
@@ -137,20 +137,27 @@ function draw(time) {
 
 	// Jumping
 	if (onGround()) {
-		if (up) yv = -10;
+		if (up) yv = -12;
 		else {
 			py = (CH / 3) * 2 - PH;
 			yv = 0;
 		}
 	} else {
-		if (down) yv = 8;
-		else yv += 0.5;
+		if (down) yv = 12;
+		else yv += 0.75;
 	}
 	py += yv;
 
 	// Player
 	if (hurtDelay > 0) {
-		roundRect(PX, py, PW, PH, "#0004", 5);
+		roundRect(
+			PX,
+			py,
+			PW,
+			PH,
+			`#000${Math.floor(hurtDelay / 15) % 2 === 0 ? 4 : 6}`,
+			5
+		);
 		hurtDelay--;
 	} else {
 		roundRect(PX, py, PW, PH, "black", 5);
