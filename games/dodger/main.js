@@ -26,6 +26,10 @@ let player = {
 let points = 0;
 let highscore = 0;
 
+const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+gradient.addColorStop(0, "#000f");
+gradient.addColorStop(1, "#0000");
+
 const random = (min, max) => Math.random() * (max - min) + min;
 
 function newBlock() {
@@ -105,10 +109,8 @@ function update() {
 	ctx.fillStyle = "white";
 	blocks.forEach(block => block.render(ctx));
 
-	for (let i = 0; i < 50; ++i) {
-		ctx.fillStyle = `rgba(0, 0, 0, ${(50 - i) / 50})`;
-		ctx.fillRect(0, i * 5, canvas.width, 5);
-	}
+	ctx.fillStyle = gradient;
+	ctx.fillRect(0, 0, canvas.width, 200);
 
 	ctx.fillStyle = "cyan";
 	ctx.font = "20px bold Courier, monospace";
