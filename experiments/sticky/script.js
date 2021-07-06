@@ -65,12 +65,12 @@ function sentence() {
 }
 
 function paragraph() {
-	const length = randint(3, 8);
+	const length = randint(8, 12);
 
 	let text = "<p>";
 
 	for (let i = 0; i < length; i++) text += " " + sentence();
-	if (rand() < 0.1) {
+	if (rand() < 0.8) {
 		text += "</p><p>";
 		for (let i = 0; i < length; i++) text += " " + sentence();
 	}
