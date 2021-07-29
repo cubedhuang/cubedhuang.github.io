@@ -30,13 +30,17 @@ let hurtDelay = 0;
 let prevTime = 0;
 
 document.addEventListener("keydown", e => {
-	if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") up = true;
-	else if (e.key === "ArrowDown" || e.key === "s") down = true;
+	let used = false;
+	if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") up = true, used = true;
+	else if (e.key === "ArrowDown" || e.key === "s") down = true, used = true;
+	if (used) e.preventDefault();
 });
 
 document.addEventListener("keyup", e => {
-	if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") up = false;
-	else if (e.key === "ArrowDown" || e.key === "s") down = false;
+	let used = false;
+	if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") up = false, used = true;
+	else if (e.key === "ArrowDown" || e.key === "s") down = false, used = true;
+	if (used) e.preventDefault();
 });
 
 function onGround() {
